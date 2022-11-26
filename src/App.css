@@ -10,6 +10,7 @@
   margin-top: 50px;
   will-change: filter;
   animation: logo-spin infinite 20s linear;
+  transition: filter 0.5s;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
