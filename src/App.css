@@ -3,6 +3,8 @@
   text-align: center;
 }
 
+
+
 .logo {
   height: 200px;
   margin-top: 50px;
@@ -117,6 +119,11 @@ img.profile {
   display:inline-block;
 }
 
+.image{
+  width: 100px;
+  height: auto;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -212,6 +219,8 @@ img.profile {
             transform: scale(1);
   }
 }
+
+
 
 
 /* ----------------------------------------------
