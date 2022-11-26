@@ -23,8 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-package-lock.json
-**/*Config.js*
+**/*Config.jsx*
 !telemetry.config.json
-/public/*.js
+/public/*.jsx
 /public/*.html
