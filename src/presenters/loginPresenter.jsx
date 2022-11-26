@@ -11,6 +11,7 @@ function Login(props) {
         console.log("Email checked") //event that validatates email in model
         console.log("Password OK") // event that validatates that the password is correct
         console.log("Log in successful") //If both emailValidation and passwordValidation passes it sends user to the home screen
+        window.location.hash="HomeScreen";
     }
 
     // function handleEmailValidationACB(){

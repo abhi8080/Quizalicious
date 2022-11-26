@@ -6,7 +6,7 @@ function LoginView(props) {
             <form>
                 <input  placeholder = "Email"></input>
                <div><input  placeholder = "Password"></input></div>
-               <a href="#">Create a new account</a>
+               <a href="#CreateAccount">Create a new account</a>
             </form>
             <button  onClick={props.onUserLogIn}>Log in</button>
 

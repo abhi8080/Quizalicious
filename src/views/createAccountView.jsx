@@ -8,6 +8,7 @@ function CreateAccountView(props) {
                <div><input  placeholder = "Enter a password"></input></div>
               
             </form>
+            <a href="">back</a><br/>
             <button  onClick={props.onUserCreate}>Create account</button>
 
         </div>
