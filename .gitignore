@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+package-lock.json
+**/*Config.jsx*
+!telemetry.config.json
+/public/*.jsx
+/public/*.html
