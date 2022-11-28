@@ -15,6 +15,6 @@ export default function Show(props) {
     }
 
     React.useEffect(wasCreatedACB, []);
-
-    return (<div class="show">{(hash===props.hash)&&props.children}</div>);
+    
+    return (<div class="show">{(props.hash.split(" ").find(currentHash => currentHash===hash))&&props.children}</div>);
 }

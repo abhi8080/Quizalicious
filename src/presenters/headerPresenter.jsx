@@ -23,7 +23,7 @@ function HeaderPresenter(props) {
     }
 
     function homeButtonPress() {
-        console.log("Home button press");
+        window.location.hash="HomeScreen";
     }
 
     return <HeaderView  homeButtonPress={homeButtonPress}
