@@ -9,7 +9,7 @@ function HeaderView(props) {
                 <div className="triangle"></div>
                 <img class="profile" src="./loid.jpg" alt="" />
             </div>
-            {props.profileMenuOpen&&<ProfileMenuView logOut={props.logOut} yourSettings={props.yourSettings} yourProfile={props.yourProfile}/>}
+            {props.children}
         </div>
     </div>;
 }

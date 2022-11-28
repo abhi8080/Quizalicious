@@ -1,4 +1,5 @@
 import HeaderView from "../views/headerView.jsx";
+import ProfileMenuView from "../views/profileMenuView.jsx";
 
 function HeaderPresenter(props) {
 
@@ -27,10 +28,9 @@ function HeaderPresenter(props) {
 
     return <HeaderView  homeButtonPress={homeButtonPress}
                         profileClick={profileClick}
-                        profileMenuOpen={profileMenuOpen}
-                        logOut={logOut}
-                        yourSettings={yourSettings}
-                        yourProfile={yourProfile}/>;
+                        profileMenuOpen={profileMenuOpen}>
+                        {profileMenuOpen&&<ProfileMenuView logOut={logOut} yourSettings={yourSettings} yourProfile={yourProfile}/>}
+            </HeaderView>;
 }
 
 export default HeaderPresenter;
