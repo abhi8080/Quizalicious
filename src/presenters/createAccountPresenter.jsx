@@ -17,15 +17,18 @@ function CreateACC(props) {
   
   }catch (error){
     console.log(error)
+
   }
+
+  if(props.model.currentUser != null){
+    window.location.hash = "#HomeScreen"
+  }
+
   
-}
 
-if(props.model.currentUser != null){
-  window.location.hash = "#HomeScreen"
 }
-
     return <CreateAccountView  onUserCreate = {handleCreateAccountACB} />
+
 }
 
 export default CreateACC;
