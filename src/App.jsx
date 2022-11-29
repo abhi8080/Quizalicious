@@ -18,8 +18,8 @@ function App(props) {
 
   return (
     <div>
-      <Show hash="#CreateAccount"><CreateACC/></Show>
-      <Show hash="#Login"><Login/></Show>
+      <Show hash="#CreateAccount"><CreateACC model = {props.model}/></Show>
+      <Show hash="#Login"><Login model = {props.model}/></Show>
       <Show hash="#HomeScreen #Season #Game #Quickgame #Highscores"><Header /></Show>
       <Show hash="#HomeScreen"><HomeScreen /></Show>
       <Show hash="#Season"><Season model={props.model}/></Show>

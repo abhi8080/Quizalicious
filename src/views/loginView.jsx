@@ -1,23 +1,15 @@
 function LoginView(props) {
+
+
     return <div class="loginBox">
         <img src="Quizalicious logo.svg" className="image blob"/>
             <form>
-                <input  placeholder = "Email"></input>
-               <div><input  placeholder = "Password"></input></div>
+            <input type = "email" placeholder = "Email" id="email"></input> 
+            <div><input type = "password" placeholder = "Password" id="password"></input></div>
                <a href="#CreateAccount">Create a new account</a>
             </form>
             <button  onClick={props.onUserLogIn}>Log in</button>
     </div>;
-
-
-
-// function loginError(){
-//     props.error
-// }
-
-    // function loginSuccess(){
-    //     props.success
-    // }
 }
 
 export default LoginView;

@@ -62,9 +62,11 @@ class QuizModel {
       username: username,
       password: password,
     });
+    this.currentUser = email
   }
   signIn(email, password) {
     signInWithPasswordAndEmail(email, password);
+    this.currentUser = email
   }
   setCurrentUserAchievements(achievements) {
     this.currentUserAchievements = achievements;

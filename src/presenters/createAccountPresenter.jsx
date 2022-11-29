@@ -1,20 +1,31 @@
 import CreateAccountView from "../views/createAccountView";
 
+
+
+
 function CreateACC(props) {
 
+ function handleCreateAccountACB(){
+  let email = document.getElementById('email').value
+ 
+  let username = document.getElementById('username').value
 
-    function handleCreateAccountACB(){ /* Do we want to send the user to the home screen after account has been created 
-                                        or send them back to the log in screen*/ 
-        
-      console.log("Email OK") //This will have a function that checks if the email is valid
-      console.log("Password OK")// This will have a function that checks if password meets requirements, (MAYBE?)     
-      console.log("A new account has been created")//Creates account with the data above
+  let password = document.getElementById('password').value
 
-    }
+  try{
+    props.model.createUser(email,username,password)
+  
+  }catch (error){
+    console.log(error)
+  }
+  
+}
 
+if(props.model.currentUser != null){
+  window.location.hash = "#HomeScreen"
+}
 
-    return <CreateAccountView  onUserCreate = {handleCreateAccountACB}/>
-
+    return <CreateAccountView  onUserCreate = {handleCreateAccountACB} />
 }
 
 export default CreateACC;
