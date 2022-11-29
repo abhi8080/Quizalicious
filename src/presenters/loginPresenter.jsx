@@ -2,17 +2,16 @@ import LoginView from "../views/loginView";
 
 function Login(props) {
 
-    function handleLoginACB() {
+    async function handleLoginACB() {
         let email = document.getElementById('email').value
         let password = document.getElementById('password').value
         try {
-            props.model.signIn(email, password)
+            await props.model.signIn(email, password)
             console.log("ks") //detta skrivs ut i consolen
 
         } catch (error){
-            console.log("jiajs") // detta skrivs inte ut i consolen
-            handleErrorACB(error)
-            
+            console.log(error) // detta skrivs inte ut i consolen
+            handleErrorACB(error);
         }
         if (props.model.currentUser != null) {
             window.location.hash = "#HomeScreen"

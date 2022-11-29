@@ -17,11 +17,7 @@ const auth = getAuth();
 const db = getDatabase();
 
 async function createUserInFirebase(email, password) {
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.log(error.message);
-  }
+  await createUserWithEmailAndPassword(auth, email, password);
 }
 
 async function firebaseModelPromise() {
@@ -93,11 +89,7 @@ function updateModelFromFirebase(model) {
 }
 
 async function signInWithPasswordAndEmail(email, password) {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.log(error.message);
-  }
+  await signInWithEmailAndPassword(auth, email, password);
 }
 
 export {
