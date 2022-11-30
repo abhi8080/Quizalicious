@@ -2,53 +2,41 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 function GameView(props) {
     function game(theGame) {
+        function option(text, index) {
+            return <button onClick={()=>props.optionClick(index)} key={text}>{text}</button>
+        }
         return <div key={theGame.question}>
-            <div class="countDownTimer">
+            <div className="countDownTimer">
                 <CountdownCircleTimer size={100}
                     isPlaying
                     duration={10}
                     colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
                     colorsTime={[10, 6, 3, 0]}
+                    onComplete={()=>props.optionClick(5)}
                     >     
                 {({ remainingTime }) => remainingTime}
                 </CountdownCircleTimer>
             </div>
-            <h1>{theGame.category} question {props.currentGame+1}/5</h1>
-            <div class="questionText">{theGame.question}</div>
-            <div class="butttonWrapper">
-                <button onClick={()=>props.optionClick(1)}>{theGame.options[0]}</button>
-                <button onClick={()=>props.optionClick(2)}>{theGame.options[1]}</button>
-                <button onClick={()=>props.optionClick(3)}>{theGame.options[2]}</button>
-                <button onClick={()=>props.optionClick(4)}>{theGame.options[3]}</button>
+            <h1>{theGame.category} question {props.currentQuestion+1}/5</h1>
+            <button className={"questionDifficulty game "+theGame.difficulty}>{theGame.difficulty}</button>
+            <div className="questionText">{theGame.question}</div>
+            <div className="butttonWrapper">
+                {props.options.map(option)}
             </div>
         </div>;
-    }
-
-    function answersMap(theAnswer) {
-        return <span>{theAnswer}</span>
-    }
-
-    function computeNumMatches(answers,rightAnswers) {
-        let counter = 0;
-        for (let i = 0; i < answers.length; i++)
-            if( answers[i] === rightAnswers[i] )
-                counter++;
-        return <span>{counter}</span>
     }
 
     function gameDone() {
         return <div>
                     <img src="Quizalicious logo.svg" className="image blob"/>
                     <h1>Game done!</h1>
-                    Your answers: <code>{props.answers.map(answersMap)}</code><br/>
-                    Correct answers: <code>{props.rightAnswers.map(answersMap)}</code><br/>
-                    You got {computeNumMatches(props.answers,props.rightAnswers)} right.<br/>
+                    You got {props.rightAnswers} right.<br/>
                     <button onClick={props.backClick}>Back</button>
                 </div>
     }
 
-    return  <div class="gameView">
-                {(!props.gameDone)&&game(props.games[props.currentGame])}
+    return  <div className="gameView">
+                {(!props.gameDone)&&game(props.games[props.currentQuestion])}
                 {(props.gameDone)&&gameDone()}
             </div>;
 }

@@ -14,16 +14,19 @@ import './navigation.js';
 import SeasonView from './views/SeasonView';
 
 function App(props) {
-  //const [count, setCount] = useState(0)
+
+  function onClick() {
+    props.model.closeProfileMenu();
+  }
 
   return (
-    <div>
+    <div onClick={onClick}>
       <Show hash="#CreateAccount"><CreateACC model = {props.model}/></Show>
       <Show hash="#Login"><Login model = {props.model}/></Show>
-      <Show hash="#HomeScreen #Season #Game #Quickgame #Highscores"><Header /></Show>
-      <Show hash="#HomeScreen"><HomeScreen /></Show>
+      <Show hash="#HomeScreen #Season #Game #QuickGame #Highscores #Profile"><Header model={props.model}/></Show>
+      <Show hash="#HomeScreen"><HomeScreen model={props.model}/></Show>
       <Show hash="#Season"><Season model={props.model}/></Show>
-      <Show hash="#Game #Quickgame"><Game model={props.model}/></Show>
+      <Show hash="#Game #QuickGame"><Game model={props.model}/></Show>
     </div>
   )
 }

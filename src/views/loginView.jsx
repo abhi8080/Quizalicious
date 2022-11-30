@@ -1,7 +1,7 @@
 function LoginView(props) {
 
 
-    return <div class="loginBox">
+    return <div className="loginBox">
         <img src="Quizalicious logo.svg" className="image blob"/>
             <form>
             <input type = "email" placeholder = "Email" id="email"></input> 

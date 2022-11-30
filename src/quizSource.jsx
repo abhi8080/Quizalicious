@@ -16,21 +16,22 @@ export async function retreivePracticeQuizQuestions(category, difficulty) {
   };
   const response = await fetch(BASE_URL + new URLSearchParams(params));
   const data = await treatHTTPResponseACB(response);
+  
   return data.results;
 }
 
 export async function retreiveSeasonQuizQuestions(quizNumber) {
   let difficulty = "";
   switch (quizNumber) {
+    case 0:
     case 1:
-    case 2:
       difficulty = "easy";
       break;
+    case 2:
     case 3:
-    case 4:
       difficulty = "medium";
       break;
-    case 5:
+    case 4:
       difficulty = "hard";
   }
   const category = Math.floor(Math.random() * 24) + 9;

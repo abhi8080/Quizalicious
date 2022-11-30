@@ -1,5 +1,5 @@
 function CreateAccountView(props) {
-    return <div class="registerBox">
+    return <div className="registerBox">
         <img src="Quizalicious logo.svg" className="image blob"/>
             <form>
                 <input type = "email" placeholder = "Enter a valid email" id="email"></input> <div> 
