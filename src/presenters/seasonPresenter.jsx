@@ -1,49 +1,50 @@
-import SeasonView from "../views/SeasonView.jsx";
+import SeasonView from "../views/seasonView.jsx";
 
 
 
 function SeasonPresenter(props) {
-
-    const [, setCurrentGame] = React.useState(0);
-    const [seasonCorrectAnswers, setSeasonCorrectAnswers] = React.useState(0); //Used to calculate total correct answers
-    
-    function updateFromModel() {
-        function total(acc, curr) {
-            return acc+curr;
-        }
-        let tempScore = props.model.rightAnswersInSeason.reduce(total,0);
-        if(props.model.currentGame === 5 ) props.model.setScore(tempScore);
-        setSeasonCorrectAnswers(tempScore);
-        setCurrentGame(props.model.currentGame);
-    }
+    const [,update] = React.useState({});
+    const [,setCurrentGame] = React.useState(0);
+    let gameList = [
+        { name: "Easy game 1", difficulty: "easy" },
+        { name: "Easy game 2", difficulty: "easy" },
+        { name: "Medium game 3", difficulty: "medium" },
+        { name: "Medium game 4", difficulty: "medium" },
+        { name: "Hard game 5", difficulty: "hard" },
+    ]
 
     function backClick() {
         window.location.hash ="#HomeScreen";
-        props.model.resetSeason();
     }
 
     function resetSeason() {
         props.model.resetSeason();
-        updateFromModel();
+        setCurrentGame(0);
     }
 
     function gameClick(number) {
-        window.location.hash = "#Game";
         props.model.setCurrentGame(number);
-    }        
-
-    function launch() {
-        updateFromModel();
+        window.location.hash = "#Game";
     }
 
-    React.useEffect(launch, []);
+    function updateFromModel(payload) {
+        if( payload["currentGame"] !== undefined ) {
+            setCurrentGame(payload["currentGame"]);
+            update({});
+        }
+    }
 
-    return <SeasonView games={props.model.currentSeasonGames}
+    React.useEffect(()=>{
+        props.model.addObserver(updateFromModel);
+        return ()=>{props.model.removeObserver(updateFromModel);}
+    }, []);
+
+    return <SeasonView  currentGame={props.model.currentGame}
+                        seasonCorrectAnswers={props.model.getSeasonScore()}
+                        gameList={gameList}
                         backClick={backClick}
                         gameClick={gameClick}
-                        currentGame={props.model.currentGame}
-                        resetSeason={resetSeason}
-                        seasonCorrectAnswers={seasonCorrectAnswers}/>;
+                        resetSeason={resetSeason}/>;
 }
 
 export default SeasonPresenter;

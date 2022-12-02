@@ -7,6 +7,7 @@ function HomeScreen(props) {
 
     function newSeason() {
         window.location.hash = "#Season";
+        props.model.resetSeason();
     }
 
     function showHighscores() {

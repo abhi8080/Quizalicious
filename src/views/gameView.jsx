@@ -1,11 +1,13 @@
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 function GameView(props) {
-    function game(theGame) {
-        function option(text, index) {
-            return <button onClick={()=>props.optionClick(index)} key={text}>{text}</button>
+    function presentQuestion(question) {
+        function option(text) {
+            return <button onClick={()=>props.optionClick(text)} key={text}>{text}</button>
         }
-        return <div key={theGame.question}>
+        if( !question.options )
+        return <span>Wait!</span>;
+        return <div key={question.question}>
             <div className="countDownTimer">
                 <CountdownCircleTimer size={100}
                     isPlaying
@@ -17,11 +19,11 @@ function GameView(props) {
                 {({ remainingTime }) => remainingTime}
                 </CountdownCircleTimer>
             </div>
-            <h1>{theGame.category} question {props.currentQuestion+1}/5</h1>
-            <button className={"questionDifficulty game "+theGame.difficulty}>{theGame.difficulty}</button>
-            <div className="questionText">{theGame.question}</div>
+            <h1>{question.category} question {props.currentQuestion+1}/5</h1>
+            <button className={"questionDifficulty game "+question.difficulty}>{question.difficulty}</button>
+            <div className="questionText">{question.question}</div>
             <div className="butttonWrapper">
-                {props.options.map(option)}
+                {question.options.map(option)}
             </div>
         </div>;
     }
@@ -36,8 +38,7 @@ function GameView(props) {
     }
 
     return  <div className="gameView">
-                {(!props.gameDone)&&game(props.games[props.currentQuestion])}
-                {(props.gameDone)&&gameDone()}
+                {props.gameDone?gameDone():presentQuestion(props.questions[props.currentQuestion])}
             </div>;
 }
 

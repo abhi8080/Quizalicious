@@ -2,94 +2,83 @@ import GameView from "../views/gameView.jsx";
 import promiseNoData from "../views/promiseNoData.jsx";
 import {retreivePracticeQuizQuestions,retreiveSeasonQuizQuestions} from "../quizSource.jsx";
 import resolvePromise from "../resolvePromise.jsx";
+import React from "react";
 
 function SeasonPresenter(props) {
 
-    const [promiseState,] = React.useState({});
-    const [, setData] = React.useState({});
-    const [, setError] = React.useState({});
+    const [,updateState] = React.useState();
 
-    const [gameDone, setGameDone]           = React.useState(false);//Keeping track if the game is done for the view
-    const [options, setOptions]             = React.useState([]);   //Used in view
-    const [rightAnswer, setRightAnswer]     = React.useState(0);    //Used to check if right answer was chosen
-    const [rightAnswers, setRightAnswers]   = React.useState(0);    //Used to present amount of right answers in game
+    const [promiseState,setPromiseState]    = React.useState({});
+    const [data, setData]                   = React.useState(null);     //API data
+    const [error, setError]                 = React.useState(null);     //API error
 
-    function setAndShuffleOptions(data) {
-        
-        let myOptions = [...data[props.model.currentQuestion].incorrect_answers, data[props.model.currentQuestion].correct_answer];
-
-        myOptions.sort((a,b) => 0.5 - Math.random()); //Shuffle array of answer options
-
-        let correctAnswerIndex = myOptions.findIndex((element)=>element===promiseState.data[props.model.currentQuestion].correct_answer);
-        console.log( "Correct answer: "+promiseState.data[props.model.currentQuestion].correct_answer )
-        
-        setRightAnswer(correctAnswerIndex);
-        setOptions(myOptions);
-    }
+    const [currentQuestion, setCurrentQuestion] = React.useState(0);        //Current question
+    const [gameDone, setGameDone]               = React.useState(false);    //Keeping track if the game is done for the view
+    const [rightAnswers, setRightAnswers]       = React.useState(0);        //Used to present amount of right answers in game
 
     function optionClick(option) {
-        let myRightAnswers = rightAnswers;
-        if( option == rightAnswer )
-            myRightAnswers += 1;
-        if( props.model.currentQuestion === 4 ) {
+        if( option === data[currentQuestion].correct_answer ){
+            setRightAnswers(rightAnswers+1);
+        }
+
+        if( currentQuestion === 4 )
             setGameDone(true);
-            props.model.setRightAnswersInSeason(myRightAnswers, props.model.currentGame);
-        }
         else
-        {
-            props.model.currentQuestion += 1;
-            setAndShuffleOptions(promiseState.data);
-        }
-        setRightAnswers(myRightAnswers);
+            setCurrentQuestion(currentQuestion+1);
     }
+
     function backClick() {
         if( window.location.hash === "#QuickGame" ) {
             props.model.resetSeason();
             window.location.hash = "#HomeScreen";
         }
         else {
-            props.model.nextGameInSeason();
+            props.model.setGameScore(rightAnswers);
+            props.model.nextGame();
             window.location.hash = "#Season";
         }
     }
     
-    function launch() {
-        let myPromise = retreiveSeasonQuizQuestions(props.model.currentGame);
-        myPromise.then(success).catch(failure);
+    React.useEffect(()=>{
+        let myPromiseState = {};
+        function promiseResolved() {
+            setData(myPromiseState["data"]);
+            setError(myPromiseState["error"]);
+            setPromiseState(myPromiseState);
+        }
+        resolvePromise(retreiveSeasonQuizQuestions(props.model.currentGame),myPromiseState, promiseResolved);
+    },[]);
 
-        promiseState.promise = myPromise;
-        promiseState.data = null;
-        promiseState.error = null;
-        setData(null);
-
-        props.model.currentQuestion = 0;
-    }
-
-    function success(data) {
-        promiseState.data=data;
+    React.useEffect(()=>{
+        if(data) {
+            data.forEach((question)=>{
+                let options = [...question.incorrect_answers, question.correct_answer];
         
-        setAndShuffleOptions(data);
+                options.sort((a,b) => 0.5 - Math.random()); //Shuffle array of answer options
+                question.options=options; //Set randomized options in data for the view
+            });
+            updateState({});
+            console.log(data);
+        }
+    },[data]);
 
-        setData(data);
-    }
+    React.useEffect(()=>{
+        if(gameDone)
+            props.model.setGameScore(rightAnswers);
+    },[gameDone])
 
-    function failure(error) {
-        console.log(error);
-        promiseState.error=error;
-        setError(error);
-    }
+    React.useEffect(()=>{
+        //if(data)
+            //console.log( "Correct answer: "+data[currentQuestion].correct_answer );
+    },[currentQuestion, data])
 
-    React.useEffect(launch,[])
-
-    return promiseNoData(promiseState)||<GameView games={promiseState.data}
-                        options={options}
-                        currentQuestion={props.model.currentQuestion}
-                        currentGame={props.model.currentGame}
-                        optionClick={optionClick}
-                        gameDone={gameDone}
-                        backClick={backClick}
-                        rightAnswers={rightAnswers}
-                        answers={props.model.answers}/>
+    return promiseNoData(promiseState)||<GameView   questions={data}
+                                                    currentQuestion={currentQuestion}
+                                                    gameDone={gameDone}
+                                                    error={error}
+                                                    rightAnswers={rightAnswers}
+                                                    optionClick={optionClick}
+                                                    backClick={backClick}/>
 }
 
 export default SeasonPresenter;
