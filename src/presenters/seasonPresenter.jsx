@@ -39,12 +39,15 @@ function SeasonPresenter(props) {
         return ()=>{props.model.removeObserver(updateFromModel);}
     }, []);
 
-    return <SeasonView  currentGame={props.model.currentGame}
-                        seasonCorrectAnswers={props.model.getSeasonScore()}
-                        gameList={gameList}
-                        backClick={backClick}
-                        gameClick={gameClick}
-                        resetSeason={resetSeason}/>;
+    if( props.model.currentUser )
+        return <SeasonView  currentGame={props.model.currentGame}
+                            seasonCorrectAnswers={props.model.getSeasonScore()}
+                            gameList={gameList}
+                            backClick={backClick}
+                            gameClick={gameClick}
+                            resetSeason={resetSeason}/>;
+    else
+        return <div><h1>No user logged in</h1><button onClick={()=>{window.location.hash="#Login"}}>Press here to log in</button></div>
 }
 
 export default SeasonPresenter;
