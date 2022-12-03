@@ -70,8 +70,8 @@ class QuizModel {
   setCurrentUser(user) {
     this.currentUser = user;
   }
-  createUser(email, username, password) {
-    createUserInFirebase(email, password);
+  async createUser(email, username, password) {
+    await createUserInFirebase(email, password);
     this.notifyObservers({
       email: email,
       username: username,
