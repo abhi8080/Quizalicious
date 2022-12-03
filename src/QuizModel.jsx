@@ -19,6 +19,8 @@ class QuizModel {
     this.profileMenuOpen = false;
 
     this.quickGameMode = false;
+    this.quickGameCategory = "";
+    this.quickGameDifficulty = "";
   }
 
   getGameScore() {
@@ -86,6 +88,12 @@ class QuizModel {
         profileMenuOpen: this.profileMenuOpen,
       });
     }
+  }
+
+  setQuickGame(category, difficulty) {
+    this.quickGameMode = true;
+    this.quickGameCategory = category;
+    this.quickGameDifficulty = difficulty;
   }
 
   setProfileMenuOpen(val) {

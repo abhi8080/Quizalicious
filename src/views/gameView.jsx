@@ -14,7 +14,7 @@ function GameView(props) {
                     duration={10}
                     colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
                     colorsTime={[10, 6, 3, 0]}
-                    onComplete={()=>props.optionClick(5)}
+                    onComplete={()=>props.timeout()}
                     >     
                 {({ remainingTime }) => remainingTime}
                 </CountdownCircleTimer>
@@ -37,9 +37,10 @@ function GameView(props) {
                 </div>
     }
 
-    return  <div className="gameView">
+    return  <div className={"gameView appear "+(props.exiting&&"implode")}>
                 {props.showWrong&&<img className="wrong" src="./wrong.gif"/>}
                 {props.showRight&&<div className="right"></div>}
+                {props.showTimeout&&<div className="timeout">You're too slow!</div>}
                 {props.gameDone?gameDone():presentQuestion(props.questions[props.currentQuestion])}
             </div>;
 }

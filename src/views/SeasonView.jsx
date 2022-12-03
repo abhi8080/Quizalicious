@@ -5,7 +5,8 @@ function SeasonView(props) {
     }
 
     function gameCB(game, index) {
-        return <button className={"game "+game.difficulty}
+        let classes="game "+game.difficulty;
+        return <button className={classes}
                        key={game.name} onClick={()=>gameClickACB(index)}
                        disabled={props.currentGame!==index}>
                     {game.name}
@@ -14,7 +15,7 @@ function SeasonView(props) {
 
     let seasonDone = props.currentGame === props.gameList.length;
 
-    return <div className="seasonView">
+    return <div className={"appear seasonView "+(props.gameClicked&&"implode")}>
         <img src="Quizalicious logo.svg" className="image blob"/>
         {seasonDone&&(<div><h1>Season done!</h1><span>{"You got the score "+props.seasonCorrectAnswers+" in this season"}</span></div>)}
         {(!seasonDone)&&(props.gameList.map(gameCB))}

@@ -1,5 +1,5 @@
 function HomeScreenView(props) {
-    return <div className="homeScreenView">
+    return <div className={"homeScreenView appear "+(props.didClick&&"implode")}>
         <img src="Quizalicious logo.svg" className="logo" alt="" />
         <h1>Welcome to Quizalicious!</h1>
         <img src="Quizalicious logo.svg" className="vibrate-1 smallLogo" alt="" /><h2 className="gameMenu pulsate-bck">Game menu</h2><img src="Quizalicious logo.svg" className="vibrate-1 smallLogo" alt="" />

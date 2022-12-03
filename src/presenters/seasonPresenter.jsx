@@ -3,8 +3,9 @@ import SeasonView from "../views/seasonView.jsx";
 
 
 function SeasonPresenter(props) {
-    const [,update] = React.useState({});
-    const [,setCurrentGame] = React.useState(0);
+    const [,update]                         = React.useState({});
+    const [,setCurrentGame]                 = React.useState(0);
+    const [gameClicked, setGameClicked ]    = React.useState(false);
     let gameList = [
         { name: "Easy game 1", difficulty: "easy" },
         { name: "Easy game 2", difficulty: "easy" },
@@ -14,7 +15,11 @@ function SeasonPresenter(props) {
     ]
 
     function backClick() {
-        window.location.hash ="#HomeScreen";
+        
+        setTimeout(()=>{
+            window.location.hash ="#HomeScreen";
+        },1000)
+        setGameClicked(true);
     }
 
     function resetSeason() {
@@ -23,8 +28,12 @@ function SeasonPresenter(props) {
     }
 
     function gameClick(number) {
-        props.model.setCurrentGame(number);
-        window.location.hash = "#Game";
+        setTimeout(()=>{
+            props.model.setCurrentGame(number);
+            window.location.hash = "#Game";
+
+        },1000)
+        setGameClicked(true);
     }
 
     function updateFromModel(payload) {
@@ -43,6 +52,7 @@ function SeasonPresenter(props) {
         return <SeasonView  currentGame={props.model.currentGame}
                             seasonCorrectAnswers={props.model.getSeasonScore()}
                             gameList={gameList}
+                            gameClicked={gameClicked}
                             backClick={backClick}
                             gameClick={gameClick}
                             resetSeason={resetSeason}/>;

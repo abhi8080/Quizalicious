@@ -18,6 +18,20 @@ function SeasonPresenter(props) {
 
     const [showWrong, setShowWrong]             = React.useState(false);
     const [showRight, setShowRight]             = React.useState(false);
+    const [showTimeout, setShowTimeout]         = React.useState(false);
+
+    const [exiting, setExiting]                 = React.useState(false); //For exiting animation
+
+    function timeout() {
+        console.log("timeout!");
+        if(!exiting) {
+            setShowTimeout(true);
+            if( currentQuestion === 4 )
+                setGameDone(true);
+            else
+                setCurrentQuestion(currentQuestion+1);
+        }
+    }
 
     function optionClick(option) {
         if( option === data[currentQuestion].correct_answer ){
@@ -37,14 +51,20 @@ function SeasonPresenter(props) {
     
 
     function backClick() {
-        if( window.location.hash === "#QuickGame" ) {
-            props.model.resetSeason();
-            window.location.hash = "#HomeScreen";
+        if( props.model.quickGameMode ) {
+            setTimeout(()=>{
+                props.model.resetSeason();
+                window.location.hash = "#HomeScreen";
+            },1000)
+            setExiting(true);
         }
         else {
-            props.model.setGameScore(rightAnswers);
+            setTimeout(()=>{
+                props.model.setGameScore(rightAnswers);
             props.model.nextGame();
             window.location.hash = "#Season";
+            },1000)
+            setExiting(true);
         }
     }
     React.useEffect( ()=>{
@@ -60,6 +80,12 @@ function SeasonPresenter(props) {
         }
     },[showRight]
     )
+
+    React.useEffect( ()=>{
+        if( showTimeout ) {
+            setTimeout(()=>{setShowTimeout(false)},1000)
+        }
+    },[showTimeout])
     
     React.useEffect(()=>{
         let myPromiseState = {};
@@ -69,7 +95,7 @@ function SeasonPresenter(props) {
             setPromiseState(myPromiseState);
         }
         if( props.model.quickGameMode )
-            resolvePromise(retreivePracticeQuizQuestions("", ""),myPromiseState, promiseResolved);
+            resolvePromise(retreivePracticeQuizQuestions( props.model.quickGameCategory, props.model.quickGameDifficulty),myPromiseState, promiseResolved);
         else
             resolvePromise(retreiveSeasonQuizQuestions(props.model.currentGame),myPromiseState, promiseResolved);
     },[]);
@@ -98,13 +124,16 @@ function SeasonPresenter(props) {
     },[currentQuestion, data])
 
     if( props.model.currentUser )
-        return promiseNoData(promiseState)||<GameView   questions={data}
+        return promiseNoData(promiseState)||<GameView   timeout={timeout}
+                                                        questions={data}
                                                         currentQuestion={currentQuestion}
                                                         gameDone={gameDone}
                                                         error={error}
                                                         rightAnswers={rightAnswers}
                                                         showWrong={showWrong}
                                                         showRight={showRight}
+                                                        showTimeout={showTimeout}
+                                                        exiting={exiting}
                                                         optionClick={optionClick}
                                                         backClick={backClick}/>
     else

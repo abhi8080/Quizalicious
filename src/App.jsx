@@ -9,6 +9,7 @@ import Show       from './presenters/show.jsx';
 import Season     from './presenters/seasonPresenter.jsx';
 import Game       from './presenters/gamePresenter.jsx';
 import Profile    from './presenters/profilePresenter.jsx';
+import QuickGame  from './presenters/quickGamePresenter.jsx';
 
 import './navigation.js';
 import SeasonView from './views/seasonView';
@@ -26,7 +27,8 @@ function App(props) {
       <Show hash="#HomeScreen #Season #Game #QuickGame #Highscores #Profile"><Header model={props.model}/></Show>
       <Show hash="#HomeScreen"><HomeScreen model={props.model}/></Show>
       <Show hash="#Season"><Season model={props.model}/></Show>
-      <Show hash="#QuickGame #Game"><Game model={props.model}/></Show>
+      <Show hash="#Game"><Game model={props.model}/></Show>
+      <Show hash="#QuickGame"><QuickGame model={props.model}/></Show>
       <Show hash="#Profile"><Profile model ={props.model}/></Show>
     </div>
   )
