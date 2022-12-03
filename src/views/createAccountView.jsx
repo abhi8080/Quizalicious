@@ -4,11 +4,11 @@ function CreateAccountView(props) {
                 <div id = "error" ></div>
                 <div className="registerBox">
                     <form>
-                        <label for="email">Email address:</label><br/> 
+                        <label htmlFor="email">Email address:</label><br/> 
                         <input type = "email" placeholder = "" id="email"></input> <div> 
-                        <label for="username">Username:</label><br/>
+                        <label htmlFor="username">Username:</label><br/>
                         <input type = "username" placeholder = "" id="username"></input></div>
-                        <label for="password">Password:</label><br/>
+                        <label htmlFor="password">Password:</label><br/>
                         <div><input type = "password" placeholder = "" id="password"></input></div>
                     </form>
                     <a href="#Login">back</a>

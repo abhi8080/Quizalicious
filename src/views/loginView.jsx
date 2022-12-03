@@ -6,9 +6,9 @@ function LoginView(props) {
                 <div id = "error" ></div>
                 <div className="loginBox">
                     <form>
-                    <label for="email">Email address:</label><br/>
+                    <label htmlFor="email">Email address:</label><br/>
                     <input type = "email" placeholder = "" id="email"></input>
-                    <label for="password">Password:</label><br/>
+                    <label htmlFor="password">Password:</label><br/>
                     <input type = "password" placeholder = "" id="password"></input>
                     <a href="#CreateAccount">Create a new account</a>
                     
