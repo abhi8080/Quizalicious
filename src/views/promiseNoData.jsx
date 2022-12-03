@@ -6,8 +6,8 @@ function promiseNoData(promise) {
     return (
       <div>
         <img src="Quizalicious logo.svg" className="logo" alt="" />
-        <h1 class="laden">Laden....</h1>
-        <div class="loading_bar"></div>
+        <h1 className="laden">Laden....</h1>
+        <div classname="loading_bar"></div>
       </div>
     );
   }

@@ -19,7 +19,7 @@ function App(props) {
   }
 
   return (
-    <div class="app" onClick={onClick}>
+    <div className="app" onClick={onClick}>
       <Show hash="#CreateAccount"><CreateACC model = {props.model}/></Show>
       <Show hash="#Login"><Login model = {props.model}/></Show>
       <Show hash="#HomeScreen #Season #Game #QuickGame #Highscores #Profile"><Header model={props.model}/></Show>

@@ -77,17 +77,14 @@ function SeasonPresenter(props) {
     React.useEffect(()=>{
         if(data) {
             data.forEach((question)=>{
+                console.log( question );
+
                 let options = [...question.incorrect_answers, question.correct_answer];
-        
+                
                 options.sort((a,b) => 0.5 - Math.random()); //Shuffle array of answer options
                 question.options=options; //Set randomized options in data for the view
-
-                question.question = question.question.replace(/&quot;/g, '"');
-                question.question = question.question.replace(/&#039;/g, "'");
-                question.question = question.question.replace(/&Delta;/g, "Δ");
             });
             updateState({});
-            console.log(data);
 
         }
     },[data]);

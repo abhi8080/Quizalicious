@@ -3,7 +3,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 function GameView(props) {
     function presentQuestion(question) {
         function option(text) {
-            return <button onClick={()=>props.optionClick(text)} key={text}>{text}</button>
+            return <button onClick={()=>props.optionClick(text)} key={text} dangerouslySetInnerHTML={{__html: text}}></button>
         }
         if( !question.options )
         return <span>Wait!</span>;
@@ -21,7 +21,7 @@ function GameView(props) {
             </div>
             <h1>{question.category} question {props.currentQuestion+1}/5</h1>
             <button className={"questionDifficulty game "+question.difficulty}>{question.difficulty}</button>
-            <div className="questionText">{question.question}</div>
+            <div className="questionText" dangerouslySetInnerHTML={{__html: question.question}}></div>
             <div className="butttonWrapper">
                 {question.options.map(option)}
             </div>
