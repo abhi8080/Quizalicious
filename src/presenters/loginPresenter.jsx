@@ -4,9 +4,9 @@ import React from "react";
 function Login(props) {
 
     async function handleLoginACB() {
-        
+
         var email = document.getElementById('email').value
-       var password = document.getElementById('password').value
+        var password = document.getElementById('password').value
 
 
         try {
@@ -29,7 +29,7 @@ function Login(props) {
     }
 
 
-    return <LoginView onUserLogIn={handleLoginACB}/>
+    return <LoginView onUserLogIn={handleLoginACB} />
 }
 
 

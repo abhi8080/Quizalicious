@@ -11,29 +11,23 @@ function CreateACC(props) {
       await props.model.createUser(email, username, password)
     }
     catch (error) {
-      var errorMessage = error.message;
-      console.log(errorMessage)
+      console.log(error.message)
 
-      if (errorMessage.includes("use")) {
-        document.getElementById("err").innerHTML = "Email is already in use"
-        return;
+      if (error.message.includes("use")) {
+        document.getElementById("error").innerHTML = "Email is already in use"
       }
 
-      if (errorMessage.includes("invaild")) {
-        document.getElementById("err").innerHTML = "Email not valid, try again"
+      if (error.message.includes("invalid")) {
+        document.getElementById("error").innerHTML = "Email not valid, try again"
       }
 
-      if (errorMessage.includes("weak")) {
-        document.getElementById("err").innerHTML = "The password must have atleast 6 characters"
-        return;
-      }
     }
+
     if (props.model.currentUser != null) {
       window.location.hash = "#HomeScreen"
     }
+
   }
   return <CreateAccountView onUserCreate={handleCreateAccountACB} />
-
 }
-
 export default CreateACC;
