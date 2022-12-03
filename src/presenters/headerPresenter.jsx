@@ -6,23 +6,20 @@ function HeaderPresenter(props) {
     const [profileMenuOpen, setProfileMenuOpen] = React.useState(false);
 
     function profileClick(event) {
-        console.log("profile click!");
         setProfileMenuOpen(!profileMenuOpen);
+        props.model.setProfileMenuOpen(true);
     }
 
     function logOut() {
-        console.log("Logout");
         window.location.hash="#Login";
         setProfileMenuOpen(false);
     }
 
     function yourSettings() {
-        console.log("your settings");
         setProfileMenuOpen(false);
     }
 
     function yourProfile() {
-        console.log("your profile");
         window.location.hash="#Profile";
         setProfileMenuOpen(false);
     }

@@ -16,9 +16,16 @@ function SeasonPresenter(props) {
     const [gameDone, setGameDone]               = React.useState(false);    //Keeping track if the game is done for the view
     const [rightAnswers, setRightAnswers]       = React.useState(0);        //Used to present amount of right answers in game
 
+    const [showWrong, setShowWrong]             = React.useState(false);
+    const [showRight, setShowRight]             = React.useState(false);
+
     function optionClick(option) {
         if( option === data[currentQuestion].correct_answer ){
             setRightAnswers(rightAnswers+1);
+            setShowRight(true);
+        }
+        else {
+            setShowWrong(true);
         }
 
         if( currentQuestion === 4 )
@@ -26,6 +33,8 @@ function SeasonPresenter(props) {
         else
             setCurrentQuestion(currentQuestion+1);
     }
+
+    
 
     function backClick() {
         if( window.location.hash === "#QuickGame" ) {
@@ -38,6 +47,19 @@ function SeasonPresenter(props) {
             window.location.hash = "#Season";
         }
     }
+    React.useEffect( ()=>{
+        if( showWrong ) {
+            setTimeout(()=>{setShowWrong(false)},1000)
+        }
+    },[showWrong]
+    )
+
+    React.useEffect( ()=>{
+        if( showRight ) {
+            setTimeout(()=>{setShowRight(false)},1000)
+        }
+    },[showRight]
+    )
     
     React.useEffect(()=>{
         let myPromiseState = {};
@@ -46,7 +68,10 @@ function SeasonPresenter(props) {
             setError(myPromiseState["error"]);
             setPromiseState(myPromiseState);
         }
-        resolvePromise(retreiveSeasonQuizQuestions(props.model.currentGame),myPromiseState, promiseResolved);
+        if( props.model.quickGameMode )
+            resolvePromise(retreivePracticeQuizQuestions("", ""),myPromiseState, promiseResolved);
+        else
+            resolvePromise(retreiveSeasonQuizQuestions(props.model.currentGame),myPromiseState, promiseResolved);
     },[]);
 
     React.useEffect(()=>{
@@ -56,9 +81,14 @@ function SeasonPresenter(props) {
         
                 options.sort((a,b) => 0.5 - Math.random()); //Shuffle array of answer options
                 question.options=options; //Set randomized options in data for the view
+
+                question.question = question.question.replace(/&quot;/g, '"');
+                question.question = question.question.replace(/&#039;/g, "'");
+                question.question = question.question.replace(/&Delta;/g, "Δ");
             });
             updateState({});
             console.log(data);
+
         }
     },[data]);
 
@@ -77,6 +107,8 @@ function SeasonPresenter(props) {
                                                     gameDone={gameDone}
                                                     error={error}
                                                     rightAnswers={rightAnswers}
+                                                    showWrong={showWrong}
+                                                    showRight={showRight}
                                                     optionClick={optionClick}
                                                     backClick={backClick}/>
 }

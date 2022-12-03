@@ -38,6 +38,8 @@ function GameView(props) {
     }
 
     return  <div className="gameView">
+                {props.showWrong&&<img className="wrong" src="./wrong.gif"/>}
+                {props.showRight&&<div className="right"></div>}
                 {props.gameDone?gameDone():presentQuestion(props.questions[props.currentQuestion])}
             </div>;
 }

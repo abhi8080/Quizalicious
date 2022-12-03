@@ -17,6 +17,8 @@ class QuizModel {
     this.seasonDone = false;        //Season done stats
 
     this.profileMenuOpen = false;
+
+    this.quickGameMode = false;
   }
 
   getGameScore() {
@@ -84,6 +86,10 @@ class QuizModel {
         profileMenuOpen: this.profileMenuOpen,
       });
     }
+  }
+
+  setProfileMenuOpen(val) {
+    this.profileMenuOpen = val;
   }
   nextGameInSeason() {
     this.currentGame += 1;
