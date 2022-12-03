@@ -89,6 +89,14 @@ img.profilePic {
   max-width:1000px;
   margin: 0 auto;
 }
+.seasonsProfile {
+  padding-left:50px;
+  padding-right:50px;
+  border:1px solid white;
+}
+.seasons {
+  border:1px solid white;
+}
 .triangle {
   margin-top: 24px;
   margin-left: 5px;
