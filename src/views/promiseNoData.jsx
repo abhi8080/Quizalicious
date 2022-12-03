@@ -7,7 +7,7 @@ function promiseNoData(promise) {
       <div>
         <img src="Quizalicious logo.svg" className="logo" alt="" />
         <h1 className="laden">Laden....</h1>
-        <div classname="loading_bar"></div>
+        <div className="loading_bar"></div>
       </div>
     );
   }
