@@ -100,8 +100,8 @@ class QuizModel {
   setCurrentUser(user) {
     this.currentUser = user;
   }
-  createUser(email, username, password) {
-    createUserInFirebase(email, password);
+  async createUser(email, username, password) {
+    await createUserInFirebase(email, username, password);
     this.notifyObservers({
       email: email,
       username: username,
@@ -131,6 +131,7 @@ class QuizModel {
 
   setHighScoreList(highScoreList) {
     this.highScoreList = highScoreList;
+    this.notifyObservers();
   }
 
   notifyObservers(payload) {
