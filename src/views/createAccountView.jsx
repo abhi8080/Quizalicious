@@ -5,6 +5,7 @@ function CreateAccountView(props) {
                 <input type = "email" placeholder = "Enter a valid email" id="email"></input> <div> 
                 <input type = "username" placeholder = "Enter a user name" id="username"></input></div>
                <div><input type = "password" placeholder = "Enter a password" id="password"></input></div>
+               <div id = "error" ></div>
                
             </form>
             <a href="#Login">back</a><br/>
