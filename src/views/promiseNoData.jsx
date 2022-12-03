@@ -4,7 +4,11 @@ function promiseNoData(promise) {
   }
   if (!promise.data && !promise.error) {
     return (
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" />
+      <div>
+        <img src="Quizalicious logo.svg" className="logo" alt="" />
+        <h1 className="laden">Laden....</h1>
+        <div classname="loading_bar"></div>
+      </div>
     );
   }
   if (!promise.data && promise.error) {

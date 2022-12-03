@@ -1,28 +1,34 @@
 import HeaderView from "../views/headerView.jsx";
 import ProfileMenuView from "../views/profileMenuView.jsx";
+import { getAuth, signOut } from "firebase/auth";
+
+const auth = getAuth();
 
 function HeaderPresenter(props) {
 
     const [profileMenuOpen, setProfileMenuOpen] = React.useState(false);
 
     function profileClick(event) {
-        console.log("profile click!");
         setProfileMenuOpen(!profileMenuOpen);
+        props.model.setProfileMenuOpen(true);
     }
-
+    
     function logOut() {
-        console.log("Logout");
-        window.location.hash="#Login";
+        
+        signOut(auth).then(() => {
+            window.location.hash="#Login";
+            props.model.currentUser = undefined;
+        }).catch((error) => {
+            Alert("Error logging out");
+        });
         setProfileMenuOpen(false);
     }
 
     function yourSettings() {
-        console.log("your settings");
         setProfileMenuOpen(false);
     }
 
     function yourProfile() {
-        console.log("your profile");
         window.location.hash="#Profile";
         setProfileMenuOpen(false);
     }
@@ -46,12 +52,13 @@ function HeaderPresenter(props) {
 
     React.useEffect(created,[]);
 
-    return <HeaderView  stopProp={stopProp}
-                        homeButtonPress={homeButtonPress}
-                        profileClick={profileClick}
-                        profileMenuOpen={profileMenuOpen}>
-                        {profileMenuOpen&&<ProfileMenuView logOut={logOut} yourSettings={yourSettings} yourProfile={yourProfile}/>}
-            </HeaderView>;
+    if( props.model.currentUser )
+        return <HeaderView  stopProp={stopProp}
+                            homeButtonPress={homeButtonPress}
+                            profileClick={profileClick}
+                            profileMenuOpen={profileMenuOpen}>
+                            {profileMenuOpen&&<ProfileMenuView logOut={logOut} yourSettings={yourSettings} yourProfile={yourProfile}/>}
+                </HeaderView>;
 }
 
 export default HeaderPresenter;

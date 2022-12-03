@@ -16,7 +16,19 @@ firebase.initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getDatabase();
 
-async function createUserInFirebase(email, password) {
+
+async function checkIfUsernameAlreadyExists(username)  {
+  const users = await get(child(ref(db), "users"));
+  if(Object.values(users.val()).some((user) => username === user.username))
+        return true;
+  else
+    return false;
+};
+
+async function createUserInFirebase(email, username, password) {
+  const usernameAlreadyExists = await checkIfUsernameAlreadyExists(username);
+  if(usernameAlreadyExists)
+  throw new Error("Username already exists");
   await createUserWithEmailAndPassword(auth, email, password);
 }
 
@@ -84,7 +96,7 @@ function updateFirebaseFromModel(model) {
 function updateModelFromFirebase(model) {
   const highscoreRef = ref(db, "highscore");
   onValue(highscoreRef, (firebaseData) => {
-    model.setHighScoreList(firebaseData.val());
+    model.setHighScoreList(Object.values(firebaseData.val()));
   });
 }
 

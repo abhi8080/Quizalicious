@@ -1,6 +1,8 @@
 import CreateAccountView from "../views/createAccountView";
 
 function CreateACC(props) {
+  async function handleCreateAccountACB() {
+    let email = document.getElementById("email").value;
 
   async function handleCreateAccountACB() {
     let email = document.getElementById('email').value
@@ -27,6 +29,9 @@ function CreateACC(props) {
       window.location.hash = "#HomeScreen"
     }
 
+    if (props.model.currentUser != null) {
+      window.location.hash = "#HomeScreen";
+    }
   }
   return <CreateAccountView onUserCreate={handleCreateAccountACB} />
 }

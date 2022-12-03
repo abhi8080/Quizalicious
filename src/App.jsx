@@ -10,7 +10,7 @@ import Season     from './presenters/seasonPresenter.jsx';
 import Game       from './presenters/gamePresenter.jsx';
 
 import './navigation.js';
-import SeasonView from './views/SeasonView';
+import SeasonView from './views/seasonView';
 
 function App(props) {
 
@@ -19,13 +19,13 @@ function App(props) {
   }
 
   return (
-    <div onClick={onClick}>
+    <div className="app" onClick={onClick}>
       <Show hash="#CreateAccount"><CreateACC model = {props.model}/></Show>
       <Show hash="#Login"><Login model = {props.model}/></Show>
       <Show hash="#HomeScreen #Season #Game #QuickGame #Highscores #Profile"><Header model={props.model}/></Show>
       <Show hash="#HomeScreen"><HomeScreen model={props.model}/></Show>
       <Show hash="#Season"><Season model={props.model}/></Show>
-      <Show hash="#Game #QuickGame"><Game model={props.model}/></Show>
+      <Show hash="#QuickGame #Game"><Game model={props.model}/></Show>
     </div>
   )
 }

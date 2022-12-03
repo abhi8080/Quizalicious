@@ -10,20 +10,21 @@ class QuizModel {
     this.highScoreList = highScoreList;
     this.achievementsInGame = [{ 1: "." }, { 2: "." }];
     this.currentUserAchievements;
-    this.currentSeasonGames = [
-      { name: "Easy game 1", difficulty: "easy" },
-      { name: "Easy game 2", difficulty: "easy" },
-      { name: "Medium game 3", difficulty: "medium" },
-      { name: "Medium game 4", difficulty: "medium" },
-      { name: "Hard game 5", difficulty: "hard" },
-    ]
-    this.currentGame = 0;
-    this.currentQuestion = 0;
-    this.rightAnswersInSeason = [0, 0, 0, 0, 0];
-    this.score = 0;
+
+    this.currentGame = 0;           //Current game in season
+    this.gameScores = [0,0,0,0,0];  //current game scores
+    this.score = 0;                 //SeasonScore
+    this.seasonDone = false;        //Season done stats
+
     this.profileMenuOpen = false;
+
+    this.quickGameMode = false;
   }
 
+  getGameScore() {
+    return this.gameScores[this.currentGame];
+  }
+  
   setScore(score) {
     this.score = score;
     this.notifyObservers({
@@ -31,10 +32,39 @@ class QuizModel {
     });
   }
 
+  getSeasonScore() {
+    return this.gameScores.reduce((acc,curr)=>acc+curr,0);
+  }
+
+  setGameScore(score) {
+    this.gameScores[this.currentGame]=score;
+
+    if( this.currentGame === 4 )
+      this.setScore(this.getSeasonScore());
+  }
+
+  setSeasonDone(status) {
+    this.seasonDone = status;
+  }
+
   resetSeason() {
-    this.currentGame = 0;
+    this.setCurrentGame(0)
     this.currentQuestion = 0;
-    this.rightAnswersInSeason = [0,0,0,0,0];
+    this.gameScores = [0,0,0,0,0];
+    this.score = 0;
+  }
+
+  setCurrentGame(game) {
+    this.currentGame = game;
+    this.currentQuestion = 0;
+
+    this.notifyObservers({
+      currentGame: this.currentGame,
+    });
+  }
+
+  nextGame() {
+    this.setCurrentGame(this.currentGame+1);
   }
 
   setRightAnswersInSeason( rightAnswers, game ) {
@@ -50,19 +80,19 @@ class QuizModel {
 
 
   closeProfileMenu() {
-    this.profileMenuOpen = false;
-    this.notifyObservers({
-      profileMenuOpen: this.profileMenuOpen,
-    });
+    if( this.profileMenuOpen ) {
+      this.profileMenuOpen = false;
+      this.notifyObservers({
+        profileMenuOpen: this.profileMenuOpen,
+      });
+    }
+  }
+
+  setProfileMenuOpen(val) {
+    this.profileMenuOpen = val;
   }
   nextGameInSeason() {
     this.currentGame += 1;
-    this.notifyObservers({
-      currentGame: this.currentGame,
-    });
-  }
-  setCurrentGame(num) {
-    this.currentGame = num;
     this.notifyObservers({
       currentGame: this.currentGame,
     });
@@ -71,7 +101,7 @@ class QuizModel {
     this.currentUser = user;
   }
   async createUser(email, username, password) {
-    await createUserInFirebase(email, password);
+    await createUserInFirebase(email, username, password);
     this.notifyObservers({
       email: email,
       username: username,
@@ -101,6 +131,7 @@ class QuizModel {
 
   setHighScoreList(highScoreList) {
     this.highScoreList = highScoreList;
+    this.notifyObservers();
   }
 
   notifyObservers(payload) {
