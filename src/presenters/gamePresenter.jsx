@@ -99,15 +99,18 @@ function SeasonPresenter(props) {
             //console.log( "Correct answer: "+data[currentQuestion].correct_answer );
     },[currentQuestion, data])
 
-    return promiseNoData(promiseState)||<GameView   questions={data}
-                                                    currentQuestion={currentQuestion}
-                                                    gameDone={gameDone}
-                                                    error={error}
-                                                    rightAnswers={rightAnswers}
-                                                    showWrong={showWrong}
-                                                    showRight={showRight}
-                                                    optionClick={optionClick}
-                                                    backClick={backClick}/>
+    if( props.model.currentUser )
+        return promiseNoData(promiseState)||<GameView   questions={data}
+                                                        currentQuestion={currentQuestion}
+                                                        gameDone={gameDone}
+                                                        error={error}
+                                                        rightAnswers={rightAnswers}
+                                                        showWrong={showWrong}
+                                                        showRight={showRight}
+                                                        optionClick={optionClick}
+                                                        backClick={backClick}/>
+    else
+        return <div><h1>No user logged in</h1><button onClick={()=>{window.location.hash="#Login"}}>Press here to log in</button></div>
 }
 
 export default SeasonPresenter;

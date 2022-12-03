@@ -1,5 +1,8 @@
 import HeaderView from "../views/headerView.jsx";
 import ProfileMenuView from "../views/profileMenuView.jsx";
+import { getAuth, signOut } from "firebase/auth";
+
+const auth = getAuth();
 
 function HeaderPresenter(props) {
 
@@ -9,9 +12,15 @@ function HeaderPresenter(props) {
         setProfileMenuOpen(!profileMenuOpen);
         props.model.setProfileMenuOpen(true);
     }
-
+    
     function logOut() {
-        window.location.hash="#Login";
+        
+        signOut(auth).then(() => {
+            window.location.hash="#Login";
+            props.model.currentUser = undefined;
+        }).catch((error) => {
+            Alert("Error logging out");
+        });
         setProfileMenuOpen(false);
     }
 
@@ -43,12 +52,13 @@ function HeaderPresenter(props) {
 
     React.useEffect(created,[]);
 
-    return <HeaderView  stopProp={stopProp}
-                        homeButtonPress={homeButtonPress}
-                        profileClick={profileClick}
-                        profileMenuOpen={profileMenuOpen}>
-                        {profileMenuOpen&&<ProfileMenuView logOut={logOut} yourSettings={yourSettings} yourProfile={yourProfile}/>}
-            </HeaderView>;
+    if( props.model.currentUser )
+        return <HeaderView  stopProp={stopProp}
+                            homeButtonPress={homeButtonPress}
+                            profileClick={profileClick}
+                            profileMenuOpen={profileMenuOpen}>
+                            {profileMenuOpen&&<ProfileMenuView logOut={logOut} yourSettings={yourSettings} yourProfile={yourProfile}/>}
+                </HeaderView>;
 }
 
 export default HeaderPresenter;
