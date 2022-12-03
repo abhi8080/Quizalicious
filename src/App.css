@@ -70,6 +70,25 @@ img.profile {
   border-radius: 10px;
   box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.10);
 }
+img.profilePic {
+  height:15%;
+  width:15%;
+  min-height: 150px;
+  min-width: 150px;
+  max-height:300px;
+  max-width:300px;
+  border-radius: 10px;
+  margin-left: 50px;
+  margin-right:50px;
+  box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.10);
+}
+.profileInfo {
+  float: left;
+}
+.profileView {
+  max-width:1000px;
+  margin: 0 auto;
+}
 .triangle {
   margin-top: 24px;
   margin-left: 5px;
