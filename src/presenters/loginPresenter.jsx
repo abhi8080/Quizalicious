@@ -1,5 +1,4 @@
 import LoginView from "../views/loginView";
-import React from "react";
 
 function Login(props) {
 
