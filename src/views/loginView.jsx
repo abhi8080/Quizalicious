@@ -1,17 +1,21 @@
 function LoginView(props) {
 
 
-    return <div className="loginBox">
-    <img src="Quizalicious logo.svg" className="image blob"/>
-        <form>
-        <input type = "email" placeholder = "Email" id="email"></input> 
-        <div><input type = "password" placeholder = "Password" id="password"></input></div>
-        <div id = "error" ></div>
-        <a href="#CreateAccount">Create a new account</a>
-        
-        </form>
-        <button  onClick={props.onUserLogIn}>Log in</button>
-</div>;
+    return  <div className="loginBoxWrapper">
+                <img src="Quizalicious logo.svg" className="image blob"/>
+                <div id = "error" ></div>
+                <div className="loginBox">
+                    <form>
+                    <label for="email">Email address:</label><br/>
+                    <input type = "email" placeholder = "" id="email"></input>
+                    <label for="password">Password:</label><br/>
+                    <input type = "password" placeholder = "" id="password"></input>
+                    <a href="#CreateAccount">Create a new account</a>
+                    
+                    </form>
+                    <button  onClick={props.onUserLogIn}>Log in</button>
+                </div>
+            </div>;
 
 }
 
