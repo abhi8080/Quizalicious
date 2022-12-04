@@ -3,9 +3,11 @@ import NotLoggedIn from "./notLoggedInPresenter.jsx";
 
 
 function SeasonPresenter(props) {
-    const [,update]                         = React.useState({});
-    const [,setCurrentGame]                 = React.useState(0);
-    const [gameClicked, setGameClicked ]    = React.useState(false);
+    const [,update]                                             = React.useState({});
+    const [,setCurrentGame]                                     = React.useState(0);
+    const [gameClicked, setGameClicked ]                        = React.useState(false);
+    const [backClickPleaseConfirm, setBackClickPleaseConfirm]   = React.useState(false);
+    const [closingWarning, setClosingWarning]                   = React.useState(false);
     let gameList = [
         { name: "Easy game 1", difficulty: "easy" },
         { name: "Easy game 2", difficulty: "easy" },
@@ -14,8 +16,19 @@ function SeasonPresenter(props) {
         { name: "Hard game 5", difficulty: "hard" },
     ]
 
+    function backClickConfirm() {
+        setBackClickPleaseConfirm(true);
+    }
+
+    function cancelBack() {
+        setClosingWarning(true);
+        setTimeout(()=>{
+            setBackClickPleaseConfirm(false);
+            setClosingWarning(false);
+        },300);
+    }
+
     function backClick() {
-        
         setTimeout(()=>{
             window.location.hash ="#HomeScreen";
         },800)
@@ -42,7 +55,7 @@ function SeasonPresenter(props) {
     }
 
     function updateFromModel(payload) {
-        if( payload["currentGame"] !== undefined ) {
+        if( payload&&payload["currentGame"] !== undefined ) {
             setCurrentGame(payload["currentGame"]);
             update({});
         }
@@ -60,7 +73,11 @@ function SeasonPresenter(props) {
                         seasonCorrectAnswers={props.model.getSeasonScore()}
                         gameList={gameList}
                         gameClicked={gameClicked}
+                        backClickConfirm={backClickConfirm}
                         backClick={backClick}
+                        backClickPleaseConfirm={backClickPleaseConfirm}
+                        closingWarning={closingWarning}
+                        cancelBack={cancelBack}
                         gameClick={gameClick}
                         resetSeason={resetSeason}/>;
 }

@@ -40,6 +40,106 @@
     margin-top: 20px;
 }
 
+.seasonView .warningPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -175px;
+    width: 350px;
+    background-color: rgb(71, 19, 21);
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid rgb(221, 28, 28);
+}
+
+.seasonView .warningPopup button:nth-child(even) {
+    background-color: rgba(53, 211, 48, 0.63);
+    border: 1px solid rgb(126, 235, 153);
+    margin: 10px;
+}
+.seasonView .warningPopup button:nth-child(odd) {
+    background-color: rgba(209, 41, 41, 0.377);
+    border: 1px solid rgb(221, 28, 28);
+    margin: 10px;
+}
+
+.seasonView .warningIcon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 50%;
+    border: 3px solid yellow;
+    font-size: 70px;
+    line-height: 70px;
+    color: yellow;
+}
+
+.animateI {
+    animation: animateI 0.5s;
+}
+
+@keyframes animateI {
+    0% {
+        transform: rotateZ(45deg);
+        opacity: 0;
+    }
+
+    25% {
+        transform: rotateZ(-25deg);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: rotateZ(15deg);
+        opacity: 0.8;
+    }
+
+    75% {
+        transform: rotateZ(-5deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotateZ(0);
+        opacity: 1;
+    }
+}
+
+.warningShow {
+    animation: warningShow .3s;
+}
+
+@keyframes warningShow {
+    0% {
+        transform: scale(0.7);
+    }
+    45% {
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hideWarning {
+    animation: hideWarning .3s;
+}
+
+@keyframes hideWarning {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.);
+        opacity: 0;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .seasonView .game {
         display: block;
