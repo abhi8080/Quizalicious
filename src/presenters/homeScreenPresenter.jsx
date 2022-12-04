@@ -21,7 +21,7 @@ function HomeScreen(props) {
     }
 
     function showHighscores() {
-        window.location.hash = "#Highscores";
+        window.location.hash = "#Highscore";
     }
 
     if(props.model.currentUser)

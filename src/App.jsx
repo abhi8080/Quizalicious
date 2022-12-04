@@ -8,6 +8,7 @@ import CreateACC  from './presenters/createAccountPresenter.jsx';
 import Show       from './presenters/show.jsx';
 import Season     from './presenters/seasonPresenter.jsx';
 import Game       from './presenters/gamePresenter.jsx';
+import Highscore from './presenters/highscorePresenter.jsx';
 import Profile    from './presenters/profilePresenter.jsx';
 import QuickGame  from './presenters/quickGamePresenter.jsx';
 
@@ -30,6 +31,7 @@ function App(props) {
       <Show hash="#Game"><Game model={props.model}/></Show>
       <Show hash="#QuickGame"><QuickGame model={props.model}/></Show>
       <Show hash="#Profile"><Profile model ={props.model}/></Show>
+      <Show hash="#Highscore"><Highscore model={props.model}/></Show>
     </div>
   )
 }

@@ -4,7 +4,7 @@ if( window.location.hash !== "#Login" &&
     window.location.hash !== "#Highscores" &&
     window.location.hash !== "#Profile" &&
     window.location.hash !== "#Season" &&
-    window.location.hash !== "#Game" && 
-    window.location.hash !== "#QuickGame"
+    window.location.hash !== "#Highscore" &&
+    window.location.hash !== "#Game"
     )
     window.location.hash = "#Login";
