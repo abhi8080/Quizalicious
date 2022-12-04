@@ -114,6 +114,11 @@
         margin-top: 20px;
         margin-left: 0px;
     }
+    .quickGame .form h3 {
+        margin-top: 60px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
     .quickGame .leftColumn {
         display: block;
