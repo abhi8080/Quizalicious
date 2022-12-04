@@ -33,7 +33,7 @@ function GameView(props) {
         return <div>
                     <img src="Quizalicious logo.svg" className="image blob"/>
                     <h1>Game done!</h1>
-                    You got {props.rightAnswers} right.<br/>
+                    <div className="gameResult">You got {props.rightAnswers} right.</div>
                     <button onClick={props.backClick}>Back</button>
                 </div>
     }

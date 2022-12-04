@@ -98,6 +98,10 @@
     background-color: rgb(128, 66, 66);
 }
 
+.gameView .gameResult {
+    margin-bottom: 30px;
+}
+
 @media screen and (max-width: 600px) {
   
     .gameView h1 {

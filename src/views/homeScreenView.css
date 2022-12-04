@@ -1,4 +1,7 @@
 .homeScreen .logo {
+    border-radius: 50%;
+
+
     height: 200px;
     margin-top: 50px;
     will-change: filter;
@@ -35,7 +38,35 @@
 }
 
 .homeScreen .menuTitle {
-    
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.gelatine {
+    animation: gelatine 1s infinite;
+    transform-origin: bottom center;
+}
+
+@keyframes gelatine {
+
+    from,to {
+        transform: scale(1, 0.95) skewX(0deg);
+    }
+
+    25% {
+        transform: scale(1, 1) skewX(3deg);
+    }
+
+    50% {
+        transform: scale(1, 0.95) skewX(0deg);
+    }
+
+    75% {
+        transform: scale(1, 1) skewX(-3deg);
+    }
 }
 
 @keyframes logo-spin {

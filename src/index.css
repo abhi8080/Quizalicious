@@ -118,13 +118,18 @@ button:active {
 }
 
 .blob { /*The pulsating logo, put it wherever you want to*/
-  border-radius: 50%;
   margin: 10px;
+  
+  will-change: filter;
 
   box-shadow: 0 0 0 0 rgba(100, 100, 100, 1);
-  transform: scale(1);
-  animation: pulse 2s infinite;
-  width: 120px;
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  
+  height: 120px; 
+
+  border-radius: 50%;
 }
 
 table {
