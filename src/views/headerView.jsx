@@ -1,3 +1,4 @@
+import './headerView.css';
 import ProfileMenuView from "../views/profileMenuView.jsx";
 
 function HeaderView(props) {

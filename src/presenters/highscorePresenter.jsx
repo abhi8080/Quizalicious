@@ -1,4 +1,5 @@
 import HighscoreView from "../views/highscoreView.jsx";
+import NotLoggedIn from "./notLoggedInPresenter.jsx";
 
 function Highscore(props) {
     const [highScoreList, setHighScoreList] = React.useState(props.model.highScoreList);
@@ -24,6 +25,10 @@ function Highscore(props) {
             }
         }).slice(0,10);
     }
+
+    if( !props.model.currentUser )
+        return <NotLoggedIn />;
+
     return <HighscoreView highScoreList={sort(highScoreList)}/>
 }
 

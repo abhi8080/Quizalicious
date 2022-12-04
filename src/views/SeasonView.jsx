@@ -1,3 +1,5 @@
+import './seasonView.css';
+
 function SeasonView(props) {
 
     function gameClickACB(index) {

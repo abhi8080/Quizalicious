@@ -1,4 +1,5 @@
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import './gameView.css';
 
 function GameView(props) {
     function presentQuestion(question) {

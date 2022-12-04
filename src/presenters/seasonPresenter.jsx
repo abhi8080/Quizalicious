@@ -1,5 +1,5 @@
 import SeasonView from "../views/seasonView.jsx";
-
+import NotLoggedIn from "./notLoggedInPresenter.jsx";
 
 
 function SeasonPresenter(props) {
@@ -18,13 +18,18 @@ function SeasonPresenter(props) {
         
         setTimeout(()=>{
             window.location.hash ="#HomeScreen";
-        },1000)
+        },800)
         setGameClicked(true);
     }
 
     function resetSeason() {
-        props.model.resetSeason();
-        setCurrentGame(0);
+        setGameClicked(true);
+        setTimeout(()=>{
+            setCurrentGame(0);
+            props.model.resetSeason();
+            setGameClicked(false);
+
+        },800)
     }
 
     function gameClick(number) {
@@ -32,7 +37,7 @@ function SeasonPresenter(props) {
             props.model.setCurrentGame(number);
             window.location.hash = "#Game";
 
-        },1000)
+        },800)
         setGameClicked(true);
     }
 
@@ -48,16 +53,16 @@ function SeasonPresenter(props) {
         return ()=>{props.model.removeObserver(updateFromModel);}
     }, []);
 
-    if( props.model.currentUser )
-        return <SeasonView  currentGame={props.model.currentGame}
-                            seasonCorrectAnswers={props.model.getSeasonScore()}
-                            gameList={gameList}
-                            gameClicked={gameClicked}
-                            backClick={backClick}
-                            gameClick={gameClick}
-                            resetSeason={resetSeason}/>;
-    else
-        return <div><h1>No user logged in</h1><button onClick={()=>{window.location.hash="#Login"}}>Press here to log in</button></div>
+    if( !props.model.currentUser )
+        return <NotLoggedIn />;
+
+    return <SeasonView  currentGame={props.model.currentGame}
+                        seasonCorrectAnswers={props.model.getSeasonScore()}
+                        gameList={gameList}
+                        gameClicked={gameClicked}
+                        backClick={backClick}
+                        gameClick={gameClick}
+                        resetSeason={resetSeason}/>;
 }
 
 export default SeasonPresenter;

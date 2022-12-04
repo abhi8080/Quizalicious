@@ -1,3 +1,5 @@
+import './profileMenuView.css';
+
 function ProfileMenuView(props) {
     return <div className="profileMenu">
         <div className="name item">Signed in as Loid Forger</div>

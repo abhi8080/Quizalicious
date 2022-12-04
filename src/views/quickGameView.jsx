@@ -1,13 +1,15 @@
+import './quickGameView.css';
+
 function QuickGameView(props) {
     return  <div className={"quickGame appear "+(props.exiting&&"implode")}>
                 <h1>Quick game mode!</h1>
                 <div className="leftColumn">
-                    <h2>Play random game or...</h2>
+                    <h3>Play random game or...</h3>
                     <button onClick={props.randomGame}>Random game</button>
                 </div>
                 <div className="verticalSeperator"></div>
                 <div className="form">
-                    <h2>Choose difficult and category</h2>
+                    <h3>Choose difficult and category</h3>
                     <label>Select Category: </label><br/>
                     <select name="trivia_category" className="form-control" onChange={(event)=>props.categoryChange(event.target.value)}>
                         <option value="any">Any Category</option>

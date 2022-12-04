@@ -1,6 +1,6 @@
+import './loginView.css';
+
 function LoginView(props) {
-
-
     return  <div className="loginBoxWrapper">
                 <img src="Quizalicious logo.svg" className="image blob"/>
                 <div id = "error" ></div>
@@ -16,7 +16,6 @@ function LoginView(props) {
                     <button  onClick={props.onUserLogIn}>Log in</button>
                 </div>
             </div>;
-
 }
 
 export default LoginView;

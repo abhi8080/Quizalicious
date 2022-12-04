@@ -1,0 +1,33 @@
+.profileMenu {
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    width: 160px;
+    background-color: #161b22;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.profileMenu > .divider {
+    border-top: 1px solid #30363d;
+}
+
+.profileMenu > .item {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #c9d1d9;
+    font-size: 14px;
+    padding: 4px 8px 4px 16px;
+}
+
+.profileMenu > .item:hover {
+    background-color: #1f6fed;
+}
+
+.profileMenu > .item:first-child:hover {
+    background-color: inherit;
+}

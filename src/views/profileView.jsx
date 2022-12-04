@@ -1,3 +1,4 @@
+import './profileView.css';
 
 function ProfileView(props) {
 

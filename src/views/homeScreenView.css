@@ -1,0 +1,62 @@
+.homeScreen .logo {
+    height: 200px;
+    margin-top: 50px;
+    will-change: filter;
+    animation: logo-spin infinite 20s linear;
+    transition: filter 0.5s;
+}
+
+.homeScreen .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.homeScreen .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.homeScreen .smallLogo {
+    display: inline-block;
+    height: 20px;
+    margin: 0 20px 0 20px;
+    animation: vibrate-1 0.3s linear infinite both;
+}
+
+.homeScreen button {
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+    vertical-align: top;
+
+}
+
+.homeScreen .buttonWrapper {
+    display: flex;
+    align-items: bottom;
+}
+
+.homeScreen .menuTitle {
+    
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .homeScreenView .logo {
+        height: 100px !important;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .homeScreenView button {
+        width: 330px;
+        height: 60px;
+    }
+}

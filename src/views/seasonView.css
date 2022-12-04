@@ -1,0 +1,53 @@
+.seasonView {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.seasonView .game {
+    display: block;
+    width: 500px;
+    margin: 10px 50px;
+}
+
+.seasonView .game.easy {
+    background-color: rgb(55, 97, 55);
+}
+
+.seasonView .game.easy:disabled {
+    background-color: gray;
+    box-shadow: inset 0 0 0px 3px rgb(55, 97, 55);
+}
+
+.seasonView .game.medium {
+    background-color: rgb(148, 119, 66);
+}
+
+.seasonView .game.medium:disabled {
+    background-color: gray;
+    box-shadow: inset 0 0 0px 3px rgb(148, 119, 66);
+}
+
+.seasonView .game.hard {
+    background-color: rgb(128, 66, 66);
+}
+
+.seasonView .game.hard:disabled {
+    background-color: gray;
+    box-shadow: inset 0 0 0px 3px rgb(128, 66, 66);
+}
+
+.seasonView img {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .seasonView .game {
+        display: block;
+        width: 300px;
+        margin: 10px 10px 10px 10px;
+    }
+
+    .seasonView {
+        width: 320px;
+    }
+}

@@ -1,4 +1,5 @@
 import QuickGameView from '../views/quickGameView.jsx';
+import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import React from "react";
 
 function QuickGame(props) {
@@ -11,7 +12,7 @@ function QuickGame(props) {
         setTimeout(()=>{
             window.location.hash="#Game";
             props.model.setQuickGame("","");
-        },1000);
+        },800);
         setExiting(true);
     }
 
@@ -27,9 +28,12 @@ function QuickGame(props) {
         setTimeout(()=>{
             props.model.setQuickGame(category,difficulty);
             window.location.hash="#Game";
-        },1000);
+        },800);
         setExiting(true);
     }
+
+    if( !props.model.currentUser )
+        return <NotLoggedIn />;
 
     return <QuickGameView   exiting={exiting}
                             randomGame={randomGame}

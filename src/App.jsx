@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './animations.css';
 import './App.css'
 
 import HomeScreen from "./presenters/homeScreenPresenter.jsx";
@@ -25,7 +26,7 @@ function App(props) {
     <div className="app" onClick={onClick}>
       <Show hash="#CreateAccount"><CreateACC model = {props.model}/></Show>
       <Show hash="#Login"><Login model = {props.model}/></Show>
-      <Show hash="#HomeScreen #Season #Game #QuickGame #Highscores #Profile"><Header model={props.model}/></Show>
+      <Show hash="#HomeScreen #Season #Game #QuickGame #Highscore #Profile"><Header model={props.model}/></Show>
       <Show hash="#HomeScreen"><HomeScreen model={props.model}/></Show>
       <Show hash="#Season"><Season model={props.model}/></Show>
       <Show hash="#Game"><Game model={props.model}/></Show>

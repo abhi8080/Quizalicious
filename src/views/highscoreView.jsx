@@ -1,3 +1,5 @@
+import './highscoreView.css';
+
 function HighscoreView(props) {
     return <div>
         {Player(props.highScoreList)}

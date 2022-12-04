@@ -1,5 +1,6 @@
 import GameView from "../views/gameView.jsx";
 import promiseNoData from "../views/promiseNoData.jsx";
+import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import {retreivePracticeQuizQuestions,retreiveSeasonQuizQuestions} from "../quizSource.jsx";
 import resolvePromise from "../resolvePromise.jsx";
 import React from "react";
@@ -55,7 +56,7 @@ function SeasonPresenter(props) {
             setTimeout(()=>{
                 props.model.resetSeason();
                 window.location.hash = "#HomeScreen";
-            },1000)
+            },800)
             setExiting(true);
         }
         else {
@@ -63,7 +64,7 @@ function SeasonPresenter(props) {
                 props.model.setGameScore(rightAnswers);
             props.model.nextGame();
             window.location.hash = "#Season";
-            },1000)
+            },800)
             setExiting(true);
         }
     }
@@ -123,8 +124,10 @@ function SeasonPresenter(props) {
             //console.log( "Correct answer: "+data[currentQuestion].correct_answer );
     },[currentQuestion, data])
 
-    if( props.model.currentUser )
-        return promiseNoData(promiseState)||<GameView   timeout={timeout}
+    if( !props.model.currentUser )
+        return <NotLoggedIn/>;
+        
+    return promiseNoData(promiseState)||<GameView   timeout={timeout}
                                                         questions={data}
                                                         currentQuestion={currentQuestion}
                                                         gameDone={gameDone}
@@ -136,8 +139,6 @@ function SeasonPresenter(props) {
                                                         exiting={exiting}
                                                         optionClick={optionClick}
                                                         backClick={backClick}/>
-    else
-        return <div><h1>No user logged in</h1><button onClick={()=>{window.location.hash="#Login"}}>Press here to log in</button></div>
 }
 
 export default SeasonPresenter;

@@ -1,6 +1,10 @@
 import ProfileView from "../views/profileView.jsx";
-function Profile(props) {
+import NotLoggedIn from "./notLoggedInPresenter.jsx";
 
+function Profile(props) {
+    if( !props.model.currentUser )
+        return <NotLoggedIn/>;
+        
     return <ProfileView />
 }
 
