@@ -25,12 +25,13 @@ function ProfileView(props) {
         
         <table className="seasons">
             <caption>Last 5 seasons</caption>
-            
-            <tbody>
+            <thead>
                 <tr>
                     <th>Season</th>
                     <th>Score</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>Insert seasonsPlayedProp</td>
                     <td>{props.seasonCorrectAnswers}</td>

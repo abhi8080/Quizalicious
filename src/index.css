@@ -143,6 +143,7 @@ table {
   position:relative;
 
   box-shadow: 0 0 40px rgba(0,0,0,0.3);
+  background-color: black;
  }
  table td,
  table th {
