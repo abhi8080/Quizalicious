@@ -8,6 +8,7 @@ function SeasonView(props) {
 
     function gameCB(game, index) {
         let classes="game "+game.difficulty;
+        if(props.currentGame===index) classes+= " gelatine"
         return <button className={classes}
                        key={game.name} onClick={()=>gameClickACB(index)}
                        disabled={props.currentGame!==index}>

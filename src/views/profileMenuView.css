@@ -8,6 +8,9 @@
     border: 1px solid #30363d;
     overflow: hidden;
     z-index: 1;
+
+    cursor: pointer;
+    user-select: none;
 }
 
 .profileMenu > .divider {

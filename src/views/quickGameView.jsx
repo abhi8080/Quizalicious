@@ -5,7 +5,7 @@ function QuickGameView(props) {
                 <h1>Quick game mode!</h1>
                 <div className="leftColumn">
                     <h3>Play random game or...</h3>
-                    <button onClick={props.randomGame}>Random game</button>
+                    <button onClick={props.randomGame} className="gelatine">Random game</button>
                 </div>
                 <div className="verticalSeperator"></div>
                 <div className="form">
@@ -45,7 +45,7 @@ function QuickGameView(props) {
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
-                    <button onClick={props.startGame}>Start quick game</button>
+                    <button onClick={props.startGame} className="gelatine">Start quick game</button>
                 </div>
             </div>;
 }
