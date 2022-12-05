@@ -8,6 +8,7 @@ class QuizModel {
     this.observers = [];
     this.currentUser = null;
     this.highScoreList = highScoreList;
+    this.last5Seasons = [];
     this.achievementsInGame = [{ 1: "." }, { 2: "." }];
     this.currentUserAchievements;
 
@@ -33,6 +34,11 @@ class QuizModel {
       score: this.score,
     });
   }
+
+  setLast5Seasons(last5SeasonsArray) {
+    this.last5Seasons = last5SeasonsArray;
+  }
+
 
   getSeasonScore() {
     return this.gameScores.reduce((acc,curr)=>acc+curr,0);
@@ -109,17 +115,18 @@ class QuizModel {
     this.currentUser = user;
   }
   async createUser(email, username, password) {
-    await createUserInFirebase(email, username, password);
+    const user = await createUserInFirebase(email, username, password);
     this.notifyObservers({
       email: email,
       username: username,
       password: password,
     });
-    this.setCurrentUser(email);
+    this.setCurrentUser(user);
   }
   async signIn(email, password) {
-    await signInWithPasswordAndEmail(email, password);
-    this.setCurrentUser(email);
+    const user = await signInWithPasswordAndEmail(email, password);
+    this.notifyObservers({signIn: "true"});
+    this.setCurrentUser(user);
   }
   setCurrentUserAchievements(achievements) {
     this.currentUserAchievements = achievements;
