@@ -104,6 +104,9 @@ class QuizModel {
 
   setProfileMenuOpen(val) {
     this.profileMenuOpen = val;
+    this.notifyObservers({
+      profileMenuOpen: this.profileMenuOpen,
+    });
   }
   nextGameInSeason() {
     this.currentGame += 1;

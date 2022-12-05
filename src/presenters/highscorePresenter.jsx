@@ -3,6 +3,7 @@ import NotLoggedIn from "./notLoggedInPresenter.jsx";
 
 function Highscore(props) {
     const [highScoreList, setHighScoreList] = React.useState(props.model.highScoreList);
+    const [hideView, setHideView] = React.useState(false);
 
     React.useEffect(wasCreatedACB, []);
 
@@ -12,6 +13,14 @@ function Highscore(props) {
         props.model.addObserver(observerACB);                               
         function isTakenDownACB(){ props.model.removeObserver(observerACB);} 
         return isTakenDownACB;
+    }
+
+    function backClick() {
+        setHideView(true);
+        setTimeout(()=>{
+
+            window.location.hash = "#HomeScreen";
+        },800)
     }
 
 
@@ -29,7 +38,9 @@ function Highscore(props) {
     if( !props.model.currentUser )
         return <NotLoggedIn />;
 
-    return <HighscoreView highScoreList={sort(highScoreList)}/>
+    return <HighscoreView   backClick={backClick}
+                            hideView={hideView}
+                            highScoreList={sort(highScoreList)}/>
 }
 
 export default Highscore;

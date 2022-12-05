@@ -42,28 +42,54 @@
 
 .seasonView .warningPopup {
     position: absolute;
+    
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     top: 50%;
-    left: 50%;
-    margin-left: -175px;
+    margin-top: -100px;
+    
     width: 350px;
-    background-color: rgb(71, 19, 21);
+
+    background-color: rgba(17, 16, 2, 0.897);
     padding: 10px;
-    border-radius: 16px;
-    border: 1px solid rgb(221, 28, 28);
+    border-radius: 12px;
+    border: 1px solid rgb(255, 238, 0);
+    color: white;
+
+    box-shadow: 0 0 40px 0 rgba(0,0,0,0.5);
 }
 
-.seasonView .warningPopup button:nth-child(even) {
-    background-color: rgba(53, 211, 48, 0.63);
-    border: 1px solid rgb(126, 235, 153);
+.seasonView .warningPopup button.green {
+    background-color: rgba(51, 170, 47, 0.459);
+    border: 1px solid rgb(6, 175, 0);
     margin: 10px;
 }
-.seasonView .warningPopup button:nth-child(odd) {
+
+.seasonView .warningPopup button.green:hover {
+    background-color: rgba(51, 170, 47, 0.973);
+}
+
+.seasonView .warningPopup button.green:active {
+    background-color: rgb(39, 129, 36);
+}
+
+.seasonView .warningPopup button.red {
     background-color: rgba(209, 41, 41, 0.377);
     border: 1px solid rgb(221, 28, 28);
     margin: 10px;
 }
 
-.seasonView .warningIcon {
+.seasonView .warningPopup button.red:hover {
+    background-color: rgba(209, 41, 41, 0.637);
+}
+
+.seasonView .warningPopup button.red:active {
+    background-color: rgba(161, 31, 31, 0.945);
+}
+
+.seasonView .warningPopup .warningIcon {
     width: 80px;
     height: 80px;
     margin: 0 auto;
@@ -76,7 +102,7 @@
 }
 
 .animateI {
-    animation: animateI 0.5s;
+    animation: animateI 0.8s;
 }
 
 @keyframes animateI {
@@ -149,5 +175,9 @@
 
     .seasonView {
         width: 320px;
+    }
+
+    .seasonView .warningPopup {
+        width: 80vw;
     }
 }

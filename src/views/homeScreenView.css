@@ -24,17 +24,33 @@
     animation: vibrate-1 0.3s linear infinite both;
 }
 
+
 .homeScreen button {
     height: 150px;
     width: 150px;
     margin: 10px;
     vertical-align: top;
-
+    
 }
 
 .homeScreen .buttonWrapper {
     display: flex;
+    flex-direction: row;
+    
     align-items: bottom;
+}
+
+@media screen and (max-width: 600px) {
+    .homeScreen .logo {
+        height: 100px;
+    }
+    .homeScreen button {
+        height: 80px;
+        width: 80vw;
+    }
+    .homeScreen .buttonWrapper {
+        flex-direction: column;
+    }
 }
 
 .homeScreen .menuTitle {

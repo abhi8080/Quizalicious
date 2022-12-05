@@ -3,11 +3,17 @@ import NotLoggedIn from "./notLoggedInPresenter.jsx";
 
 
 function SeasonPresenter(props) {
-    const [,update]                                             = React.useState({});
-    const [,setCurrentGame]                                     = React.useState(0);
-    const [gameClicked, setGameClicked ]                        = React.useState(false);
-    const [backClickPleaseConfirm, setBackClickPleaseConfirm]   = React.useState(false);
-    const [closingWarning, setClosingWarning]                   = React.useState(false);
+    const [,update]                                                         = React.useState({});
+    const [,setCurrentGame]                                                 = React.useState(0);
+    const [gameClicked, setGameClicked ]                                    = React.useState(false);
+
+    const [backClickPleaseConfirm, setBackClickPleaseConfirm]               = React.useState(false);
+    const [closingBackClickPleaseConfirm, setClosingBackClickPleaseConfirm] = React.useState(false);
+
+    
+    const [resetPleaseConfirm, setResetPleaseConfirm]                       = React.useState(false);
+    const [closingResetPleaseConfirm, setClosingResetPleaseConfirm]             = React.useState(false);
+
     let gameList = [
         { name: "Easy game 1", difficulty: "easy" },
         { name: "Easy game 2", difficulty: "easy" },
@@ -21,10 +27,10 @@ function SeasonPresenter(props) {
     }
 
     function cancelBack() {
-        setClosingWarning(true);
+        setClosingBackClickPleaseConfirm(true);
         setTimeout(()=>{
+            setClosingBackClickPleaseConfirm(false);
             setBackClickPleaseConfirm(false);
-            setClosingWarning(false);
         },300);
     }
 
@@ -34,13 +40,26 @@ function SeasonPresenter(props) {
         },800)
         setGameClicked(true);
     }
+    
+    function resetConfirm() {
+        setResetPleaseConfirm(true);
+    }
 
+    function cancelReset() {
+        setClosingResetPleaseConfirm(true);
+        setTimeout(()=>{
+            setClosingResetPleaseConfirm(false);
+            setResetPleaseConfirm(false);
+        },300);
+    }
+    
     function resetSeason() {
         setGameClicked(true);
         setTimeout(()=>{
             setCurrentGame(0);
             props.model.resetSeason();
             setGameClicked(false);
+            setResetPleaseConfirm(false);
 
         },800)
     }
@@ -73,13 +92,23 @@ function SeasonPresenter(props) {
                         seasonCorrectAnswers={props.model.getSeasonScore()}
                         gameList={gameList}
                         gameClicked={gameClicked}
+                        
+                        /*For popup 1*/
                         backClickConfirm={backClickConfirm}
-                        backClick={backClick}
                         backClickPleaseConfirm={backClickPleaseConfirm}
-                        closingWarning={closingWarning}
+                        closingBackClickPleaseConfirm={closingBackClickPleaseConfirm}
                         cancelBack={cancelBack}
+                        backClick={backClick}
+
+                        /*For popup 2*/
+                        resetConfirm={resetConfirm}
+                        resetPleaseConfirm={resetPleaseConfirm}
+                        closingResetPleaseConfirm={closingResetPleaseConfirm}
+                        cancelReset={cancelReset}
+                        resetSeason={resetSeason}
+                        
                         gameClick={gameClick}
-                        resetSeason={resetSeason}/>;
+                        />;
 }
 
 export default SeasonPresenter;

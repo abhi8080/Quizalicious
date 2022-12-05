@@ -8,12 +8,19 @@ function QuickGame(props) {
 
     const [exiting, setExiting]         = React.useState(false);
 
+    function backClick() {
+        setExiting(true);
+        setTimeout(()=>{
+            window.location.hash="#HomeScreen";
+        },800);
+    }
+
     function randomGame() {
+        setExiting(true);
         setTimeout(()=>{
             window.location.hash="#Game";
             props.model.setQuickGame("","");
         },800);
-        setExiting(true);
     }
 
     function categoryChange(val) {
@@ -35,7 +42,8 @@ function QuickGame(props) {
     if( !props.model.currentUser )
         return <NotLoggedIn />;
 
-    return <QuickGameView   exiting={exiting}
+    return <QuickGameView   backClick={backClick}
+                            exiting={exiting}
                             randomGame={randomGame}
                             categoryChange={categoryChange}
                             difficultyChange={difficultyChange}

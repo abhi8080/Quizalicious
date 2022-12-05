@@ -7,10 +7,16 @@ const auth = getAuth();
 function HeaderPresenter(props) {
 
     const [profileMenuOpen, setProfileMenuOpen] = React.useState(false);
+    const [hidingMenu, setHidingMenu] = React.useState(false); //For closing animation
 
-    function profileClick(event) {
-        setProfileMenuOpen(!profileMenuOpen);
-        props.model.setProfileMenuOpen(true);
+    function profilePicClick(event) {
+        event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
+
+        props.model.setProfileMenuOpen(!profileMenuOpen);
+
+        console.log("yo");
+        
     }
     
     function logOut() {
@@ -21,16 +27,18 @@ function HeaderPresenter(props) {
         }).catch((error) => {
             Alert("Error logging out");
         });
-        setProfileMenuOpen(false);
+        props.model.setProfileMenuOpen(false);
+
     }
 
     function yourSettings() {
-        setProfileMenuOpen(false);
+        props.model.setProfileMenuOpen(false);
+
     }
 
     function yourProfile() {
         window.location.hash="#Profile";
-        setProfileMenuOpen(false);
+        props.model.setProfileMenuOpen(false);
     }
 
     function homeButtonPress() {
@@ -42,22 +50,44 @@ function HeaderPresenter(props) {
         event.nativeEvent.stopImmediatePropagation();
     }
 
-    function modelUpdate() {
+    function modelUpdate(payload) {
+        if(payload) {
+            if(payload.profileMenuOpen !== undefined) {
+                if(!payload.profileMenuOpen)
+                    setHidingMenu(true);
+                if(payload.profileMenuOpen)
+                    setProfileMenuOpen(true);
+            }
+        }
+    }
+
+    React.useEffect(()=>{
+        if(hidingMenu) {
+            setTimeout(()=>{
+                setProfileMenuOpen(false);
+                setHidingMenu(false);
+            },500)
+        }
+    },[hidingMenu]);
+
+    React.useEffect(()=>{
         setProfileMenuOpen(props.model.profileMenuOpen);
-    }
-
-    function created() {
         props.model.addObserver(modelUpdate);
-    }
-
-    React.useEffect(created,[]);
+        return ()=>{props.model.removeObserver(modelUpdate)}
+    },[]);
 
     if( props.model.currentUser )
-        return <HeaderView  stopProp={stopProp}
-                            homeButtonPress={homeButtonPress}
-                            profileClick={profileClick}
-                            profileMenuOpen={profileMenuOpen}>
-                            {profileMenuOpen&&<ProfileMenuView logOut={logOut} yourSettings={yourSettings} yourProfile={yourProfile}/>}
+        return <HeaderView  user            ={props.model.currentUser}
+                            homeButtonPress ={homeButtonPress}
+                            profilePicClick ={profilePicClick}
+                            profileMenuOpen ={props.model.profileMenuOpen}>
+                            {profileMenuOpen&&(
+                                <ProfileMenuView    stopProp    ={stopProp}
+                                                    hidingMenu  ={hidingMenu}
+                                                    user        ={props.model.currentUser}
+                                                    logOut      ={logOut}
+                                                    yourSettings={yourSettings}
+                                                    yourProfile ={yourProfile}/>)}
                 </HeaderView>;
 }
 

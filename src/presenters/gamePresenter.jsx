@@ -5,6 +5,8 @@ import {retreivePracticeQuizQuestions,retreiveSeasonQuizQuestions} from "../quiz
 import resolvePromise from "../resolvePromise.jsx";
 import React from "react";
 
+import confetti from 'canvas-confetti';
+
 function SeasonPresenter(props) {
 
     const [,updateState] = React.useState();
@@ -34,10 +36,45 @@ function SeasonPresenter(props) {
         }
     }
 
+    function launchConfetti() {
+        var canvas = document.getElementById('my-canvas');
+
+        var myConfetti = confetti.create(canvas, {
+        resize: true,
+        useWorker: true
+        });
+        myConfetti({
+            particleCount: 100,
+            spread: 160
+            // any other options from the global
+            // confetti function
+            });
+    }
+    function launchConfettiRandom() {
+        var canvas = document.getElementById('my-canvas');
+
+        var myConfetti = confetti.create(canvas, {
+            resize: true,
+            useWorker: true
+        });
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+            
+        myConfetti({
+        angle: randomInRange(55, 125),
+        spread: randomInRange(50, 70),
+        particleCount: randomInRange(50, 100),
+        origin: { y: 0.6 }
+        });
+    }
+
     function optionClick(option) {
+        
         if( option === data[currentQuestion].correct_answer ){
             setRightAnswers(rightAnswers+1);
             setShowRight(true);
+            launchConfetti();
         }
         else {
             setShowWrong(true);
@@ -70,7 +107,7 @@ function SeasonPresenter(props) {
     }
     React.useEffect( ()=>{
         if( showWrong ) {
-            setTimeout(()=>{setShowWrong(false)},1000)
+            setTimeout(()=>{setShowWrong(false)},1100)
         }
     },[showWrong]
     )
@@ -84,7 +121,7 @@ function SeasonPresenter(props) {
 
     React.useEffect( ()=>{
         if( showTimeout ) {
-            setTimeout(()=>{setShowTimeout(false)},1000)
+            setTimeout(()=>{setShowTimeout(false)},1200)
         }
     },[showTimeout])
     
@@ -115,8 +152,22 @@ function SeasonPresenter(props) {
     },[data]);
 
     React.useEffect(()=>{
-        if(gameDone)
+        if(gameDone) {
             props.model.setGameScore(rightAnswers);
+            launchConfettiRandom();
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },400);
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },800);
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },1200);
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },1600);
+        }
     },[gameDone])
 
     React.useEffect(()=>{
