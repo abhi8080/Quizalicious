@@ -1,6 +1,7 @@
 import {
   createUserInFirebase,
   signInWithPasswordAndEmail,
+  upload
 } from "./firebaseModel.jsx";
 
 class QuizModel {
@@ -75,9 +76,11 @@ class QuizModel {
     this.setCurrentGame(this.currentGame+1);
   }
 
-  setUserProfilePicture(picture)  {
-    this.userProfilePicture = picture;
-    this.notifyObservers({picture: picture});
+  setUserProfilePicture(photo, setLoading)  {
+    upload(photo, setLoading);
+    setTimeout(() => {
+      this.notifyObservers();
+    }, "3000")
   }
 
   setRightAnswersInSeason( rightAnswers, game ) {

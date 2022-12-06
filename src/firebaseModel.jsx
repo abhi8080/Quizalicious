@@ -10,13 +10,15 @@ import QuizModel from "./QuizModel";
 
 import * as firebase from "firebase/app";
 
-import { getDatabase, ref, set, get, child, onValue, remove } from "firebase/database";
+import { getDatabase, set, ref, get, child, onValue, remove } from "firebase/database";
+
+import * as firebaseStorage from "firebase/storage";
 
 firebase.initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const db = getDatabase();
-
+const storage = firebaseStorage.getStorage();
 
 async function checkIfUsernameAlreadyExists(username)  {
   const users = await get(child(ref(db), "users"));
@@ -31,7 +33,7 @@ async function createUserInFirebase(email, username, password) {
   if(usernameAlreadyExists)
   throw new Error("Username already exists");
   await createUserWithEmailAndPassword(auth, email, password);
-  await updateProfile(auth.currentUser, { displayName: username })
+  await updateProfile(auth.currentUser, { displayName: username, photoURL: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" })
   return auth.currentUser;
 }
 
@@ -131,13 +133,12 @@ function updateFirebaseFromModel(model) {
           payload.score
         );
         set(ref(db, "highscore/" + auth.currentUser.uid + "/date"), date);
-      
-      
+    
     
       }
       else if (payload.hasOwnProperty("signIn")) {
       const seasonStatisticsRef =  ref(db, "users/" + auth.currentUser.uid + "/seasonStatistics");
-      if(seasonStatisticsRef.exists()) {
+      if(seasonStatisticsRef != null) {
         onValue(seasonStatisticsRef, (firebaseData) => {
           const seasons = Object.values(firebaseData.val());
           if(seasons.length <= 5) {
@@ -149,9 +150,6 @@ function updateFirebaseFromModel(model) {
         })
       }
       }
-      else if (payload.hasOwnProperty("picture")) {
-        await updateProfile(auth.currentUser, { photoURL: payload.picture })
-      }
     }
   });
 }
@@ -161,6 +159,16 @@ function updateModelFromFirebase(model) {
     model.setHighScoreList(Object.values(firebaseData.val()));
   });
 }
+
+async function upload(file, setLoading) {
+  const fileRef = firebaseStorage.ref(storage, auth.currentUser.uid + '.png');
+
+      setLoading(true);
+       await firebaseStorage.uploadBytes(fileRef, file);
+      const photoURL = await firebaseStorage.getDownloadURL(fileRef);
+      updateProfile(auth.currentUser, {photoURL});
+      setLoading(false);
+  }
 
 
 async function signInWithPasswordAndEmail(email, password) {
@@ -174,4 +182,5 @@ export {
   updateModelFromFirebase,
   signInWithPasswordAndEmail,
   createUserInFirebase,
+  upload
 };
