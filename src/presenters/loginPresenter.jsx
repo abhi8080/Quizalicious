@@ -20,7 +20,6 @@ async function handleLoginACB(model, data) {
       try {
         await handleLoginACB(props.model, data);
       } catch (e) {
-        console.log(e.message)
         setError(e);
       }
       //console.log(error)
