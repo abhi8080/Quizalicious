@@ -75,6 +75,11 @@ class QuizModel {
     this.setCurrentGame(this.currentGame+1);
   }
 
+  setUserProfilePicture(picture)  {
+    this.userProfilePicture = picture;
+    this.notifyObservers({picture: picture});
+  }
+
   setRightAnswersInSeason( rightAnswers, game ) {
     this.rightAnswersInSeason[game] = rightAnswers;
     this.notifyObservers({
@@ -122,7 +127,6 @@ class QuizModel {
     this.notifyObservers({
       email: email,
       username: username,
-      password: password,
     });
     this.setCurrentUser(user);
   }

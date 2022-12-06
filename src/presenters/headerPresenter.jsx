@@ -23,7 +23,7 @@ function HeaderPresenter(props) {
         
         signOut(auth).then(() => {
             window.location.hash="#Login";
-            props.model.currentUser = undefined;
+            props.model.currentUser = null;
         }).catch((error) => {
             Alert("Error logging out");
         });
@@ -33,7 +33,7 @@ function HeaderPresenter(props) {
 
     function yourSettings() {
         props.model.setProfileMenuOpen(false);
-
+        window.location.hash="#Settings";
     }
 
     function yourProfile() {

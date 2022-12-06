@@ -62,7 +62,6 @@ function updateFirebaseFromModel(model) {
 
         set(ref(db, "users/" + auth.currentUser.uid), {
           email: payload.email,
-          password: payload.password,
           username: payload.username,
           allTimeScore: 0,
           completedSeasons: 0,
@@ -149,6 +148,9 @@ function updateFirebaseFromModel(model) {
           }
         })
       }
+      }
+      else if (payload.hasOwnProperty("picture")) {
+        await updateProfile(auth.currentUser, { photoURL: payload.picture })
       }
     }
   });

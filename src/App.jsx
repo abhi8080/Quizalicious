@@ -12,7 +12,7 @@ import Game       from './presenters/gamePresenter.jsx';
 import Highscore from './presenters/highscorePresenter.jsx';
 import Profile    from './presenters/profilePresenter.jsx';
 import QuickGame  from './presenters/quickGamePresenter.jsx';
-
+import Settings from './presenters/settingsPresenter';
 import './navigation.js';
 import SeasonView from './views/seasonView';
 
@@ -33,6 +33,7 @@ function App(props) {
       <Show hash="#QuickGame"><QuickGame model={props.model}/></Show>
       <Show hash="#Profile"><Profile model ={props.model}/></Show>
       <Show hash="#Highscore"><Highscore model={props.model}/></Show>
+      <Show hash="#Settings"><Settings  model={props.model}/></Show>
     </div>
   )
 }
