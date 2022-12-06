@@ -1,0 +1,109 @@
+.homeScreen .logo {
+    border-radius: 50%;
+
+
+    height: 200px;
+    margin-top: 50px;
+    will-change: filter;
+    animation: logo-spin infinite 20s linear;
+    transition: filter 0.5s;
+}
+
+.homeScreen .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.homeScreen .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.homeScreen .smallLogo {
+    display: inline-block;
+    height: 20px;
+    margin: 0 20px 0 20px;
+    animation: vibrate-1 0.3s linear infinite both;
+}
+
+
+.homeScreen button {
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+    vertical-align: top;
+    
+}
+
+.homeScreen .buttonWrapper {
+    display: flex;
+    flex-direction: row;
+    
+    align-items: bottom;
+}
+
+@media screen and (max-width: 600px) {
+    .homeScreen .logo {
+        height: 100px;
+    }
+    .homeScreen button {
+        height: 80px;
+        width: 80vw;
+    }
+    .homeScreen .buttonWrapper {
+        flex-direction: column;
+    }
+}
+
+.homeScreen .menuTitle {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.gelatine {
+    animation: gelatine 1s infinite;
+    transform-origin: bottom center;
+}
+
+@keyframes gelatine {
+
+    from,to {
+        transform: scale(1, 0.95) skewX(0deg);
+    }
+
+    25% {
+        transform: scale(1, 1) skewX(3deg);
+    }
+
+    50% {
+        transform: scale(1, 0.95) skewX(0deg);
+    }
+
+    75% {
+        transform: scale(1, 1) skewX(-3deg);
+    }
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .homeScreenView .logo {
+        height: 100px !important;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .homeScreenView button {
+        width: 330px;
+        height: 60px;
+    }
+}

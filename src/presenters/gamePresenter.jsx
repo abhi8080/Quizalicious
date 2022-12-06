@@ -1,8 +1,11 @@
 import GameView from "../views/gameView.jsx";
 import promiseNoData from "../views/promiseNoData.jsx";
+import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import {retreivePracticeQuizQuestions,retreiveSeasonQuizQuestions} from "../quizSource.jsx";
 import resolvePromise from "../resolvePromise.jsx";
 import React from "react";
+
+import confetti from 'canvas-confetti';
 
 function SeasonPresenter(props) {
 
@@ -18,11 +21,60 @@ function SeasonPresenter(props) {
 
     const [showWrong, setShowWrong]             = React.useState(false);
     const [showRight, setShowRight]             = React.useState(false);
+    const [showTimeout, setShowTimeout]         = React.useState(false);
+
+    const [exiting, setExiting]                 = React.useState(false); //For exiting animation
+
+    function timeout() {
+        console.log("timeout!");
+        if(!exiting) {
+            setShowTimeout(true);
+            if( currentQuestion === 4 )
+                setGameDone(true);
+            else
+                setCurrentQuestion(currentQuestion+1);
+        }
+    }
+
+    function launchConfetti() {
+        var canvas = document.getElementById('my-canvas');
+
+        var myConfetti = confetti.create(canvas, {
+        resize: true,
+        useWorker: true
+        });
+        myConfetti({
+            particleCount: 100,
+            spread: 160
+            // any other options from the global
+            // confetti function
+            });
+    }
+    function launchConfettiRandom() {
+        var canvas = document.getElementById('my-canvas');
+
+        var myConfetti = confetti.create(canvas, {
+            resize: true,
+            useWorker: true
+        });
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+            
+        myConfetti({
+        angle: randomInRange(55, 125),
+        spread: randomInRange(50, 70),
+        particleCount: randomInRange(50, 100),
+        origin: { y: 0.6 }
+        });
+    }
 
     function optionClick(option) {
+        
         if( option === data[currentQuestion].correct_answer ){
             setRightAnswers(rightAnswers+1);
             setShowRight(true);
+            launchConfetti();
         }
         else {
             setShowWrong(true);
@@ -37,19 +89,25 @@ function SeasonPresenter(props) {
     
 
     function backClick() {
-        if( window.location.hash === "#QuickGame" ) {
-            props.model.resetSeason();
-            window.location.hash = "#HomeScreen";
+        if( props.model.quickGameMode ) {
+            setTimeout(()=>{
+                props.model.resetSeason();
+                window.location.hash = "#HomeScreen";
+            },800)
+            setExiting(true);
         }
         else {
-            props.model.setGameScore(rightAnswers);
+            setTimeout(()=>{
+                props.model.setGameScore(rightAnswers);
             props.model.nextGame();
             window.location.hash = "#Season";
+            },800)
+            setExiting(true);
         }
     }
     React.useEffect( ()=>{
         if( showWrong ) {
-            setTimeout(()=>{setShowWrong(false)},1000)
+            setTimeout(()=>{setShowWrong(false)},1100)
         }
     },[showWrong]
     )
@@ -60,6 +118,12 @@ function SeasonPresenter(props) {
         }
     },[showRight]
     )
+
+    React.useEffect( ()=>{
+        if( showTimeout ) {
+            setTimeout(()=>{setShowTimeout(false)},1200)
+        }
+    },[showTimeout])
     
     React.useEffect(()=>{
         let myPromiseState = {};
@@ -69,7 +133,7 @@ function SeasonPresenter(props) {
             setPromiseState(myPromiseState);
         }
         if( props.model.quickGameMode )
-            resolvePromise(retreivePracticeQuizQuestions("", ""),myPromiseState, promiseResolved);
+            resolvePromise(retreivePracticeQuizQuestions( props.model.quickGameCategory, props.model.quickGameDifficulty),myPromiseState, promiseResolved);
         else
             resolvePromise(retreiveSeasonQuizQuestions(props.model.currentGame),myPromiseState, promiseResolved);
     },[]);
@@ -88,8 +152,22 @@ function SeasonPresenter(props) {
     },[data]);
 
     React.useEffect(()=>{
-        if(gameDone)
+        if(gameDone) {
             props.model.setGameScore(rightAnswers);
+            launchConfettiRandom();
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },400);
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },800);
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },1200);
+            setTimeout(()=>{
+                launchConfettiRandom();
+            },1600);
+        }
     },[gameDone])
 
     React.useEffect(()=>{
@@ -97,18 +175,21 @@ function SeasonPresenter(props) {
             //console.log( "Correct answer: "+data[currentQuestion].correct_answer );
     },[currentQuestion, data])
 
-    if( props.model.currentUser )
-        return promiseNoData(promiseState)||<GameView   questions={data}
+    if( !props.model.currentUser )
+        return <NotLoggedIn/>;
+        
+    return promiseNoData(promiseState)||<GameView   timeout={timeout}
+                                                        questions={data}
                                                         currentQuestion={currentQuestion}
                                                         gameDone={gameDone}
                                                         error={error}
                                                         rightAnswers={rightAnswers}
                                                         showWrong={showWrong}
                                                         showRight={showRight}
+                                                        showTimeout={showTimeout}
+                                                        exiting={exiting}
                                                         optionClick={optionClick}
                                                         backClick={backClick}/>
-    else
-        return <div><h1>No user logged in</h1><button onClick={()=>{window.location.hash="#Login"}}>Press here to log in</button></div>
 }
 
 export default SeasonPresenter;

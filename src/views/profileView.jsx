@@ -1,11 +1,13 @@
+import './profileView.css';
+import '../index.css';
 
 function ProfileView(props) {
 
     /* 
         ---PROFILE TODO---
-        2 Main div, within first div have 2 smaller divs
-        in the smaller div to the left, show profile picture, name, level and played seasons
-        in the smaller div to the right, show last 5 seasons with score, difficulty and time
+        2 Main div, within first div have 2 smaller divs **DONE**
+        in the smaller div to the left, show profile picture, name, level and played seasons **DONE**
+        in the smaller div to the right, show last 5 seasons with season info and score **DONE**
         in the second larger div, show achievements
     */
     return <div className="profileView">
@@ -20,40 +22,46 @@ function ProfileView(props) {
             9001 seasons played
            
         </span>
-        <span>
-            <h2>Last 5 seasons</h2>
-              
-                <span className="seasonsProfile">Score</span>
-                <span className="seasonsProfile">Difficulty</span>
-                <span className="seasonsProfile">Time</span>
-                <br></br>
-                <span className="seasonsProfile">Over 9000</span>
-                <span className="seasonsProfile">Hard</span>
-                <span className="seasonsProfile">25 seconds</span>
-                <br></br>
-                <span className="seasonsProfile">Over 9000</span>
-                <span className="seasonsProfile">Hard</span>
-                <span className="seasonsProfile">25 seconds</span>
-                <br></br>
-                <span className="seasonsProfile">Over 9000</span>
-                <span className="seasonsProfile">Hard</span>
-                <span className="seasonsProfile">25 seconds</span>
-                <br></br>
-                <span className="seasonsProfile">Over 9000</span>
-                <span className="seasonsProfile">Hard</span>
-                <span className="seasonsProfile">25 seconds</span>
-                <br></br>
-                <span className="seasonsProfile">Over 9000</span>
-                <span className="seasonsProfile">Hard</span>
-                <span className="seasonsProfile">25 seconds</span>
-
-                <h3>last 5 seasons above needs some obvious styling work</h3>
-               
-        </span>
+        
+        <table className="seasons">
+            <caption>Last 5 seasons</caption>
+            <thead>
+                <tr>
+                    <th>Season</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Insert seasonsPlayedProp</td>
+                    <td>{props.seasonCorrectAnswers}</td>
+                </tr>
+                <tr>
+                    <td>Insert seasonsPlayedProp - 1</td>
+                    <td>{props.seasonCorrectAnswers}</td>
+                </tr>
+                <tr>
+                    <td>Insert seasonsPlayedProp - 2</td>
+                    <td>{props.seasonCorrectAnswers}</td>
+                </tr>
+                <tr>
+                    <td>Insert seasonsPlayedProp - 3</td>
+                    <td>{props.seasonCorrectAnswers}</td>
+                </tr>
+                <tr>
+                    <td>Insert seasonsPlayedProp - 4</td>
+                    <td>{props.seasonCorrectAnswers}</td>
+                </tr>
+                </tbody>
+            
+        </table>
+        
+       
         </span>
         <span>
             <h2>Achievements</h2>
             display achievements here
+            
         </span>
     </div>
 }

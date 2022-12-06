@@ -1,0 +1,57 @@
+.loginBoxWrapper img {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.loginBox {
+  background-color: #2a2a2a;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 20px;
+
+  text-align: left;
+  font-size: 14px;
+
+  border-radius: 10px;
+  border: 1px solid #737373;
+  box-shadow: 0px 0px 53px 5px rgba(0, 0, 0, 0.20);
+
+}
+
+.loginBox input {
+  width: 190px;
+  border-radius: 5px;
+  padding: 4px;
+  border: 1px solid rgb(126, 126, 126);
+}
+
+.loginBox button {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  margin-bottom: 8px;
+}
+
+.loginBox a {
+  display: block;
+  text-align: center;
+  margin: 10px 0 10px 0;
+}
+
+
+#error {
+    margin: 0 auto;
+    padding: 20px;
+    color: rgb(255, 248, 248);
+    width: 200px;
+    font-size: 14px;
+    text-align: left;
+    background-color: rgba(214, 71, 71, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgb(224, 112, 112);
+  }
+  
+  #error:empty {
+    display: none;
+  }

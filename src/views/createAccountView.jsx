@@ -1,3 +1,5 @@
+import './createAccountView.css';
+
 function CreateAccountView(props) {
     return  <div className="RegisterBoxWrapper">
                 <img src="Quizalicious logo.svg" className="image blob"/>

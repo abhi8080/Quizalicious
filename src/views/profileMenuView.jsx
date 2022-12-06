@@ -1,6 +1,9 @@
+import { useReducer } from 'react';
+import './profileMenuView.css';
+
 function ProfileMenuView(props) {
-    return <div className="profileMenu">
-        <div className="name item">Signed in as Loid Forger</div>
+    return <div className={"profileMenu "+(props.hidingMenu&&"hide")} onClick={props.stopProp}>
+        <div className="name item">Signed in as {props.user.displayName}</div>
         <div className="divider"></div>
         <div className="profile item" onClick={props.yourProfile}>Your profile</div>
         <div className="settings item" onClick={props.yourSettings}>Your settings</div>
