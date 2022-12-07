@@ -71,6 +71,7 @@ function HeaderPresenter(props) {
     },[hidingMenu]);
 
     React.useEffect(()=>{
+        console.log(props.model.currentUser);
         setProfileMenuOpen(props.model.profileMenuOpen);
         props.model.addObserver(modelUpdate);
         return ()=>{props.model.removeObserver(modelUpdate)}
@@ -80,6 +81,7 @@ function HeaderPresenter(props) {
         return <HeaderView  user            ={props.model.currentUser}
                             homeButtonPress ={homeButtonPress}
                             profilePicClick ={profilePicClick}
+                            photoURL        ={props.model.currentUser.photoURL}
                             profileMenuOpen ={props.model.profileMenuOpen}>
                             {profileMenuOpen&&(
                                 <ProfileMenuView    stopProp    ={stopProp}

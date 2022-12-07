@@ -196,11 +196,11 @@ tbody tr {
   background-color: rgb(41, 41, 41);
 }
 
-tbody tr:hover {
-  color: rgb(46, 46, 46);
-  background-color: #c5c5c5;
+/* tbody tr:hover {
+  color: rgba(0, 0, 0, 0.014);
+  background-color: #1f1f1f;
   cursor: pointer;
-}
+} */
 
 canvas {
   position: fixed;

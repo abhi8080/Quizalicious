@@ -32,8 +32,9 @@ function LoginView(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  return  <div className="loginBoxWrapper">
-            <img src=" Quizalicious logo.svg" className="image blob" />
+  return  <div className="loginView">
+            <img src=" Quizalicious logo.svg" className="blob" />
+            <img src="./Bubo_small.png" className="bubo" alt="Bubo!" />
             <div id="error" >{errorHandling()}</div>
             <div className="loginBox">
               <form>
@@ -44,6 +45,7 @@ function LoginView(props) {
                 <a href="#CreateAccount">Create a new account</a>
               </form>
               <button onClick={() => props.onUserLogIn({ email, password })} id="mybtn">Log in</button>
+              <img src="./Quizalicious logo full dark theme.png" className="quiza" alt="" />
             </div>
           </div>;
 
