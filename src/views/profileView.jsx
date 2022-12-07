@@ -10,7 +10,7 @@ function ProfileView(props) {
         in the smaller div to the right, show last 5 seasons with season info and score **DONE**
         in the second larger div, show achievements
     */
-    return <div className="profileView">
+    return <div className="profileView appear">
         <span>
         <span className="profileInfo">
             <img className="profilePic" src="./loid.jpg" alt="" />

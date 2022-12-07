@@ -52,12 +52,13 @@ function HeaderPresenter(props) {
 
     function modelUpdate(payload) {
         if(payload) {
-            if(payload.profileMenuOpen !== undefined) {
+            if(payload["profileMenuOpen"] !== undefined) {
                 if(!payload.profileMenuOpen)
                     setHidingMenu(true);
                 if(payload.profileMenuOpen)
                     setProfileMenuOpen(true);
             }
+            //if(payload.)
         }
     }
 
