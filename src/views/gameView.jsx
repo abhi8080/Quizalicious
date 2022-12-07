@@ -10,7 +10,7 @@ function GameView(props) {
         else if( question.difficulty==="medium")
             duration = 18;
         else if( question.difficulty==="hard")
-            duration = 22;
+            duration = 20;
 
         function option(text) {
             return <button onClick={()=>props.optionClick(text)} key={text} dangerouslySetInnerHTML={{__html: text}}></button>
