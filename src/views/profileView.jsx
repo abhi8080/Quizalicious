@@ -15,7 +15,7 @@ function ProfileView(props) {
         <span className="profileInfo">
             <img className="profilePic" src="./loid.jpg" alt="" />
             <br></br>
-            Creamy Beaster 
+            {/*props.usersUsername*/}
             <br></br>
             Level 1337 
             <br></br>
@@ -33,23 +33,23 @@ function ProfileView(props) {
             </thead>
             <tbody>
                 <tr>
-                    <td>Insert seasonsPlayedProp</td>
+                    <td>{props.displaySeasons}</td>
                     <td>{props.seasonCorrectAnswers}</td>
                 </tr>
                 <tr>
-                    <td>Insert seasonsPlayedProp - 1</td>
+                    <td>{props.displaySeasons}</td>
                     <td>{props.seasonCorrectAnswers}</td>
                 </tr>
                 <tr>
-                    <td>Insert seasonsPlayedProp - 2</td>
+                    <td>{props.displaySeasons}</td>
                     <td>{props.seasonCorrectAnswers}</td>
                 </tr>
                 <tr>
-                    <td>Insert seasonsPlayedProp - 3</td>
+                    <td>{props.displaySeasons}</td>
                     <td>{props.seasonCorrectAnswers}</td>
                 </tr>
                 <tr>
-                    <td>Insert seasonsPlayedProp - 4</td>
+                    <td>{props.displaySeasons}</td>
                     <td>{props.seasonCorrectAnswers}</td>
                 </tr>
                 </tbody>

@@ -6,6 +6,10 @@ function Profile(props) {
         return <NotLoggedIn/>;
 
     function loggedInUser(){
+       this.setCurrentUser(props.model.currentUser);
+    }
+
+    function getLast5Seasons() {
 
     }
 
@@ -14,7 +18,7 @@ function Profile(props) {
     }
 
     function seasonsPlayed() {
-
+        
     }
 
     /*
@@ -36,7 +40,11 @@ function Profile(props) {
 
     */
         
-    return <ProfileView 
+    return <ProfileView //usersUsername={loggedInUser}
+                        //usersUsername={props.model.currentUser}
+                        //usersUsername={props.model.setCurrentUser()}
+                        //last5Seasons={props.model.setLast5Seasons()}
+                        displaySeasons={props.model.setLast5Seasons()}
                         seasonCorrectAnswers={props.model.getSeasonScore()} />
 }
 
