@@ -17,7 +17,7 @@ function HighscoreView(props) {
                     <thead>
                         <tr>
                             <th>User</th>
-                            <th>Score</th>
+                            <th>Points</th>
                             <th>Date</th>
                         </tr>
                     </thead>
