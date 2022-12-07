@@ -13,18 +13,23 @@ function ProfileView(props) {
     return <div className="profileView appear">
         <span>
         <span className="profileInfo">
-            <img className="profilePic" src="./loid.jpg" alt="" />
+            <img className="profilePic" src={props.displayPhoto||"./loid.jpg"} alt="" />
             <br></br>
-            {/*props.usersUsername*/}
+            {props.usersUsername}
+            {props.usersUsernamer}
+            {props.consoleDebugger}
+            {props.dateDebugger}
+            {props.scoreDebugger}
+            {props.seasonDebugger}
             <br></br>
             Level 1337 
             <br></br>
             9001 seasons played
            
         </span>
-        
+        <h2>Last 5 seasons</h2>
         <table className="seasons">
-            <caption>Last 5 seasons</caption>
+            
             <thead>
                 <tr>
                     <th>Season</th>
@@ -33,24 +38,24 @@ function ProfileView(props) {
             </thead>
             <tbody>
                 <tr>
-                    <td>{props.displaySeasons}</td>
-                    <td>{props.seasonCorrectAnswers}</td>
+                    <td>{props.displaySeasonDate1}</td>
+                    <td>{props.displaySeasonScore1}</td>
                 </tr>
                 <tr>
-                    <td>{props.displaySeasons}</td>
-                    <td>{props.seasonCorrectAnswers}</td>
+                    <td>{props.displaySeasonDate2}</td>
+                    <td>{props.displaySeasonScore2}</td>
                 </tr>
                 <tr>
-                    <td>{props.displaySeasons}</td>
-                    <td>{props.seasonCorrectAnswers}</td>
+                    <td>{props.displaySeasonDate3}</td>
+                    <td>{props.displaySeasonScore3}</td>
                 </tr>
                 <tr>
-                    <td>{props.displaySeasons}</td>
-                    <td>{props.seasonCorrectAnswers}</td>
+                    <td>{props.displaySeasonDate4}</td>
+                    <td>{props.displaySeasonScore4}</td>
                 </tr>
                 <tr>
-                    <td>{props.displaySeasons}</td>
-                    <td>{props.seasonCorrectAnswers}</td>
+                    <td>{props.displaySeasonDate5}</td>
+                    <td>{props.displaySeasonScore5}</td>
                 </tr>
                 </tbody>
             
