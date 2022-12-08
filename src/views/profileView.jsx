@@ -10,19 +10,19 @@ function ProfileView(props) {
         in the smaller div to the right, show last 5 seasons with season info and score **DONE**
         in the second larger div, show achievements
     */
+    function renderSeasons(season){
+        return <tr>
+                <td>{season.date}</td>
+                <td>{season.score}</td>
+            </tr>;
+        }
+    
     return <div className="profileView appear">
         <span>
         <span className="profileInfo">
             <img className="profilePic" src={props.displayPhoto||"./loid.jpg"} alt="" />
             <br></br>
             {props.usersUsername}
-            {props.usersUsernamer}
-            {props.consoleDebugger}
-            {props.dateDebugger}
-            {props.scoreDebugger}
-            {props.seasonDebugger}
-            <br></br>
-            Level 1337 
             <br></br>
             9001 seasons played
            
@@ -37,26 +37,7 @@ function ProfileView(props) {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{props.displaySeasonDate1}</td>
-                    <td>{props.displaySeasonScore1}</td>
-                </tr>
-                <tr>
-                    <td>{props.displaySeasonDate2}</td>
-                    <td>{props.displaySeasonScore2}</td>
-                </tr>
-                <tr>
-                    <td>{props.displaySeasonDate3}</td>
-                    <td>{props.displaySeasonScore3}</td>
-                </tr>
-                <tr>
-                    <td>{props.displaySeasonDate4}</td>
-                    <td>{props.displaySeasonScore4}</td>
-                </tr>
-                <tr>
-                    <td>{props.displaySeasonDate5}</td>
-                    <td>{props.displaySeasonScore5}</td>
-                </tr>
+                {props.displaySeasons.map(renderSeasons)}
                 </tbody>
             
         </table>
