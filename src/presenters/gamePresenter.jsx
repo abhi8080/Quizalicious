@@ -82,8 +82,6 @@ function SeasonPresenter(props) {
 
         if( currentQuestion === 4 ) {
             setGameDone(true);
-            if( props.model.currentGame === 4 ) 
-                props.model.setScore(props.model.getSeasonScore());
         }
         else
             setCurrentQuestion(currentQuestion+1);
@@ -157,6 +155,8 @@ function SeasonPresenter(props) {
     React.useEffect(()=>{
         if(gameDone) {
             props.model.setGameScore(rightAnswers);
+            if( props.model.currentGame === 4 ) 
+                props.model.setScore(props.model.getSeasonScore());
             setTimeout(()=>{
                 launchConfettiRandom();
             },1000);
