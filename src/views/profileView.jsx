@@ -17,7 +17,7 @@ function ProfileView(props) {
             </tr>;
         }
     
-    return <div className="profileView appear">
+    return <div className={"profileView appear "+(props.backClicked&&"implode")}>
         <span>
         <span className="profileInfo">
             <img className="profilePic" src={props.displayPhoto||"./loid.jpg"} alt="" />
@@ -48,7 +48,8 @@ function ProfileView(props) {
             <h2>Achievements</h2>
             display achievements here
             
-        </span>
+        </span><br/>
+        <button onClick={props.backClick}>Back to home</button>
     </div>
 }
 
