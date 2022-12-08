@@ -78,6 +78,10 @@ function updateFirebaseFromModel(model) {
             "/" +
             new Date().getDate(),
         });
+        const completedSeasonsRef = ref(db, "users/" + auth.currentUser.uid + "/completedSeasons");
+              onValue(completedSeasonsRef, (firebaseData) => {
+               model.setSeasonsPlayed(firebaseData.val());
+            });
       } else if (payload.hasOwnProperty("score")) {
         //let allTimeScore;
         const date =
@@ -137,8 +141,9 @@ function updateFirebaseFromModel(model) {
     
       }
       else if (payload.hasOwnProperty("signIn")) {
-      const seasonStatisticsRef =  ref(db, "users/" + auth.currentUser.uid + "/seasonStatistics");
-      if(seasonStatisticsRef != null) {
+      const seasonStatisticsPath = await get(child(ref(db), "users/" + auth.currentUser.uid + "/seasonStatistics"));
+      if(seasonStatisticsPath.exists()) {
+        const seasonStatisticsRef = ref(db, "users/" + auth.currentUser.uid + "/seasonStatistics");
         onValue(seasonStatisticsRef, (firebaseData) => {
           const seasons = Object.values(firebaseData.val());
           if(seasons.length <= 5) {
@@ -149,9 +154,12 @@ function updateFirebaseFromModel(model) {
           }
         })
       }
-      }
+      const completedSeasonsRef = ref(db, "users/" + auth.currentUser.uid + "/completedSeasons");
+      onValue(completedSeasonsRef, (firebaseData) => {
+       model.setSeasonsPlayed(firebaseData.val());
+      });
     }
-  });
+  }});
 }
 function updateModelFromFirebase(model) {
   const highscoreRef = ref(db, "highscore");

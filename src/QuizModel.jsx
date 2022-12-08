@@ -41,6 +41,10 @@ class QuizModel {
   }
 
 
+  setSeasonsPlayed(seasonsPlayed) {
+    this.seasonsPlayed = seasonsPlayed;
+  }
+
   getSeasonScore() {
     return this.gameScores.reduce((acc,curr)=>acc+curr,0);
   }
