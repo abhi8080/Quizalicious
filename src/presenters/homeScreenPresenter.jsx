@@ -28,10 +28,10 @@ function HomeScreen(props) {
         },800)
     }
 
-    if(props.model.currentUser)
-        return <HomeScreenView didClick={didClick} newSeason={newSeason} newQuickGame={newQuickGame} showHighscores={showHighscores}/>
-    else
+    if(!props.model.currentUser)
         return <NotLoggedIn/>;
+    
+    return <HomeScreenView didClick={didClick} newSeason={newSeason} newQuickGame={newQuickGame} showHighscores={showHighscores}/>
 }
 
 export default HomeScreen;

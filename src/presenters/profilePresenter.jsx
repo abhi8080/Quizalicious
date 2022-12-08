@@ -1,43 +1,25 @@
 import ProfileView from "../views/profileView.jsx";
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
+import React from "react";
 
 function Profile(props) {
+    const [backClicked, setBackClicked] = React.useState(false);
+
+    function backClick() {
+        setBackClicked(true);
+        setTimeout(()=>{
+            window.location.hash="#HomeScreen";
+        }, 800);
+    }
+
     if( !props.model.currentUser )
         return <NotLoggedIn/>;
 
-    function loggedInUser(){
-
-    }
-
-    function userLevel() {
-
-    }
-
-    function seasonsPlayed() {
-
-    }
-
-    /*
-        ---TODO LIST---
-        profile info:
-            use prop for current logged in user
-            use prop for level
-            use prop for seasons played
-
-        last 5 seasons:
-            score for the last (current) season played ***DONE***
-            score for the previous 4 seasons
-
-        Achievements:
-            Display unlocked achievements kinda like we did dishes in TW ???
-            Display locked achievements or not?
-            Achievement progress?
-
-
-    */
-        
-    return <ProfileView 
-                        seasonCorrectAnswers={props.model.getSeasonScore()} />
+    return <ProfileView backClicked={backClicked}
+                        backClick={backClick}
+                        usersUsername={props.model.currentUser.displayName}
+                        displayPhoto={props.model.currentUser.photoURL} 
+                        displaySeasons={props.model.last5Seasons} />
 }
 
 export default Profile;

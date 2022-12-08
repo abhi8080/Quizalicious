@@ -10,21 +10,26 @@ function ProfileView(props) {
         in the smaller div to the right, show last 5 seasons with season info and score **DONE**
         in the second larger div, show achievements
     */
-    return <div className="profileView">
+    function renderSeasons(season){
+        return <tr>
+                <td>{season.date}</td>
+                <td>{season.score}</td>
+            </tr>;
+        }
+    
+    return <div className={"profileView appear "+(props.backClicked&&"implode")}>
         <span>
         <span className="profileInfo">
-            <img className="profilePic" src="./loid.jpg" alt="" />
+            <img className="profilePic" src={props.displayPhoto||"./loid.jpg"} alt="" />
             <br></br>
-            Creamy Beaster 
-            <br></br>
-            Level 1337 
+            {props.usersUsername}
             <br></br>
             9001 seasons played
            
         </span>
-        
+        <h2>Last 5 seasons</h2>
         <table className="seasons">
-            <caption>Last 5 seasons</caption>
+            
             <thead>
                 <tr>
                     <th>Season</th>
@@ -32,26 +37,7 @@ function ProfileView(props) {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Insert seasonsPlayedProp</td>
-                    <td>{props.seasonCorrectAnswers}</td>
-                </tr>
-                <tr>
-                    <td>Insert seasonsPlayedProp - 1</td>
-                    <td>{props.seasonCorrectAnswers}</td>
-                </tr>
-                <tr>
-                    <td>Insert seasonsPlayedProp - 2</td>
-                    <td>{props.seasonCorrectAnswers}</td>
-                </tr>
-                <tr>
-                    <td>Insert seasonsPlayedProp - 3</td>
-                    <td>{props.seasonCorrectAnswers}</td>
-                </tr>
-                <tr>
-                    <td>Insert seasonsPlayedProp - 4</td>
-                    <td>{props.seasonCorrectAnswers}</td>
-                </tr>
+                {props.displaySeasons.map(renderSeasons)}
                 </tbody>
             
         </table>
@@ -62,7 +48,8 @@ function ProfileView(props) {
             <h2>Achievements</h2>
             display achievements here
             
-        </span>
+        </span><br/>
+        <button onClick={props.backClick}>Back to home</button>
     </div>
 }
 

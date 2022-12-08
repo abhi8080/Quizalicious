@@ -36,7 +36,7 @@ function SeasonView(props) {
     }
     return  <div className={"appear seasonView "+(props.gameClicked&&"implode")}>
                 <img src="Quizalicious logo.svg" className="image blob"/>
-                {seasonDone&&(<div><h1>Season done!</h1><span>{"You got the score "+props.seasonCorrectAnswers+" in this season"}</span></div>)}
+                {seasonDone&&(<div><h1>Season done!</h1><span>{"You got the "+props.seasonCorrectAnswers+" points in this season"}</span></div>)}
                 {(!seasonDone)&&(props.gameList.map(gameCB))}
                 {(!seasonDone)&&(<span>Your current score {props.seasonCorrectAnswers}.</span>)}
                 {(!seasonDone)&&(<button onClick={props.backClickConfirm} className="game" href="#HomeScreen">Back</button>)}

@@ -10,7 +10,7 @@ function GameView(props) {
         else if( question.difficulty==="medium")
             duration = 18;
         else if( question.difficulty==="hard")
-            duration = 22;
+            duration = 20;
 
         function option(text) {
             return <button onClick={()=>props.optionClick(text)} key={text} dangerouslySetInnerHTML={{__html: text}}></button>
@@ -46,14 +46,14 @@ function GameView(props) {
         return <div>
                     <img src="Quizalicious logo.svg" className="image blob"/>
                     <h1>Game done!</h1>
-                    <div className="result">You got {props.rightAnswers} right.</div>
+                    <div className="result">You got {props.rightAnswers} points.</div>
                     <button onClick={props.backClick}>Back</button>
                 </div>
     }
 
     return  <div className={"gameView appear "+(props.exiting&&"implode")}>
                 {props.showWrong&&(<img src="./wrong.gif" className="wrong show"/>)}
-                <div className={"right "+(props.showRight&&"show")}>Right answer!</div>
+                <div className={"right "+(props.showRight&&"show")}>+1 points!</div>
                 <div className={"timeout "+(props.showTimeout&&"show")}>You're too slow!</div>
                 {props.gameDone?gameDone():presentQuestion(props.questions[props.currentQuestion])}
             </div>;

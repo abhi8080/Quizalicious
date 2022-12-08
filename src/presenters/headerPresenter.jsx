@@ -52,12 +52,13 @@ function HeaderPresenter(props) {
 
     function modelUpdate(payload) {
         if(payload) {
-            if(payload.profileMenuOpen !== undefined) {
+            if(payload["profileMenuOpen"] !== undefined) {
                 if(!payload.profileMenuOpen)
                     setHidingMenu(true);
                 if(payload.profileMenuOpen)
                     setProfileMenuOpen(true);
             }
+            //if(payload.)
         }
     }
 
@@ -80,6 +81,7 @@ function HeaderPresenter(props) {
         return <HeaderView  user            ={props.model.currentUser}
                             homeButtonPress ={homeButtonPress}
                             profilePicClick ={profilePicClick}
+                            photoURL        ={props.model.currentUser.photoURL}
                             profileMenuOpen ={props.model.profileMenuOpen}>
                             {profileMenuOpen&&(
                                 <ProfileMenuView    stopProp    ={stopProp}
