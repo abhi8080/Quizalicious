@@ -1,7 +1,10 @@
 import HighscoreView from "../views/highscoreView.jsx";
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
+import { useNavigate } from "react-router-dom";
 
 function Highscore(props) {
+    let navigate = useNavigate();
+
     const [highScoreList, setHighScoreList] = React.useState(props.model.highScoreList);
     const [hideView, setHideView] = React.useState(false);
 
@@ -18,8 +21,7 @@ function Highscore(props) {
     function backClick() {
         setHideView(true);
         setTimeout(()=>{
-
-            window.location.hash = "#HomeScreen";
+            navigate("/Home");
         },800)
     }
 

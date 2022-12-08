@@ -1,21 +1,23 @@
 import HomeScreenView from "../views/homeScreenView.jsx";
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
+import { useNavigate } from "react-router-dom";
 
 function HomeScreen(props) {
+    let navigate = useNavigate();
     const [didClick, setDidClick] = React.useState(false);
 
     function newQuickGame() {
         setDidClick(true);
         setTimeout(()=>{
             props.model.quickGameMode = true;
-            window.location.hash = "#QuickGame";
+            navigate("/QuickGame");
         },800)
     }
 
     function newSeason() {
         setDidClick(true);
         setTimeout(()=>{
-            window.location.hash = "#Season";
+            navigate("/Season");
             props.model.resetSeason();
             props.model.quickGameMode = false;
         },800)
@@ -24,7 +26,7 @@ function HomeScreen(props) {
     function showHighscores() {
         setDidClick(true);
         setTimeout(()=>{
-            window.location.hash = "#Highscore";
+            navigate("/Highscore");
         },800)
     }
 

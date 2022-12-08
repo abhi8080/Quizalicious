@@ -1,6 +1,10 @@
 import SettingsView from "../views/settingsView.jsx";
 import NotLoggedIn from "../presenters/notLoggedInPresenter.jsx";
+import { useNavigate } from "react-router-dom";
+
 function Settings(props) {
+  let navigate = useNavigate();
+
   const [photo, setPhoto]             = React.useState(null);
   const [loading, setLoading]         = React.useState(false);
   const [photoURL, setPhotoURL]       = React.useState(null);
@@ -20,7 +24,7 @@ function Settings(props) {
   function backClick() {
     setBackClicked(true);
     setTimeout(()=>{
-      window.location.hash="#HomeScreen";
+      navigate("/Home");
     }, 800);
   }
 

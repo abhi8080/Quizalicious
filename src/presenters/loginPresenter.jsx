@@ -1,31 +1,32 @@
 import LoginView from "../views/loginView";
 import React from "react";
-// This is probably your Model in `MVP`
-async function handleLoginACB(model, data) {
+import { useNavigate } from "react-router-dom";
+
+
+function Login(props) {
+  let navigate = useNavigate();
+
+  async function handleLoginACB(model, data) {
     const { email, password } = data;
   
     await model.signIn(email, password);
   
     if (model.currentUser != null) {
-      window.location.hash = "#HomeScreen";
+      navigate("/Home");
     }
-  
   }
-  
-    function Login(props) {
-    const [error, setError] = React.useState("");
-  
 
-    async function onLoginFormData(data) {
-      try {
-        await handleLoginACB(props.model, data);
-      } catch (e) {
-        setError(e);
-      }
-      //console.log(error)
+  const [error, setError] = React.useState("");
+
+  async function onLoginFormData(data) {
+    try {
+      await handleLoginACB(props.model, data);
+    } catch (e) {
+      setError(e);
     }
-  
-    return <LoginView onUserLogIn={onLoginFormData} error = {error} />;
   }
-  
-  export default Login;
+
+  return <LoginView onUserLogIn={onLoginFormData} error={error} />;
+}
+
+export default Login;

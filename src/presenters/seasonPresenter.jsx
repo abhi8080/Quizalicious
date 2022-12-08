@@ -1,18 +1,19 @@
 import SeasonView from "../views/seasonView.jsx";
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
-
+import { useNavigate } from "react-router-dom";
 
 function SeasonPresenter(props) {
+    let navigate = useNavigate();
+
     const [,update]                                                         = React.useState({});
     const [,setCurrentGame]                                                 = React.useState(0);
     const [gameClicked, setGameClicked ]                                    = React.useState(false);
 
-    const [backClickPleaseConfirm, setBackClickPleaseConfirm]               = React.useState(false);
-    const [closingBackClickPleaseConfirm, setClosingBackClickPleaseConfirm] = React.useState(false);
-
+    const [backClickPleaseConfirm, setBackClickPleaseConfirm]               = React.useState(false); //Used for going back warning
+    const [closingBackClickPleaseConfirm, setClosingBackClickPleaseConfirm] = React.useState(false); //Used for going back warning
     
-    const [resetPleaseConfirm, setResetPleaseConfirm]                       = React.useState(false);
-    const [closingResetPleaseConfirm, setClosingResetPleaseConfirm]             = React.useState(false);
+    const [resetPleaseConfirm, setResetPleaseConfirm]                       = React.useState(false); //Used for reset warning
+    const [closingResetPleaseConfirm, setClosingResetPleaseConfirm]         = React.useState(false); //Used for reset warning
 
     let gameList = [
         { name: "Easy game 1", difficulty: "easy" },
@@ -36,7 +37,7 @@ function SeasonPresenter(props) {
 
     function backClick() {
         setTimeout(()=>{
-            window.location.hash ="#HomeScreen";
+            navigate("/Home");
         },800)
         setGameClicked(true);
     }
@@ -67,8 +68,7 @@ function SeasonPresenter(props) {
     function gameClick(number) {
         setTimeout(()=>{
             props.model.setCurrentGame(number);
-            window.location.hash = "#Game";
-
+            navigate("/Game");
         },800)
         setGameClicked(true);
     }

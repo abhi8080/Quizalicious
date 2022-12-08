@@ -1,4 +1,5 @@
 import './homeScreenView.css';
+import { Link } from "react-router-dom";
 
 function HomeScreenView(props) {
     return  <div className={"homeScreen appear "+(props.didClick&&"implode")}>

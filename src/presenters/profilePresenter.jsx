@@ -1,14 +1,17 @@
 import ProfileView from "../views/profileView.jsx";
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Profile(props) {
+    let navigate = useNavigate();
+
     const [backClicked, setBackClicked] = React.useState(false);
 
     function backClick() {
         setBackClicked(true);
         setTimeout(()=>{
-            window.location.hash="#HomeScreen";
+            navigate("/Home");
         }, 800);
     }
 

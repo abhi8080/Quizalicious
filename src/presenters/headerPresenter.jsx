@@ -1,10 +1,12 @@
 import HeaderView from "../views/headerView.jsx";
 import ProfileMenuView from "../views/profileMenuView.jsx";
 import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const auth = getAuth();
 
 function HeaderPresenter(props) {
+    let navigate = useNavigate();
 
     const [profileMenuOpen, setProfileMenuOpen] = React.useState(false);
     const [hidingMenu, setHidingMenu] = React.useState(false); //For closing animation
@@ -14,35 +16,31 @@ function HeaderPresenter(props) {
         event.nativeEvent.stopImmediatePropagation();
 
         props.model.setProfileMenuOpen(!profileMenuOpen);
-
-        console.log("yo");
-        
     }
     
     function logOut() {
         
         signOut(auth).then(() => {
-            window.location.hash="#Login";
+            navigate("/Login");
             props.model.currentUser = null;
         }).catch((error) => {
             Alert("Error logging out");
         });
         props.model.setProfileMenuOpen(false);
-
     }
 
     function yourSettings() {
         props.model.setProfileMenuOpen(false);
-        window.location.hash="#Settings";
+        navigate("/Settings");
     }
 
     function yourProfile() {
-        window.location.hash="#Profile";
         props.model.setProfileMenuOpen(false);
+        navigate("/Profile");
     }
 
     function homeButtonPress() {
-        window.location.hash="HomeScreen";
+        navigate("/Home");
     }
 
     function stopProp(event) {
@@ -58,7 +56,6 @@ function HeaderPresenter(props) {
                 if(payload.profileMenuOpen)
                     setProfileMenuOpen(true);
             }
-            //if(payload.)
         }
     }
 

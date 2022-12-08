@@ -1,4 +1,5 @@
 import './createAccountView.css';
+import { Link } from "react-router-dom";
 
 function CreateAccountView(props) {
     return  <div className="RegisterBoxWrapper">
@@ -13,7 +14,7 @@ function CreateAccountView(props) {
                         <label htmlFor="password">Password:</label><br/>
                         <div><input type = "password" placeholder = "" id="password"></input></div>
                     </form>
-                    <a href="#Login">back</a>
+                    <Link to={"/Login"}>back</Link>
                     <button  onClick={props.onUserCreate}>Create account</button>
                 </div>
             </div>;

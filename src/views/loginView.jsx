@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./loginView.css";
+import { Link } from "react-router-dom";
 
 
 function LoginView(props) {
@@ -42,7 +43,7 @@ function LoginView(props) {
                 <input type="email" placeholder="" id="email" onChange={(e) => setEmail(e.target.value)}></input>
                 <label htmlFor="password">Password:</label><br/>
                 <input type="password" placeholder="" id="password" onChange={(e) => setPassword(e.target.value)}></input>
-                <a href="#CreateAccount">Create a new account</a>
+                <Link to={"/CreateAccount"}>Create a new account</Link>
               </form>
               <button onClick={() => props.onUserLogIn({ email, password })} id="mybtn">Log in</button>
               <img src="./Quizalicious logo full dark theme.png" className="quiza" alt="" />

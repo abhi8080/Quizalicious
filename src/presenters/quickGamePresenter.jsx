@@ -1,8 +1,11 @@
 import QuickGameView from '../views/quickGameView.jsx';
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function QuickGame(props) {
+    let navigate = useNavigate();
+
     const [category,setCategory]        = React.useState(0);
     const [difficulty,setDifficulty]    = React.useState(0);
 
@@ -11,14 +14,14 @@ function QuickGame(props) {
     function backClick() {
         setExiting(true);
         setTimeout(()=>{
-            window.location.hash="#HomeScreen";
+            navigate("/Home");
         },800);
     }
 
     function randomGame() {
         setExiting(true);
         setTimeout(()=>{
-            window.location.hash="#Game";
+            navigate("/Game");
             props.model.setQuickGame("","");
         },800);
     }
@@ -34,7 +37,7 @@ function QuickGame(props) {
     function startGame() {
         setTimeout(()=>{
             props.model.setQuickGame(category,difficulty);
-            window.location.hash="#Game";
+            navigate("/Game");
         },800);
         setExiting(true);
     }

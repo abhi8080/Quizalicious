@@ -4,10 +4,11 @@ import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import {retreivePracticeQuizQuestions,retreiveSeasonQuizQuestions} from "../quizSource.jsx";
 import resolvePromise from "../resolvePromise.jsx";
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import confetti from 'canvas-confetti';
 
 function SeasonPresenter(props) {
+    let navigate = useNavigate();
 
     const [,updateState] = React.useState();
 
@@ -93,7 +94,7 @@ function SeasonPresenter(props) {
         if( props.model.quickGameMode ) {
             setTimeout(()=>{
                 props.model.resetSeason();
-                window.location.hash = "#HomeScreen";
+                navigate("/Home");
             },800)
             setExiting(true);
         }
@@ -101,7 +102,7 @@ function SeasonPresenter(props) {
             setTimeout(()=>{
                 props.model.setGameScore(rightAnswers);
             props.model.nextGame();
-            window.location.hash = "#Season";
+            navigate("/Season");
             },800)
             setExiting(true);
         }

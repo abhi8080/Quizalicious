@@ -9,7 +9,7 @@ function QuickGameView(props) {
                 </div>
                 <div className="verticalSeperator"></div>
                 <div className="column right">
-                    <div class="title">Choose difficult and category</div>
+                    <div className="title">Choose difficult and category</div>
                     <label>Select Category: </label><br/>
                     <select name="trivia_category" className="form-control" onChange={(event)=>props.categoryChange(event.target.value)}>
                         <option value="any">Any Category</option>

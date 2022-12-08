@@ -1,35 +1,33 @@
 import CreateAccountView from "../views/createAccountView";
+import { useNavigate } from "react-router-dom";
 
 function CreateACC(props) {
-    async function handleCreateAccountACB() {
-      let email = document.getElementById('email').value
-      let username = document.getElementById('username').value
-      let password = document.getElementById('password').value
+	let navigate = useNavigate();
 
-      try {
-        await props.model.createUser(email, username, password)
-      }
-      catch (error) {
-        console.log(error.message)
+	async function handleCreateAccountACB() {
+		let email = document.getElementById('email').value
+		let username = document.getElementById('username').value
+		let password = document.getElementById('password').value
 
-        if (error.message.includes("use")) {
-          document.getElementById("error").innerHTML = "Email is already in use"
-        }
+		try {
+			await props.model.createUser(email, username, password)
+		}
+		catch (error) {
+			console.log(error.message)
 
-        if (error.message.includes("invalid")) {
-          document.getElementById("error").innerHTML = "Email not valid, try again"
-        }
+			if (error.message.includes("use")) {
+				document.getElementById("error").innerHTML = "Email is already in use"
+			}
 
-      }
-
-      if (props.model.currentUser != null) {
-        window.location.hash = "#HomeScreen"
-      }
-
-    }
-    return <CreateAccountView onUserCreate={handleCreateAccountACB} />
-
- 
-  } 
+			if (error.message.includes("invalid")) {
+				document.getElementById("error").innerHTML = "Email not valid, try again"
+			}
+		}
+		if (props.model.currentUser != null) {
+			navigate("/Home");
+		}
+	}
+	return <CreateAccountView onUserCreate={handleCreateAccountACB} />
+}
 
 export default CreateACC;
