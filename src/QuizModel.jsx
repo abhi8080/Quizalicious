@@ -47,9 +47,6 @@ class QuizModel {
 
   setGameScore(score) {
     this.gameScores[this.currentGame]=score;
-
-    if( this.currentGame === 4 )
-      this.setScore(this.getSeasonScore());
   }
 
   setSeasonDone(status) {

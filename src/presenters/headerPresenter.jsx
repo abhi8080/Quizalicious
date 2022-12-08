@@ -72,7 +72,6 @@ function HeaderPresenter(props) {
     },[hidingMenu]);
 
     React.useEffect(()=>{
-        console.log(props.model.currentUser);
         setProfileMenuOpen(props.model.profileMenuOpen);
         props.model.addObserver(modelUpdate);
         return ()=>{props.model.removeObserver(modelUpdate)}

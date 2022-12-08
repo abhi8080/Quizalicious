@@ -80,8 +80,11 @@ function SeasonPresenter(props) {
             setShowWrong(true);
         }
 
-        if( currentQuestion === 4 )
+        if( currentQuestion === 4 ) {
             setGameDone(true);
+            if( props.model.currentGame === 4 ) 
+                props.model.setScore(props.model.getSeasonScore());
+        }
         else
             setCurrentQuestion(currentQuestion+1);
     }
@@ -154,25 +157,21 @@ function SeasonPresenter(props) {
     React.useEffect(()=>{
         if(gameDone) {
             props.model.setGameScore(rightAnswers);
-            launchConfettiRandom();
             setTimeout(()=>{
                 launchConfettiRandom();
-            },400);
+            },1000);
             setTimeout(()=>{
                 launchConfettiRandom();
-            },800);
+            },1400);
             setTimeout(()=>{
                 launchConfettiRandom();
-            },1200);
-            setTimeout(()=>{
-                launchConfettiRandom();
-            },1600);
+            },1800);
         }
     },[gameDone])
 
     React.useEffect(()=>{
-        //if(data)
-            //console.log( "Correct answer: "+data[currentQuestion].correct_answer );
+        // if(data)
+        //     console.log( "Correct answer: "+data[currentQuestion].correct_answer );
     },[currentQuestion, data])
 
     if( !props.model.currentUser )
