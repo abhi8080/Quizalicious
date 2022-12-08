@@ -78,6 +78,10 @@ function updateFirebaseFromModel(model) {
             "/" +
             new Date().getDate(),
         });
+        const completedSeasonsRef = ref(db, "users/" + auth.currentUser.uid + "/completedSeasons");
+              onValue(completedSeasonsRef, (firebaseData) => {
+               model.setSeasonsPlayed(firebaseData.val());
+            });
       } else if (payload.hasOwnProperty("score")) {
         //let allTimeScore;
         const date =
@@ -150,9 +154,12 @@ function updateFirebaseFromModel(model) {
           }
         })
       }
-      }
+      const completedSeasonsRef = ref(db, "users/" + auth.currentUser.uid + "/completedSeasons");
+      onValue(completedSeasonsRef, (firebaseData) => {
+       model.setSeasonsPlayed(firebaseData.val());
+      });
     }
-  });
+  }});
 }
 function updateModelFromFirebase(model) {
   const highscoreRef = ref(db, "highscore");
