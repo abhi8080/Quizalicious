@@ -137,8 +137,9 @@ function updateFirebaseFromModel(model) {
     
       }
       else if (payload.hasOwnProperty("signIn")) {
-      const seasonStatisticsRef =  ref(db, "users/" + auth.currentUser.uid + "/seasonStatistics");
-      if(seasonStatisticsRef != null) {
+      const seasonStatisticsPath = await get(child(ref(db), "users/" + auth.currentUser.uid + "/seasonStatistics"));
+      if(seasonStatisticsPath.exists()) {
+        const seasonStatisticsRef = ref(db, "users/" + auth.currentUser.uid + "/seasonStatistics");
         onValue(seasonStatisticsRef, (firebaseData) => {
           const seasons = Object.values(firebaseData.val());
           if(seasons.length <= 5) {
