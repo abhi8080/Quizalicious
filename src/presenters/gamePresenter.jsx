@@ -38,35 +38,22 @@ function SeasonPresenter(props) {
     }
 
     function launchConfetti() {
-        var canvas = document.getElementById('my-canvas');
-
-        var myConfetti = confetti.create(canvas, {
-        resize: true,
-        useWorker: true
-        });
-        myConfetti({
+        confetti({
             particleCount: 100,
-            spread: 160
-            // any other options from the global
-            // confetti function
-            });
+            spread: 70,
+            origin: { y: 0.6 }
+        });
     }
     function launchConfettiRandom() {
-        var canvas = document.getElementById('my-canvas');
-
-        var myConfetti = confetti.create(canvas, {
-            resize: true,
-            useWorker: true
-        });
         function randomInRange(min, max) {
             return Math.random() * (max - min) + min;
         }
             
-        myConfetti({
-        angle: randomInRange(55, 125),
-        spread: randomInRange(50, 70),
-        particleCount: randomInRange(50, 100),
-        origin: { y: 0.6 }
+        confetti({
+            angle: randomInRange(55, 125),
+            spread: randomInRange(50, 70),
+            particleCount: randomInRange(50, 100),
+            origin: { y: 0.6 }
         });
     }
 
