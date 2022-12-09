@@ -1,33 +1,43 @@
 import CreateAccountView from "../views/createAccountView";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+
 
 function CreateACC(props) {
 	let navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [error, setError] = useState("");
 
 	async function handleCreateAccountACB() {
-		let email = document.getElementById('email').value
-		let username = document.getElementById('username').value
-		let password = document.getElementById('password').value
-
+	
 		try {
 			await props.model.createUser(email, username, password)
 		}
 		catch (error) {
 			console.log(error.message)
-
-			if (error.message.includes("use")) {
-				document.getElementById("error").innerHTML = "Email is already in use"
-			}
-
-			if (error.message.includes("invalid")) {
-				document.getElementById("error").innerHTML = "Email not valid, try again"
-			}
+            setError(error)
 		}
 		if (props.model.currentUser != null) {
 			navigate("/Home");
 		}
 	}
-	return <CreateAccountView onUserCreate={handleCreateAccountACB} />
+
+    function userEmailACB(event){
+        setEmail(event)
+    }
+
+    function usernameACB(event){
+        setUsername(event)
+    }
+
+    function userPasswordACB(event){
+        setPassword(event)
+    }
+
+	return <CreateAccountView onUserCreate={handleCreateAccountACB}  userEmail = {userEmailACB}  userName = {usernameACB}  userPassword = {userPasswordACB} error = {error}/>
 }
 
 export default CreateACC;
