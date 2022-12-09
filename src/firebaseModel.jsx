@@ -131,14 +131,17 @@ function updateFirebaseFromModel(model) {
           allTimeScore
         );
 
+
         */
+       const snapshot = await get(child(ref(db), "highscore/" + auth.currentUser.uid + "/score"));
+
+       if(payload.score >= snapshot.val()) {
         set(
           ref(db, "highscore/" + auth.currentUser.uid + "/score"),
           payload.score
         );
         set(ref(db, "highscore/" + auth.currentUser.uid + "/date"), date);
-    
-    
+       }
       }
       else if (payload.hasOwnProperty("signIn")) {
       const seasonStatisticsPath = await get(child(ref(db), "users/" + auth.currentUser.uid + "/seasonStatistics"));
