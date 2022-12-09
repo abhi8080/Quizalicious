@@ -22,7 +22,8 @@ function Profile(props) {
                         backClick={backClick}
                         usersUsername={props.model.currentUser.displayName}
                         displayPhoto={props.model.currentUser.photoURL} 
-                        displaySeasons={props.model.last5Seasons} />
+                        displaySeasons={props.model.last5Seasons}
+                        displayTotalSeasons={props.model.seasonsPlayed} />
 }
 
 export default Profile;

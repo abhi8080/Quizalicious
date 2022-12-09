@@ -6,12 +6,12 @@ function ProfileView(props) {
     /* 
         ---PROFILE TODO---
         2 Main div, within first div have 2 smaller divs **DONE**
-        in the smaller div to the left, show profile picture, name, level and played seasons **DONE**
+        in the smaller div to the left, show profile picture, name and played seasons **DONE**
         in the smaller div to the right, show last 5 seasons with season info and score **DONE**
         in the second larger div, show achievements
     */
-    function renderSeasons(season){
-        return <tr>
+    function renderSeasons(season, index){
+        return <tr key={index}>
                 <td>{season.date}</td>
                 <td>{season.score}</td>
             </tr>;
@@ -24,7 +24,7 @@ function ProfileView(props) {
             <br></br>
             {props.usersUsername}
             <br></br>
-            9001 seasons played
+            {props.displayTotalSeasons} seasons played
            
         </span>
         <h2>Last 5 seasons</h2>
