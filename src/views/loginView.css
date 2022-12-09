@@ -91,7 +91,7 @@
 }
 
 
-#error {
+.error {
   margin: 0 auto;
   padding: 20px;
   color: rgb(255, 248, 248);
@@ -103,6 +103,6 @@
   border: 1px solid rgb(224, 112, 112);
 }
 
-#error:empty {
+.error:empty {
   display: none;
 }

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 
 function LoginView(props) {
- 
+
     return <div className="loginView">
         <img src=" Quizalicious logo.svg" className="blob" />
         <img src="./Bubo_small.png" className="bubo" alt="Bubo!" />
-        <div>{errorHandling()}</div>
+        <div className="error">{errorHandling()}</div>
         <div className="loginBox">
             <form onSubmit={userLogInACB}>
                 <label htmlFor="email">Email address:</label><br />
@@ -30,7 +30,7 @@ function LoginView(props) {
         props.onUserPassword(event.target.value)
     }
 
-    function userLogInACB(event){
+    function userLogInACB(event) {
         event.preventDefault()
         props.onUserLogIn()
     }
@@ -38,13 +38,18 @@ function LoginView(props) {
     function errorHandling() {
         if (!props.error.message)
             return;
+            
         if (props.error.message.includes("password")) {
             return "Wrong password, try again";
         }
-
         if (props.error.message.includes("email")) {
             return "Wrong email, try again";
         }
+
+        if (props.error.message.includes("auth/user-not-found")) {
+            return "No user found with this email";
+        }
+
     }
 }
 
