@@ -39,15 +39,18 @@ function LoginView(props) {
         if (!props.error.message)
             return;
             
-        if (props.error.message.includes("password")) {
+        if (props.error.message.includes("auth/wrong-password")) {
             return "Wrong password, try again";
         }
-        if (props.error.message.includes("email")) {
+        if (props.error.message.includes("auth/invalid-email")) {
             return "Wrong email, try again";
         }
 
         if (props.error.message.includes("auth/user-not-found")) {
             return "No user found with this email";
+        }
+        if (props.error.message.includes("auth/internal-error")) {
+            return "Please enter a password";
         }
 
     }

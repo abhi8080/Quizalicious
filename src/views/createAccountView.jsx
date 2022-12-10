@@ -40,15 +40,15 @@ function CreateAccountView(props) {
     function errorHandling() {
         if (!props.error.message)
             return;
-        if (props.error.message.includes("use")) {
+        if (props.error.message.includes("auth/email-already-in-use")) {
             return "Email is already in use";
         }
 
-        if (props.error.message.includes("invalid")) {
+        if (props.error.message.includes("auth/invalid-email")) {
             return "Email not valid, try again";
         }
 
-        if (props.error.message.includes("weak")) {
+        if (props.error.message.includes("auth/weak-password")) {
             return "Password should be at least 6 characters.";
         }
 

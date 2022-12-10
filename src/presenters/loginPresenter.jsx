@@ -29,6 +29,7 @@ function Login(props) {
     if (props.model.currentUser != null) {
       navigate("/Home");
     }
+    
 
   }
 
