@@ -5,13 +5,11 @@
 }
 
 .seasons {
-    margin-top:50px;
     max-width:600px;
 }
 
 img.profilePic {
     height: 15%;
-    width: 15%;
     min-height: 150px;
     min-width: 150px;
     max-height: 300px;
@@ -29,4 +27,15 @@ img.profilePic {
 .profileView {
     max-width: 1000px;
     margin: 0 auto;
+}
+
+@media screen and (max-width:999px) {
+    .seasons {
+        width:400px;
+    }
+}
+@media screen and (max-width:800px) {
+    .seasons {
+        width:300px;
+    }
 }
