@@ -7,7 +7,7 @@ function promiseNoData(promise) {
   if (!promise.data && !promise.error) {
     return  <div className="promiseNoData">
               <img src="Quizalicious logo.svg" className="logo" alt="" />
-              <h1 className="laden">Laden....</h1>
+              <h1 className="laden">Loading....</h1>
               <div className="loading_bar"></div>
             </div>;
   }
