@@ -10,6 +10,7 @@ function HeaderPresenter(props) {
 
     const [profileMenuOpen, setProfileMenuOpen] = React.useState(false);
     const [hidingMenu, setHidingMenu] = React.useState(false); //For closing animation
+    const [photoURL, setPhotoURL] = React.useState(props.model.currentUser.photoURL);
 
     function profilePicClick(event) {
         event.stopPropagation();
@@ -57,6 +58,7 @@ function HeaderPresenter(props) {
                     setProfileMenuOpen(true);
             }
         }
+        setPhotoURL(props.model.currentUser.photoURL);
     }
 
     React.useEffect(()=>{
@@ -78,7 +80,7 @@ function HeaderPresenter(props) {
         return <HeaderView  user            ={props.model.currentUser}
                             homeButtonPress ={homeButtonPress}
                             profilePicClick ={profilePicClick}
-                            photoURL        ={props.model.currentUser.photoURL}
+                            photoURL        ={photoURL}
                             profileMenuOpen ={props.model.profileMenuOpen}>
                             {profileMenuOpen&&(
                                 <ProfileMenuView    stopProp    ={stopProp}
