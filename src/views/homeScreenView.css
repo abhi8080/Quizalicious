@@ -1,11 +1,8 @@
 .homeScreen .logo {
-    border-radius: 50%;
-
-
-    height: 200px;
-    margin-top: 50px;
+    /* border-radius: 50%; */
+    margin-top: 20px;
     will-change: filter;
-    animation: logo-spin infinite 20s linear;
+    /* animation: logo-spin infinite 20s linear; */
     transition: filter 0.5s;
 }
 
@@ -21,13 +18,17 @@
     display: inline-block;
     height: 20px;
     margin: 0 20px 0 20px;
-    animation: vibrate-1 0.3s linear infinite both;
+    /* animation: vibrate-1 0.3s linear infinite both; */
+}
+
+.homeScreen .owl {
+    margin: 30px 0;
 }
 
 
 .homeScreen button {
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 400px;
     margin: 10px;
     vertical-align: top;
     
@@ -35,9 +36,12 @@
 
 .homeScreen .buttonWrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     
     align-items: bottom;
+    margin: 0 auto;
+    max-width: 500px;
 }
 
 @media screen and (max-width: 600px) {
@@ -48,9 +52,6 @@
         height: 80px;
         width: 80vw;
     }
-    .homeScreen .buttonWrapper {
-        flex-direction: column;
-    }
 }
 
 .homeScreen .menuTitle {
@@ -58,7 +59,19 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
+    animation: slightAnimation 2s linear infinite both;
+}
 
+@keyframes slightAnimation {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 .gelatine {

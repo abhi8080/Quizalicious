@@ -24,6 +24,8 @@ function SeasonPresenter(props) {
     const [showRight, setShowRight]             = React.useState(false);
     const [showTimeout, setShowTimeout]         = React.useState(false);
 
+    const [gameScores, setGameScores]           = React.useState([0,0,0,0,0]);
+
     const [exiting, setExiting]                 = React.useState(false); //For exiting animation
 
     function timeout() {
@@ -63,6 +65,7 @@ function SeasonPresenter(props) {
             setRightAnswers(rightAnswers+1);
             setShowRight(true);
             launchConfetti();
+            gameScores[currentQuestion] = 1;
         }
         else {
             setShowWrong(true);
@@ -176,7 +179,8 @@ function SeasonPresenter(props) {
                                                         showTimeout={showTimeout}
                                                         exiting={exiting}
                                                         optionClick={optionClick}
-                                                        backClick={backClick}/>
+                                                        backClick={backClick}
+                                                        gameScores={gameScores}/>
 }
 
 export default SeasonPresenter;

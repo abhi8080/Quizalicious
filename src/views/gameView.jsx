@@ -24,15 +24,26 @@ function GameView(props) {
                     duration={duration}
                     colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
                     colorsTime={[10, 6, 3, 0]}
-                    onComplete={()=>props.timeout()}
+                    // onComplete={()=>props.timeout()}
                     >     
                 {({ remainingTime }) => remainingTime}
                 </CountdownCircleTimer>
             </div>
-                <h4>Category: <span className="category">{question.category}</span></h4>
-                <span className="number"> question:</span><span className="number value">{props.currentQuestion+1}/5</span>
+                {/* <h4>Category: <span className="category">{question.category}</span></h4> */}
+                <br/>
+                {/* <span className="number"> question:</span><span className="number value">{props.currentQuestion+1}/5</span> */}
                 <span>Difficulty:</span><span className={"difficulty "+question.difficulty}>{question.difficulty}</span>
+                <br/>
+                {props.gameScores.map((score,index)=>{
+                    if(index>=props.currentQuestion)
+                        return <span class="number circle"></span>;
+                    if( score )
+                        return <span class="number green"></span>;
+                    return <span class="number red"></span>;
+                })}
+                <br/>
             <div className="wrapper">
+                <div className="category">{question.category}</div>
                 <div className="text" dangerouslySetInnerHTML={{__html: question.question}}></div>
                 <div className="buttonWrapper">
                     {question.options.map(option)}
@@ -46,6 +57,11 @@ function GameView(props) {
         return <div>
                     <img src="Quizalicious logo.svg" className="image blob"/>
                     <h1>Game done!</h1>
+                    {props.gameScores.map((score,index)=>{
+                    if( score )
+                        return <span class="number green"></span>;
+                    return <span class="number red"></span>;
+                    })}
                     <div className="result">You got {props.rightAnswers} points.</div>
                     <button onClick={props.backClick}>Back</button>
                 </div>

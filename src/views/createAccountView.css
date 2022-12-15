@@ -1,6 +1,52 @@
-.RegisterBoxWrapper img {
+.CreateAccountView {
+  display: inline-block;
+  position: relative;
+
+}
+.CreateAccountView img {
   margin-top: 30px;
   margin-bottom: 20px;
+}
+
+.CreateAccountView .bubo {
+  position: absolute;
+  margin: 0;
+  bottom: 50px;
+  left: 237px;
+  height: 180px;
+  z-index: -1;
+
+  transform-origin: left bottom;
+  animation: bubo 8s infinite;
+}
+
+.CreateAccountView .quiza {
+  position: absolute;
+  width: 100px;
+  bottom: -55px;
+  left: 7px;
+}
+
+@media screen and (max-width: 600px)  {
+  .CreateAccountView .bubo {
+    position: relative;
+    top: 10px;
+    left: 0;
+    animation: none;
+    z-index: -1;
+  }
+  .CreateAccountView .blob {
+    display:none;
+  }
+}
+
+@keyframes bubo {
+  from, to {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
 }
 
 .registerBox {
