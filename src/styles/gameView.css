@@ -83,6 +83,37 @@
     transition: transform 0.3s;
 }
 
+.gameView button.option {
+    transition: background-color .4s;
+}
+
+.gameView button.correct {
+    outline: 1px solid rgba(0, 255, 0, 0.699);
+    background-color: rgba(0, 255, 0, 0.212);
+    border: none;
+}
+
+.gameView button.incorrect {
+    outline: 1px solid rgba(255, 0, 0, 0.685);
+    background-color: rgba(255, 0, 0, 0.096);
+    border: none;
+}
+
+.gameView .zoom {
+    animation: zoom 0.5s;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .gameView .question .countDownTimer {
     display: inline-block;
     margin-top: 30px;
@@ -95,7 +126,7 @@
 
 .gameView .question .category {
     position: relative;
-    top: -20px;
+    top: -23px;
     border: 1px solid rgb(124, 124, 124);
     display: inline-block;
     background-color: rgb(95, 95, 95);

@@ -12,7 +12,7 @@ export default function SeasonPresenter(props) {
 
     const [, updateState]                           = React.useState();
 
-    const [promiseState, setPromiseState]           = React.useState({});
+    const [promiseState, setPromiseState]           = React.useState({});       //API promise
     const [data, setData]                           = React.useState(null);     //API data
     const [error, setError]                         = React.useState(null);     //API error
 
@@ -20,11 +20,12 @@ export default function SeasonPresenter(props) {
     const [gameDone, setGameDone]                   = React.useState(false);    //Keeping track if the game is done for the view
     const [rightAnswers, setRightAnswers]           = React.useState(0);        //Used to present amount of right answers in game
 
-    const [showWrong, setShowWrong]                 = React.useState(false);
-    const [showRight, setShowRight]                 = React.useState(false);
-    const [showTimeout, setShowTimeout]             = React.useState(false);
+    const [showWrong, setShowWrong]                 = React.useState(false);    //Wrong answer
+    const [showRight, setShowRight]                 = React.useState(false);    //Right answer
+    const [showTimeout, setShowTimeout]             = React.useState(false);    //Timeout
 
-    const [gameScores, setGameScores]               = React.useState([0, 0, 0, 0, 0]);
+    const [gameScores, setGameScores]               = React.useState([undefined, undefined, undefined, undefined, undefined]);
+    const [revealCorrect, setRevealCorrect]         = React.useState(false);    //Reveal which answer that was correct.
 
     const [exiting, setExiting]                     = React.useState(false); //For exiting animation
 
@@ -32,10 +33,18 @@ export default function SeasonPresenter(props) {
         console.log("timeout!");
         if (!exiting) {
             setShowTimeout(true);
-            if (currentQuestion === 4)
-                setGameDone(true);
-            else
-                setCurrentQuestion(currentQuestion + 1);
+            gameScores[currentQuestion] = 0;
+
+            setRevealCorrect(true);
+
+            setTimeout(() => {
+                setRevealCorrect(false);
+                if (currentQuestion === 4) {
+                    setGameDone(true);
+                }
+                else
+                    setCurrentQuestion(currentQuestion + 1);
+            },3500);
         }
     }
 
@@ -67,14 +76,21 @@ export default function SeasonPresenter(props) {
             gameScores[currentQuestion] = 1;
         }
         else {
+            gameScores[currentQuestion] = 0;
             setShowWrong(true);
         }
 
-        if (currentQuestion === 4) {
-            setGameDone(true);
-        }
-        else
-            setCurrentQuestion(currentQuestion + 1);
+        setRevealCorrect(true);
+
+        setTimeout(() => {
+            setRevealCorrect(false);
+            if (currentQuestion === 4) {
+                setGameDone(true);
+            }
+            else
+                setCurrentQuestion(currentQuestion + 1);
+        },3500);
+        
     }
 
     function backClick() {
@@ -97,21 +113,21 @@ export default function SeasonPresenter(props) {
 
     React.useEffect(() => {
         if (showWrong) {
-            setTimeout(() => { setShowWrong(false) }, 1100)
+            setTimeout(() => { setShowWrong(false) }, 1400)
         }
     }, [showWrong]
     )
 
     React.useEffect(() => {
         if (showRight) {
-            setTimeout(() => { setShowRight(false) }, 1000)
+            setTimeout(() => { setShowRight(false) }, 1400)
         }
     }, [showRight]
     )
 
     React.useEffect(() => {
         if (showTimeout) {
-            setTimeout(() => { setShowTimeout(false) }, 1200)
+            setTimeout(() => { setShowTimeout(false) }, 1400)
         }
     }, [showTimeout])
 
@@ -178,5 +194,7 @@ export default function SeasonPresenter(props) {
                                                     exiting={exiting}
                                                     optionClick={optionClick}
                                                     backClick={backClick}
-                                                    gameScores={gameScores} />
+                                                    gameScores={gameScores}
+                                                    revealCorrect={revealCorrect}
+                                                    correctAnswer={data[currentQuestion].correct_answer} />
 }

@@ -29,6 +29,18 @@ img.profilePic {
     margin: 0 auto;
 }
 
+.profileView button {
+    margin-top: 40px;
+}
+
+@media screen and (max-width:600px) {
+    .profileView .profileInfo {
+        float:none;
+    }
+    .profileView img.profilePic {
+        margin-top: 50px;
+    }
+}
 @media screen and (max-width:999px) {
     .seasons {
         width:400px;

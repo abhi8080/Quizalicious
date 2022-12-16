@@ -12,38 +12,51 @@ export default function GameView(props) {
         else if (question.difficulty === "hard")
             duration = 20;
 
-        function option(text) {
-            return <button onClick={() => props.optionClick(text)} key={text} dangerouslySetInnerHTML={{ __html: text }}></button>
-        }
         if (!question.options)
             return <span>Wait!</span>;
         return <div className="question" key={question.question}>
             <div className="countDownTimer">
                 <CountdownCircleTimer size={100}
-                    isPlaying
+                    isPlaying={!props.revealCorrect}
                     duration={duration}
                     colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
                     colorsTime={[10, 6, 3, 0]}
-                    onComplete={() => props.timeout()}>
+                    onComplete={() => props.timeout()}
+                    >
                     {({ remainingTime }) => remainingTime}
                 </CountdownCircleTimer>
             </div>
             <br />
-            <span>Difficulty:</span><span className={"difficulty " + question.difficulty}>{question.difficulty}</span>
-            <br />
-            {props.gameScores.map((score, index) => {
-                if (index >= props.currentQuestion)
-                    return <span className="number circle"></span>;
-                if (score)
-                    return <span className="number green"></span>;
-                return <span className="number red"></span>;
-            })}
-            <br />
+            <span>Difficulty:</span>
+            <span className={"difficulty " + question.difficulty}>{question.difficulty}</span>
+            <div>
+                {props.gameScores.map((score) => {
+                    if (score===undefined)
+                        return <span className="number circle"></span>;
+                    if (score > 0)
+                        return <span className="number green"></span>;
+                    return <span className="number red"></span>;
+                })}
+            </div>
             <div className="wrapper">
                 <div className="category">{question.category}</div>
                 <div className="text" dangerouslySetInnerHTML={{ __html: question.question }}></div>
                 <div className="buttonWrapper">
-                    {question.options.map(option)}
+                    {question.options.map((text) => {
+                        if (!props.revealCorrect)
+                            return <button
+                                onClick={() => props.optionClick(text)}
+                                key={text}
+                                className="option"
+                                dangerouslySetInnerHTML={{ __html: text }}>
+                            </button>
+                        else
+                        return <button
+                            key={text}
+                            className={"option "+(text===props.correctAnswer?"correct":"incorrect")}
+                            dangerouslySetInnerHTML={{ __html: text }}>
+                        </button>
+                    })}
                 </div>
             </div>
 
@@ -51,7 +64,7 @@ export default function GameView(props) {
     }
 
     function gameDone() {
-        return <div>
+        return <div className="zoom">
             <img src="Quizalicious logo.svg" className="image blob" />
             <h1>Game done!</h1>
             {props.gameScores.map((score, index) => {

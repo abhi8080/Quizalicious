@@ -37,10 +37,6 @@ export default function ProfileView(props) {
                 </tbody>
             </table>
         </span>
-        <span>
-            <h2>Achievements</h2>
-            display achievements here
-        </span><br />
         <button onClick={props.backClick}>Back to home</button>
     </div>
 }

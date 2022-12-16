@@ -3,10 +3,11 @@
     margin: 0 auto;
 }
 
-.seasonView .game {
+.seasonView button.game {
     display: block;
     width: 500px;
     margin: 10px 50px;
+    border: none;
 }
 
 .seasonView .game.easy {
