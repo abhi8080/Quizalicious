@@ -40,7 +40,7 @@ export default function QuickGameView(props) {
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select><br />
-            <button onClick={props.startGame} className="">Start quick game</button>
+            <button onClick={props.startGame} className="start">Start quick game</button>
         </div><br />
         <button onClick={props.backClick}>Go back</button>
     </div>;

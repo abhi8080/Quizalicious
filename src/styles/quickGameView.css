@@ -15,10 +15,12 @@
 }
 
 .quickGame .column {
-    display: inline-block;
+    display: block;
     height: 400px;
-    width: 500px;
+    max-width: 500px;
     margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px;
 
     vertical-align: top;
@@ -34,47 +36,11 @@
     font-weight: 600;
 }
 
-.quickGame .column.left button {
-    height: 70px;
-    width: 300px;
-    margin-top: 146px;
+.quickGame .start {
+    margin-top: 50px;
 }
 
-.quickGame .verticalSeperator {
-    vertical-align: top;
 
-    display: none;
-    height: 500px;
-    width: 2px;
-    background-color: rgb(168, 168, 168);
-    margin: 20px;
-}
+@media screen and (max-width: 600px) {
 
-.quickGame .column.right .title {
-    text-align: center;
-    margin-bottom: 16px;
-}
-
-.quickGame .column.right button {
-    height: 70px;
-    width: 300px;
-
-    margin-top: 40px;
-}
-
-@media screen and (max-width: 850px) {
-    .quickGame .column.left {
-        height: auto;
-    }
-
-    .quickGame .column.left button {
-        margin-top: 10px;
-    }
-
-    .quickGame .column.right .title {
-        margin-bottom: 10px;
-    }
-    .quickGame .column.right {
-        height: auto;
-    }
 }

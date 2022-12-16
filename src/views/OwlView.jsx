@@ -1,4 +1,4 @@
-import '../styles/OwlView.css';
+import '../styles/owlView.css';
 import { motion } from "framer-motion";
 
 const transition = { duration: 5, yoyo: Infinity, ease: "easeIn" }

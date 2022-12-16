@@ -213,7 +213,7 @@
     border: 1px solid rgb(110, 252, 134);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .gameView h1 {
         font-size: 30px;
     }

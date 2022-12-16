@@ -73,8 +73,14 @@
     margin: 10px 0 10px 0;
 }
 
+.CreateAccountView .blob {
+    /* display: none; */
+    animation: none;
+}
+
 @media screen and (max-width: 600px) {
     .CreateAccountView .bubo {
+        display:none;
         position: relative;
         top: 10px;
         left: 0;
@@ -82,7 +88,4 @@
         z-index: -1;
     }
 
-    .CreateAccountView .blob {
-        display: none;
-    }
 }
