@@ -4,7 +4,7 @@ export default function QuickGameView(props) {
     return <div className={"quickGame appear " + (props.exiting && "implode")}>
         <h1>Quick game mode</h1>
         <div className="column right">
-            <div className="title">Choose difficult and category</div>
+            <div className="title">Choose difficulty and category</div>
             <label>Select Category: </label><br />
             <select name="trivia_category" className="form-control" onChange={(event) => props.categoryChange(event.target.value)}>
                 <option value="any">Any Category</option>

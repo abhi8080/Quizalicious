@@ -20,7 +20,7 @@ export default function Owl(props) {
 
     React.useEffect(() => {
         switch (page) {
-            case 0: setText(<><b>Welcome!</b><br /><b>*Hoot*</b> Welcome to Quizalicious, the fun trivia game, if you need to know how to play, press next!</>)
+            case 0: setText(<><b>Welcome!</b><br /><b>*Hoot*</b> Welcome to Quizalicious, the fun trivia game! If you need to know how to play, press the right arrow!</>)
                 break;
             case 1: setText(<><b>Seasons</b><br />The game is based on seasons. In order to hit the highscore board you need to play a season and get a really good score!😃</>)
                 break;

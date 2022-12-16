@@ -15,6 +15,10 @@
     animation: appear2 .5s;
 }
 
+.profileMenu .item:nth-child(1) {
+    cursor:default;
+}
+
 .profileMenu.hide {
     animation: disappear2 .5s;
 }
