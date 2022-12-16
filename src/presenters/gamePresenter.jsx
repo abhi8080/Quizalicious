@@ -44,7 +44,7 @@ export default function SeasonPresenter(props) {
                 }
                 else
                     setCurrentQuestion(currentQuestion + 1);
-            },3500);
+            },2500);
         }
     }
 
@@ -89,7 +89,7 @@ export default function SeasonPresenter(props) {
             }
             else
                 setCurrentQuestion(currentQuestion + 1);
-        },3500);
+        },2500);
         
     }
 
@@ -113,21 +113,21 @@ export default function SeasonPresenter(props) {
 
     React.useEffect(() => {
         if (showWrong) {
-            setTimeout(() => { setShowWrong(false) }, 1400)
+            setTimeout(() => { setShowWrong(false) }, 1300)
         }
     }, [showWrong]
     )
 
     React.useEffect(() => {
         if (showRight) {
-            setTimeout(() => { setShowRight(false) }, 1400)
+            setTimeout(() => { setShowRight(false) }, 1300)
         }
     }, [showRight]
     )
 
     React.useEffect(() => {
         if (showTimeout) {
-            setTimeout(() => { setShowTimeout(false) }, 1400)
+            setTimeout(() => { setShowTimeout(false) }, 1300)
         }
     }, [showTimeout])
 
