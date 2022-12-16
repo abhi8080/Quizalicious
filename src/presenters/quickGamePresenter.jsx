@@ -3,27 +3,27 @@ import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function QuickGame(props) {
+export default function QuickGame(props) {
     let navigate = useNavigate();
 
-    const [category,setCategory]        = React.useState(0);
-    const [difficulty,setDifficulty]    = React.useState(0);
+    const [category, setCategory]       = React.useState(0);
+    const [difficulty, setDifficulty]   = React.useState(0);
 
     const [exiting, setExiting]         = React.useState(false);
 
     function backClick() {
         setExiting(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/Home");
-        },800);
+        }, 800);
     }
 
     function randomGame() {
         setExiting(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/Game");
-            props.model.setQuickGame("","");
-        },800);
+            props.model.setQuickGame("", "");
+        }, 800);
     }
 
     function categoryChange(val) {
@@ -35,14 +35,14 @@ function QuickGame(props) {
     }
 
     function startGame() {
-        setTimeout(()=>{
-            props.model.setQuickGame(category,difficulty);
+        setTimeout(() => {
+            props.model.setQuickGame(category, difficulty);
             navigate("/Game");
-        },800);
+        }, 800);
         setExiting(true);
     }
 
-    if( !props.model.currentUser )
+    if (!props.model.currentUser)
         return <NotLoggedIn />;
 
     return <QuickGameView   backClick={backClick}
@@ -50,7 +50,5 @@ function QuickGame(props) {
                             randomGame={randomGame}
                             categoryChange={categoryChange}
                             difficultyChange={difficultyChange}
-                            startGame={startGame}/>;
+                            startGame={startGame} />;
 }
-
-export default QuickGame;

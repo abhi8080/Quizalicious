@@ -1,3 +1,8 @@
+.gameView {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .gameView .wrong {
     position: absolute;
     top: 50%;
@@ -6,13 +11,14 @@
     margin-top: -150px;
     z-index: 1;
 
-    animation:myShow 0.3s;
+    animation: myShow 0.3s;
 }
 
 @keyframes myShow {
-    from  {
+    from {
         transform: scale(0) rotate(0deg) rotateY(0deg);
     }
+
     to {
         transform: scale(1) rotate(360deg) rotateY(360deg);
     }
@@ -32,13 +38,13 @@
     margin-left: -140px;
     margin-top: -50px;
     background-color: rgba(0, 255, 0, 0.568);
-    
+
     opacity: 1;
     border-radius: 5px;
     z-index: 1;
     font-size: 50px;
     line-height: 100px;
-    
+
     transform: scale(0);
     transition: transform 0.3s;
 }
@@ -109,10 +115,10 @@
     padding: 1px 5px 4px 5px;
 
     font-weight: 600;
-    
+
     line-height: auto;
     vertical-align: center;
-    
+
     border-radius: 5px;
     margin-right: 5px
 }
@@ -121,10 +127,10 @@
     display: inline-block;
     margin-left: 2px;
     padding: 1px 5px 4px 5px;
-    
+
     line-height: auto;
     vertical-align: center;
-    
+
     border-radius: 5px;
     font-weight: 600;
 
@@ -132,18 +138,15 @@
 
 .gameView .question .difficulty.easy {
     background-color: rgb(55, 97, 55);
-    /* border: 1px solid rgb(59, 192, 26); */
 
 }
 
 .gameView .question .difficulty.medium {
     background-color: rgb(148, 119, 66);
-    /*border: 1px solid rgb(230, 180, 44);*/
 }
 
 .gameView .question .difficulty.hard {
     background-color: rgb(128, 66, 66);
-    /* border: 1px solid rgb(216, 88, 29); */
 }
 
 .gameView .question .wrapper {
@@ -154,10 +157,10 @@
     padding-bottom: 19px;
     padding-top: 10px;
     border: 1px solid rgb(124, 124, 124);
-    
+
     border-radius: 14px;
     background-color: rgba(51, 51, 51, 0);
-    box-shadow: 0 0 40px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.15);
 }
 
 .gameView .question .text {
@@ -180,11 +183,6 @@
     margin: 10px;
 }
 
-.gameView {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
 .gameView .result {
     margin-top: 10px;
     margin-bottom: 30px;
@@ -195,7 +193,7 @@
 }
 
 .gameView .number {
-    display:inline-block;
+    display: inline-block;
     width: 25px;
     height: 25px;
     margin: 5px;
@@ -204,19 +202,20 @@
     border-radius: 50%;
     border: 1px solid gray;
 }
+
 .gameView .number.red {
     background-color: rgb(168, 48, 48);
     border: 1px solid rgb(252, 159, 159);
 }
+
 .gameView .number.green {
     background-color: green;
     border: 1px solid rgb(110, 252, 134);
 }
 
 @media screen and (max-width: 600px) {
-  
     .gameView h1 {
-      font-size: 30px;
+        font-size: 30px;
     }
 
     .gameView h4 {

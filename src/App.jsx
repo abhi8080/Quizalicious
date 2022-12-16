@@ -1,18 +1,16 @@
 import { useState } from 'react'
 import { Outlet } from "react-router-dom";
-import './animations.css';
-import './App.css'
+import './styles/animations.css';
+import './styles/App.css'
 
-function App(props) {
-  function onClick() {
-    props.model.closeProfileMenu();
-  }
+export default function App(props) {
+    function onClick() {
+        props.model.closeProfileMenu();
+    }
 
-  return (
-    <div className="app" onClick={onClick}>
-      <Outlet/>
-    </div>
-  )
+    return (
+        <div className="app" onClick={onClick}>
+            <Outlet />
+        </div>
+    )
 }
-
-export default App

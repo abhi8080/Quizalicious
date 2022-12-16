@@ -1,34 +1,20 @@
-
-import "./loginView.css";
+import "../styles/loginView.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const transition = { duration: 3, yoyo: Infinity, ease: "easeIn" }
-const transition2 = { duration: 1, yoyo: Infinity, ease: "" , delay: 3}
-function LoginView(props) {
+const transition2 = { duration: 1, yoyo: Infinity, ease: "", delay: 3 }
 
+export default function LoginView(props) {
     return <div className="loginView">
-
-
-        {/* <img src=" Quizalicious logo.svg" className="blob" /> */}
         <div className="newBlob">
             <motion.svg
-
                 width="130"
                 height="130"
                 viewBox="120 150 220 415"
-                initial={{y:200,scale:1.3}}
-                animate={{y:0,scale:1}}
-                transition={{duration: 1, yoyo: Infinity, ease:"easeInOut", delay: 2.5}}
-            >
-                {/* <motion.path
-                    cx="100"
-                    cy="100"
-                    r="80"
-                    stroke="#ff0055"
-                    variants={draw}
-                    custom={1}
-                /> */}
+                initial={{ y: 200, scale: 1.3 }}
+                animate={{ y: 0, scale: 1 }}
+                transition={{ duration: 1, yoyo: Infinity, ease: "easeInOut", delay: 2.5 }}>
                 <motion.path
                     fill="#646cff00"
                     // fill="transparent"
@@ -41,7 +27,6 @@ function LoginView(props) {
                     initial={{ pathLength: 0, fill: "#646cff00", stroke: "#646cffff" }}
                     animate={{ pathLength: 1, fill: "#646cffff", stroke: "#646cff00" }}
                     exit={{ stroke: "#646cff00" }}
-
                     transition={transition} />
                 <motion.path
                     fill="#ffffff"
@@ -51,17 +36,16 @@ function LoginView(props) {
                     initial={{ pathLength: 0, fill: "#ffffff00", stroke: "#ffffffff" }}
                     animate={{ pathLength: 1, fill: "#ffffffff", stroke: "#ffffff00" }}
                     transition={transition} />
-
             </motion.svg>
         </div>
-        <motion.img src="./Bubo_small.png"
-        className="bubo"
-        alt="Bubo!"
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        transition={transition2} />
+        <motion.img src="./Bubo.svg"
+            className="bubo"
+            alt="Bubo!"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={transition2} />
         <div className="error">{errorHandling()}</div>
-        <motion.div className="loginBox" initial={{opacity:0}} animate={{opacity:1}} transition={transition2}>
+        <motion.div className="loginBox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={transition2}>
             <form onSubmit={userLogInACB}>
                 <label htmlFor="email">Email address:</label><br />
                 <input type="email" placeholder="Email" onChange={userEmailACB}></input>
@@ -70,7 +54,7 @@ function LoginView(props) {
                 <Link to={"/CreateAccount"}>Create a new account</Link>
                 <button type="submit">Log in</button>
             </form>
-            <img src="./Quizalicious logo full dark theme.png" className="quiza" alt="" />
+            <img src="./Quizalicious logo full dark theme.svg" className="quiza" alt="" />
         </motion.div>
     </div>;
 
@@ -89,23 +73,14 @@ function LoginView(props) {
 
     function errorHandling() {
         if (!props.error.message)
-            return;
-
-        if (props.error.message.includes("auth/wrong-password")) {
+            return "";
+        else if (props.error.message.includes("auth/wrong-password"))
             return "Wrong password, try again";
-        }
-        if (props.error.message.includes("auth/invalid-email")) {
+        else if (props.error.message.includes("auth/invalid-email"))
             return "Wrong email, try again";
-        }
-
-        if (props.error.message.includes("auth/user-not-found")) {
+        else if (props.error.message.includes("auth/user-not-found"))
             return "No user found with this email";
-        }
-        if (props.error.message.includes("auth/internal-error")) {
+        else if (props.error.message.includes("auth/internal-error"))
             return "Please enter a password";
-        }
-
     }
 }
-
-export default LoginView;

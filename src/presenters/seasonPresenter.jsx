@@ -2,7 +2,7 @@ import SeasonView from "../views/seasonView.jsx";
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import { useNavigate } from "react-router-dom";
 
-function SeasonPresenter(props) {
+export default function SeasonPresenter(props) {
     let navigate = useNavigate();
 
     const [,update]                                                         = React.useState({});
@@ -16,11 +16,11 @@ function SeasonPresenter(props) {
     const [closingResetPleaseConfirm, setClosingResetPleaseConfirm]         = React.useState(false); //Used for reset warning
 
     let gameList = [
-        { name: "Easy game 1", difficulty: "easy" },
-        { name: "Easy game 2", difficulty: "easy" },
-        { name: "Medium game 3", difficulty: "medium" },
-        { name: "Medium game 4", difficulty: "medium" },
-        { name: "Hard game 5", difficulty: "hard" },
+        { name: "Easy game 1",      difficulty: "easy" },
+        { name: "Easy game 2",      difficulty: "easy" },
+        { name: "Medium game 3",    difficulty: "medium" },
+        { name: "Medium game 4",    difficulty: "medium" },
+        { name: "Hard game 5",      difficulty: "hard" },
     ]
 
     function backClickConfirm() {
@@ -29,16 +29,16 @@ function SeasonPresenter(props) {
 
     function cancelBack() {
         setClosingBackClickPleaseConfirm(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             setClosingBackClickPleaseConfirm(false);
             setBackClickPleaseConfirm(false);
-        },300);
+        }, 300);
     }
 
     function backClick() {
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/Home");
-        },800)
+        }, 800)
         setGameClicked(true);
     }
     
@@ -48,33 +48,33 @@ function SeasonPresenter(props) {
 
     function cancelReset() {
         setClosingResetPleaseConfirm(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             setClosingResetPleaseConfirm(false);
             setResetPleaseConfirm(false);
-        },300);
+        }, 300);
     }
     
     function resetSeason() {
         setGameClicked(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             setCurrentGame(0);
             props.model.resetSeason();
             setGameClicked(false);
             setResetPleaseConfirm(false);
 
-        },800)
+        }, 800)
     }
 
     function gameClick(number) {
-        setTimeout(()=>{
+        setTimeout(() => {
             props.model.setCurrentGame(number);
             navigate("/Game");
-        },800)
+        }, 800)
         setGameClicked(true);
     }
 
     function updateFromModel(payload) {
-        if( payload&&payload["currentGame"] !== undefined ) {
+        if (payload&&payload["currentGame"] !== undefined) {
             setCurrentGame(payload["currentGame"]);
             update({});
         }
@@ -82,10 +82,10 @@ function SeasonPresenter(props) {
 
     React.useEffect(()=>{
         props.model.addObserver(updateFromModel);
-        return ()=>{props.model.removeObserver(updateFromModel);}
+        return () => {props.model.removeObserver(updateFromModel);}
     }, []);
 
-    if( !props.model.currentUser )
+    if (!props.model.currentUser)
         return <NotLoggedIn />;
 
     return <SeasonView  currentGame={props.model.currentGame}
@@ -110,5 +110,3 @@ function SeasonPresenter(props) {
                         gameClick={gameClick}
                         />;
 }
-
-export default SeasonPresenter;

@@ -27,26 +27,32 @@ Vite.js will provide a url to a local development servers in the terminal.
 
 
 ## What we have done
-We have created!
-- Login component, this component handles logins using Firebase
-- CreateCccount component, this component handles account creation using Firebase
-- Season component, this component shows a season, where the user can play games
-- QuickGame component, this component allows the user to play a quick game.
-- Game component, this component shows a game consisting of 5 questions. Questions from API.
-- HomeScreen component, this component provides a homescreen
-- Header component, this component provides a header to the web page.
-- Highscore component, this component shows a highscore board for all users.
-- Profile component, this shows information about the logged in user.
+We have created the following components:
+
+|     Component    |                Description                    |
+| ---------------- | --------------------------------------------- |
+| Login            | handles logins using Firebase                 |
+| CreateAccount    | handles account creation using Firebase       |
+| Season           | shows a season, where the user can play games |
+| QuickGame        | Handles the quick game mode                   |
+| Game             | shows a game consisting of 5 questions        |
+| HomeScreen       | provides a homescreen                         |
+| Header           | provides a header to the web page             |
+| Highscore        | shows a highscore board for all users         |
+| Profile          | shows information about the logged in user    |
+| Owl              | Shows a small tutorial on the home screen     |
+| UserNotLoggedIn  | Shows a button to go to login screen          |
+| PageNotFound     | For React Router, invalid route               |
 
 ## What we still plan to do
-We are planning on implementing achievements and further fix bugs and do more user testing.
+Nothing more planned to do.
 
 ## Project file structure
 |               File/Folder                  |                      Description                      |
 | ------------------------------------------ | ----------------------------------------------------- |
 | /public/                                   | Contains images                                       |
 | /src/                                      | Contains most of our source code                      |
-| /src/presenters/                           | Contains all of our presenters                        |
+| /src/presenters/                           | Contains all of our component presenters              |
 | /src/presenters/createAccountPresenter.jsx | Presenter for the CreateAccount component             |
 | /src/presenters/gamePresenter.jsx          | Presenter for the Game componenet                     |
 | /src/presenters/headerPresenter.jsx        | Presenter for the Header component                    |
@@ -58,41 +64,44 @@ We are planning on implementing achievements and further fix bugs and do more us
 | /src/presenters/quickGamePresenter.jsx     | Presenter for the QuickGame component                 |
 | /src/presenters/seasonPresenter.jsx        | Presenter for the Season component                    |
 | /src/presenters/settingsPresenter.jsx      | Presenter for the Settigns component                  |
-| /src/presenters/show.jsx                   | Component provides basic routing using hashtags       |
+| /src/styles/                               | Folder for all the stylesheets                        |
+| /src/styles/animations.css                 | Stylesheet for the animations used throughout the app |
+| /src/styles/app.css                        | Stylesheet for the App component                      |
+| /src/styles/createAccountView.css          | Stylesheet for the CreateAccount component            |
+| /src/styles/gameView.css                   | Stylesheet for the Game component                     |
+| /src/styles/headerView.css                 | Stylesheet for the Header component                   |      
+| /src/styles/highscoreView.css              | Stylesheet for the Highscore component                |
+| /src/styles/homeScreenView.css             | Stylesheet for the Highscore component                |
+| /src/styles/index.css                      | Stylesheet for the basic DOM elements like buttons    |
+| /src/styles/loginView.css                  | Stylesheet for the Login component                    |
+| /src/styles/notLoggedInView.css            | Stylesheet for the NotLoggedIn component              |
+| /src/styles/owlView.css                    | Stylesheet for the Owl component                      |
+| /src/styles/profileMenuView.css            | Stylesheet for the ProfileMenu component              |
+| /src/styles/profileView.css                | Stylesheet for the Profile component                  |
+| /src/styles/promiseNoData.css              | Stylesheet for the loading bar, waiting for promise   |
+| /src/styles/quickGameView.css              | Stylesheet for the QuickGame component                |
+| /src/styles/seasonView.css                 | Stylesheet for the Season Component                   |
+| /src/styles/settingsView.css               | Stylesheet for the Settings Component                 |
 | /src/views/                                | Contains all of our views for our components          |
-| /src/views/createAccountView.css           | Stylesheet for the CreateAccount component            |
 | /src/views/createAccountView.jsx           | View for the AccountCreation component                |
-| /src/views/gameView.css                    | Stylesheet for the Game component                     |
 | /src/views/gameView.jsx                    | View for the Game component                           |
-| /src/views/headerView.css                  | Stylesheet for the Header component                   |      
 | /src/views/headerView.jsx                  | View for the Header component                         |
-| /src/views/highscoreView.css               | Stylesheet for the Highscore component                |
 | /src/views/highscoreView.jsx               | View for the Highscore component                      |
-| /src/views/homeScreenView.css              | Stylesheet for the Highscore component                |
 | /src/views/homeScreenView.jsx              | View for the HomeScreen component                     |
-| /src/views/loginView.css                   | Stylesheet for the Login component                    |
 | /src/views/loginView.jsx                   | View for the Login page component                     |
-| /src/views/notLoggedInView.css             | Stylesheet for the NotLoggedIn component              |
 | /src/views/notLoggedInView.jsx             | View for the NotLoggedIn component                    |
-| /src/views/profileMenuView.css             | Stylesheet for the ProfileMenu component              |
+| /src/views/owlView.jsx                     | View for the Owl component                            |
+| /src/views/pageNotFoundView.jsx            | View for the PageNotFound component                   |
 | /src/views/profileMenuView.jsx             | View for the ProfileMenu component                    |
-| /src/views/profileView.css                 | Stylesheet for the Profile component                  |
 | /src/views/profileView.jsx                 | View for the Profile component                        |
-| /src/views/promiseNoData.css               | Stylesheet for the loading bar, waiting for promise   |
 | /src/views/promiseNoData.jsx               | View providing a loading bar, waiting for promise     |
-| /src/views/quickGameView.css               | Stylesheet for the QuickGame component                |
 | /src/views/quickGameView.jsx               | View for the QuickGame component                      |
-| /src/views/seasonView.css                  | Stylesheet for the Season Component                   |
 | /src/views/seasonView.jsx                  | View for the Season component                         |
-| /src/views/settingsView.css                | Stylesheet for the Settings Component                 |
 | /src/views/settingsView.jsx                | View for the Settings component                       |
-| /src/animations.css                        | Stylesheet for animations used throughout the app     |
 | /src/apiConfig.jsx                         | Contains configuration for our API, not commited      |
-| /src/App.css                               | The stylesheet for the App component                  |
 | /src/App.jsx                               | The App components, the base of our SPA               |
 | /src/firebaseConfig.jsx                    | The firebase configuration file, not commited         |
 | /src/firebaseModel.jsx                     | Contains functions related to firebase services       |
-| /src/index.css                             | The stylesheet for basic DOM elements like buttons    |
 | /src/main.jsx                              | Boostrap file for React                               |
 | /src/navigation.js                         | Sets the default hash for navigation                  |
 | /src/QuizModel.jsx                         | The model for the application.                        |

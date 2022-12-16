@@ -1,7 +1,5 @@
 import PageNotFoundView from "../views/pageNotFoundView.jsx";
 
-function PageNotFound(props) {
+export default function PageNotFound(props) {
     return <PageNotFoundView/>;
 }
-
-export default PageNotFound;

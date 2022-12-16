@@ -1,8 +1,6 @@
 .homeScreen .logo {
-    /* border-radius: 50%; */
     margin-top: 20px;
     will-change: filter;
-    /* animation: logo-spin infinite 20s linear; */
     transition: filter 0.5s;
 }
 
@@ -18,7 +16,6 @@
     display: inline-block;
     height: 20px;
     margin: 0 20px 0 20px;
-    /* animation: vibrate-1 0.3s linear infinite both; */
 }
 
 .homeScreen .owl {
@@ -31,7 +28,6 @@
     width: 400px;
     margin: 10px;
     vertical-align: top;
-    
 }
 
 .homeScreen .buttonWrapper {
@@ -80,7 +76,6 @@
 }
 
 @keyframes gelatine {
-
     from,to {
         transform: scale(1, 0.95) skewX(0deg);
     }
@@ -95,16 +90,6 @@
 
     75% {
         transform: scale(1, 1) skewX(-3deg);
-    }
-}
-
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
     }
 }
 

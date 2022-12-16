@@ -1,11 +1,10 @@
-import './createAccountView.css';
+import '../styles/createAccountView.css';
 import { Link } from "react-router-dom";
 
-
-function CreateAccountView(props) {
+export default function CreateAccountView(props) {
     return <div className="CreateAccountView">
         <img src="Quizalicious logo.svg" className="image blob" />
-        <img src="./Bubo_small.png" className="bubo" alt="Bubo!" />
+        <img src="./Bubo.svg" className="bubo" alt="Bubo!" />
         <div className="error">{errorHandling()}</div>
         <div className="registerBox">
             <form onSubmit={creatingUserACB}>
@@ -19,10 +18,8 @@ function CreateAccountView(props) {
                 <button type='submit'>Create account</button>
             </form>
         </div>
-        <img src="./Quizalicious logo full dark theme.png" className="quiza" alt="" />
+        <img src="./Quizalicious logo full dark theme.svg" className="quiza" alt="" />
     </div>;
-
-
 
     function creatingUserACB(event) {
         event.preventDefault()
@@ -59,8 +56,4 @@ function CreateAccountView(props) {
             return "Please enter a password";
         }
     }
-
 }
-
-export default CreateAccountView;
-

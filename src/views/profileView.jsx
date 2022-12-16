@@ -1,8 +1,6 @@
-import './profileView.css';
-import '../index.css';
+import '../styles/profileView.css';
 
-function ProfileView(props) {
-
+export default function ProfileView(props) {
     /* 
         ---PROFILE TODO---
         2 Main div, within first div have 2 smaller divs **DONE**
@@ -10,47 +8,39 @@ function ProfileView(props) {
         in the smaller div to the right, show last 5 seasons with season info and score **DONE**
         in the second larger div, show achievements
     */
-    function renderSeasons(season, index){
+    function renderSeasons(season, index) {
         return <tr key={index}>
-                <td>{season.date}</td>
-                <td>{season.score}</td>
-            </tr>;
-        }
-    
-    return <div className={"profileView appear "+(props.backClicked&&"implode")}>
+            <td>{season.date}</td>
+            <td>{season.score}</td>
+        </tr>;
+    }
+
+    return <div className={"profileView appear " + (props.backClicked && "implode")}>
         <span>
-        <span className="profileInfo">
-            <img className="profilePic" src={props.displayPhoto||"./loid.jpg"} alt="" />
-            <br></br>
-            {props.usersUsername}
-            <br></br>
-            {props.displayTotalSeasons} seasons played
-           
-        </span>
-        <h2>Last 5 seasons</h2>
-        <table className="seasons">
-            
-            <thead>
-                <tr>
-                    <th>Season</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.displaySeasons.map(renderSeasons)}
+            <span className="profileInfo">
+                <img className="profilePic" src={props.displayPhoto || "./loid.jpg"} alt="" />
+                <br></br>
+                {props.usersUsername}
+                <br></br>
+                {props.displayTotalSeasons} seasons played
+            </span>
+            <h2>Last 5 seasons</h2>
+            <table className="seasons">
+                <thead>
+                    <tr>
+                        <th>Season</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.displaySeasons.map(renderSeasons)}
                 </tbody>
-            
-        </table>
-        
-       
+            </table>
         </span>
         <span>
             <h2>Achievements</h2>
             display achievements here
-            
-        </span><br/>
+        </span><br />
         <button onClick={props.backClick}>Back to home</button>
     </div>
 }
-
-export default ProfileView;

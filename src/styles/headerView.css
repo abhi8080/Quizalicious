@@ -10,9 +10,7 @@ header .headerWidthRestricted {
     position: relative;
     max-width: 700px;
     margin: 0 auto;
-    /* background-color: blue; */
     height: 60px;
-
 }
 
 header .homeButton {
@@ -44,14 +42,14 @@ header .triangle {
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-top: 13px solid white;
-    
+
     transform: rotate(0deg);
     transition: transform 0.5s;
-  
-    box-shadow: 0px 0px 23px 5px rgba(0, 0, 0, 0.10);
-  }
 
-  header .triangle.rotate90 {
+    box-shadow: 0px 0px 23px 5px rgba(0, 0, 0, 0.10);
+}
+
+header .triangle.rotate90 {
     transform: rotate(180deg);
     transition: transform 0.5s;
-  }
+}

@@ -7,7 +7,6 @@
 .quickGame input {
     display: block;
     max-width: 400px;
-
 }
 
 .quickGame select {
@@ -64,7 +63,6 @@
 }
 
 @media screen and (max-width: 850px) {
-
     .quickGame .column.left {
         height: auto;
     }

@@ -9,6 +9,9 @@
    viewBox="0 0 1603.4044 406.06183"
    sodipodi:docname="Quizalicious logo full dark theme.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:export-filename="Quizalicious logo full dark themeex.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +39,7 @@
      id="defs6" />
   <g
      id="g8"
-     transform="translate(-28.649599,-152.61456)">
+     transform="translate(-28.6496,-152.61456)">
     <path
        style="fill:#646cff;fill-opacity:1;stroke-width:0.981927"
        d="m 380.2678,262.54331 c -9.79635,-4.69505 -12.67317,-5.98772 -17.18374,-7.72139 -5.37669,-2.06658 -13.18071,-4.86645 -16.69278,-5.98893 -4.85173,-1.55065 -7.36445,-3.55161 -7.36445,-5.86454 0,-0.971 -0.40397,-2.78046 -0.89772,-4.02101 -0.49375,-1.24054 -2.31056,-6.01141 -4.03736,-10.60192 -3.91088,-10.39659 -5.09801,-13.12134 -10.31555,-23.67639 -2.29908,-4.65108 -3.89552,-8.90962 -3.5476,-9.46341 0.41775,-0.66499 3.46687,-0.72976 8.97895,-0.19075 30.93135,3.02465 53.24335,21.37572 60.82045,50.02332 2.15434,8.14515 3.09278,21.72433 1.53197,22.16752 -0.54007,0.15335 -5.62154,-1.94478 -11.29217,-4.6625 z"

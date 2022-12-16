@@ -7,8 +7,10 @@ import {
 	createBrowserRouter,
 	createRoutesFromElements,
 	Route,
+	BrowserRouter,
+	Routes,
 	RouterProvider,
-	Navigate
+	Navigate,
 } from "react-router-dom";
 import resolvePromise 	from "./resolvePromise.jsx";
 import promiseNoData 	from "./views/promiseNoData.jsx";
@@ -25,13 +27,11 @@ import QuickGame 		from './presenters/quickGamePresenter.jsx';
 import Settings 		from './presenters/settingsPresenter.jsx';
 import PageNotFound		from './presenters/pageNotFoundPresenter.jsx';
 
-function Root() {
+export default function Root() {
 	const [promiseState] = React.useState({});
 	const [, setError] = React.useState({});
 	const [, setData] = React.useState({});
-	function wasCreatedACB() {
-		resolve(firebaseModelPromise());
-	}
+
 	function resolve(thePromise) {
 		function promiseStateChangedACB() {
 			setError(promiseState["error"]);
@@ -43,27 +43,23 @@ function Root() {
 		}
 		resolvePromise(thePromise, promiseState, promiseStateChangedACB);
 	}
-	React.useEffect(wasCreatedACB, []);
 
-	const router = createBrowserRouter(
-		createRoutesFromElements(
-			<Route path="/" element={<App model={promiseState.data}/>} errorElement={<PageNotFound/>}>
-				<Route exact path="/" 		element={<Navigate  to="/Login"/>}/>
-				<Route path="Login" 		element={<Login 	model={promiseState.data} />} />
-				<Route path="CreateAccount" element={<CreateACC model={promiseState.data} />} />
-				<Route path="Home" 			element={<><Header 	model={promiseState.data} /><HomeScreen model={promiseState.data} /></>} />
-				<Route path="Season" 		element={<><Header 	model={promiseState.data} /><Season 	model={promiseState.data} /></>} />
-				<Route path="Game" 			element={<><Header 	model={promiseState.data} /><Game 		model={promiseState.data} /></>} />
-				<Route path="QuickGame" 	element={<><Header 	model={promiseState.data} /><QuickGame 	model={promiseState.data} /></>} />
-				<Route path="Profile" 		element={<><Header 	model={promiseState.data} /><Profile 	model={promiseState.data} /></>} />
-				<Route path="Highscore" 	element={<><Header 	model={promiseState.data} /><Highscore 	model={promiseState.data} /></>} />
-				<Route path="Settings" 		element={<><Header 	model={promiseState.data} /><Settings 	model={promiseState.data} /></>} />
-			</Route>
-		)
-	);
+	React.useEffect(() => {
+		resolve(firebaseModelPromise());
+	}, []);
 
-	return promiseNoData(promiseState) || <RouterProvider router={router} />;
-	return promiseNoData(promiseState) || <App model={promiseState.data} />;
+	return promiseNoData(promiseState) || <BrowserRouter>
+		<Routes path="/" element={<App model={promiseState.data}/>} errorElement={<PageNotFound/>}>
+			<Route exact path="/" 		element={<Navigate  to="/Login"/>}/>
+			<Route path="Login" 		element={<Login 	model={promiseState.data} />} />
+			<Route path="CreateAccount" element={<CreateACC model={promiseState.data} />} />
+			<Route path="Home" 			element={<><Header 	model={promiseState.data} /><HomeScreen model={promiseState.data} /></>} />
+			<Route path="Season" 		element={<><Header 	model={promiseState.data} /><Season 	model={promiseState.data} /></>} />
+			<Route path="Game" 			element={<><Header 	model={promiseState.data} /><Game 		model={promiseState.data} /></>} />
+			<Route path="QuickGame" 	element={<><Header 	model={promiseState.data} /><QuickGame 	model={promiseState.data} /></>} />
+			<Route path="Profile" 		element={<><Header 	model={promiseState.data} /><Profile 	model={promiseState.data} /></>} />
+			<Route path="Highscore" 	element={<><Header 	model={promiseState.data} /><Highscore 	model={promiseState.data} /></>} />
+			<Route path="Settings" 		element={<><Header 	model={promiseState.data} /><Settings 	model={promiseState.data} /></>} />
+		</Routes>
+	</BrowserRouter>;
 }
-
-export default Root;

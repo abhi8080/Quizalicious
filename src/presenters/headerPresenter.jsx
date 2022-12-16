@@ -5,22 +5,21 @@ import { useNavigate } from "react-router-dom";
 
 const auth = getAuth();
 
-function HeaderPresenter(props) {
+export default function HeaderPresenter(props) {
     let navigate = useNavigate();
 
     const [profileMenuOpen, setProfileMenuOpen] = React.useState(false);
-    const [hidingMenu, setHidingMenu] = React.useState(false); //For closing animation
-    const [photoURL, setPhotoURL] = React.useState(props.model.currentUser.photoURL);
+    const [hidingMenu, setHidingMenu]           = React.useState(false); //For closing animation
+    const [, setPhotoURL]                       = React.useState("");
 
     function profilePicClick(event) {
         event.stopPropagation();
         event.nativeEvent.stopImmediatePropagation();
-
         props.model.setProfileMenuOpen(!profileMenuOpen);
     }
-    
+
     function logOut() {
-        
+
         signOut(auth).then(() => {
             navigate("/Login");
             props.model.currentUser = null;
@@ -50,46 +49,44 @@ function HeaderPresenter(props) {
     }
 
     function modelUpdate(payload) {
-        if(payload) {
-            if(payload["profileMenuOpen"] !== undefined) {
-                if(!payload.profileMenuOpen)
+        if (payload) {
+            if (payload["profileMenuOpen"] !== undefined) {
+                if (!payload.profileMenuOpen)
                     setHidingMenu(true);
-                if(payload.profileMenuOpen)
+                if (payload.profileMenuOpen)
                     setProfileMenuOpen(true);
             }
+            if( payload["photoURL"] )
+                setPhotoURL(props.model.currentUser.photoURL);
         }
-        setPhotoURL(props.model.currentUser.photoURL);
     }
 
-    React.useEffect(()=>{
-        if(hidingMenu) {
-            setTimeout(()=>{
+    React.useEffect(() => {
+        if (hidingMenu) {
+            setTimeout(() => {
                 setProfileMenuOpen(false);
                 setHidingMenu(false);
-            },500)
+            }, 500)
         }
-    },[hidingMenu]);
+    }, [hidingMenu]);
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setProfileMenuOpen(props.model.profileMenuOpen);
         props.model.addObserver(modelUpdate);
-        return ()=>{props.model.removeObserver(modelUpdate)}
-    },[]);
+        return () => { props.model.removeObserver(modelUpdate) }
+    }, []);
 
-    if( props.model.currentUser )
-        return <HeaderView  user            ={props.model.currentUser}
-                            homeButtonPress ={homeButtonPress}
-                            profilePicClick ={profilePicClick}
-                            photoURL        ={photoURL}
-                            profileMenuOpen ={props.model.profileMenuOpen}>
-                            {profileMenuOpen&&(
-                                <ProfileMenuView    stopProp    ={stopProp}
-                                                    hidingMenu  ={hidingMenu}
-                                                    user        ={props.model.currentUser}
-                                                    logOut      ={logOut}
-                                                    yourSettings={yourSettings}
-                                                    yourProfile ={yourProfile}/>)}
-                </HeaderView>;
+    if (!props.model.currentUser)
+        return "";
+    return <HeaderView  user={props.model.currentUser}
+                        homeButtonPress={homeButtonPress}
+                        profilePicClick={profilePicClick}
+                        profileMenuOpen={props.model.profileMenuOpen}>
+                        {profileMenuOpen && ( <ProfileMenuView  stopProp={stopProp}
+                                                                hidingMenu={hidingMenu}
+                                                                user={props.model.currentUser}
+                                                                logOut={logOut}
+                                                                yourSettings={yourSettings}
+                                                                yourProfile={yourProfile} />)}
+    </HeaderView>;
 }
-
-export default HeaderPresenter;

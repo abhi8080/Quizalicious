@@ -2,38 +2,36 @@ import HomeScreenView from "../views/homeScreenView.jsx";
 import NotLoggedIn from "./notLoggedInPresenter.jsx";
 import { useNavigate } from "react-router-dom";
 
-function HomeScreen(props) {
+export default function HomeScreen(props) {
     let navigate = useNavigate();
     const [didClick, setDidClick] = React.useState(false);
 
     function newQuickGame() {
         setDidClick(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             props.model.quickGameMode = true;
             navigate("/QuickGame");
-        },800)
+        }, 800)
     }
 
     function newSeason() {
         setDidClick(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/Season");
             props.model.resetSeason();
             props.model.quickGameMode = false;
-        },800)
+        }, 800)
     }
 
     function showHighscores() {
         setDidClick(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/Highscore");
-        },800)
+        }, 800)
     }
 
-    if(!props.model.currentUser)
-        return <NotLoggedIn/>;
-    
-    return <HomeScreenView didClick={didClick} newSeason={newSeason} newQuickGame={newQuickGame} showHighscores={showHighscores}/>
-}
+    if (!props.model.currentUser)
+        return <NotLoggedIn />;
 
-export default HomeScreen;
+    return <HomeScreenView didClick={didClick} newSeason={newSeason} newQuickGame={newQuickGame} showHighscores={showHighscores} />
+}

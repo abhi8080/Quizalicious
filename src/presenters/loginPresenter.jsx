@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login(props) {
+export default function Login(props) {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,11 +29,7 @@ function Login(props) {
     if (props.model.currentUser != null) {
       navigate("/Home");
     }
-    
-
   }
 
   return <LoginView onUserLogIn={handleLoginACB} error={error} onUserEmail={userEmail} onUserPassword={userPassword} />;
-
 }
-export default Login;
