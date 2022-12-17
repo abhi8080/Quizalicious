@@ -46,7 +46,7 @@
 .appear {
     animation-name: appear;
     animation-duration: 0.8s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: both;
 
 }
 

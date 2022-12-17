@@ -3,11 +3,20 @@
     margin: 0 auto;
 }
 
-.seasonView .game {
+.seasonView .game,
+.seasonView .back,
+.seasonView .reset {
     display: block;
     width: 500px;
     margin: 10px 50px;
+}
+
+.seasonView .game {
     border: none;
+}
+
+.seasonView .game:disabled {
+    cursor: default;
 }
 
 .seasonView .game.easy {
@@ -50,16 +59,33 @@
     right: 0;
     top: 50%;
     margin-top: -100px;
-    
     width: 350px;
-
+    
     background-color: rgba(17, 16, 2, 0.897);
     padding: 10px;
     border-radius: 12px;
     border: 1px solid rgb(255, 238, 0);
     color: white;
-
     box-shadow: 0 0 40px 0 rgba(0,0,0,0.5);
+
+    animation: .3s linear 0s both warningShow;
+}
+
+@keyframes warningShow {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    45% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .seasonView .warningPopup button.green {
@@ -140,27 +166,8 @@
     }
 }
 
-.warningShow {
-    animation: warningShow .3s;
-}
-
-@keyframes warningShow {
-    0% {
-        transform: scale(0.7);
-    }
-    45% {
-        transform: scale(1.05);
-    }
-    80% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.hideWarning {
-    animation: hideWarning .3s;
+.seasonView .warningPopup.hideWarning {
+    animation: .3s ease-out 0s both hideWarning;
 }
 
 @keyframes hideWarning {
@@ -175,7 +182,9 @@
 }
 
 @media screen and (max-width: 600px) {
-    .seasonView .game {
+    .seasonView .game,
+    .seasonView .back,
+    .seasonView .reset {
         width: 300px;
         margin: 10px 10px 10px 10px;
     }

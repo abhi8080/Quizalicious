@@ -12,7 +12,7 @@
     cursor: pointer;
     user-select: none;
 
-    animation: appear2 .5s;
+    animation: .5s linear 0s both appear2;
 }
 
 .profileMenu .item:nth-child(1) {
@@ -20,7 +20,7 @@
 }
 
 .profileMenu.hide {
-    animation: disappear2 .5s;
+    animation: .5s linear 0s both disappear2;
 }
 
 @keyframes appear2 {

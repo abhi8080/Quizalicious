@@ -87,15 +87,19 @@
     transition: background-color .4s;
 }
 
-.gameView button.correct {
-    outline: 1px solid rgba(0, 255, 0, 0.699);
+.gameView .wrapper button.option.correct {
+    border: 1px solid rgba(0, 255, 0, 0.699);
     background-color: rgba(0, 255, 0, 0.212);
-    border: none;
+    cursor: default;
 }
 
-.gameView button.incorrect {
-    outline: 1px solid rgba(255, 0, 0, 0.685);
+.gameView .wrapper  button.option.incorrect {
+    border: 1px solid rgba(255, 0, 0, 0.685);
     background-color: rgba(255, 0, 0, 0.096);
+    cursor: default;
+}
+
+.gameView .wrapper button:hover {
     border: none;
 }
 
@@ -260,5 +264,9 @@
 
     .gameView .question .wrapper {
         padding: 14px;
+    }
+    
+    .gameView .question .option {
+        font-size: 14px;
     }
 }

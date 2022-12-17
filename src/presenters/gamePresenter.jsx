@@ -30,7 +30,6 @@ export default function SeasonPresenter(props) {
     const [exiting, setExiting]                     = React.useState(false); //For exiting animation
 
     function timeout() {
-        console.log("timeout!");
         if (!exiting) {
             setShowTimeout(true);
             gameScores[currentQuestion] = 0;

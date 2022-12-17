@@ -14,6 +14,7 @@ export default function GameView(props) {
 
         if (!question.options)
             return <span>Wait!</span>;
+            
         return <div className="question" key={question.question}>
             <div className="countDownTimer">
                 <CountdownCircleTimer size={100}
@@ -30,12 +31,12 @@ export default function GameView(props) {
             <span>Difficulty:</span>
             <span className={"difficulty " + question.difficulty}>{question.difficulty}</span>
             <div>
-                {props.gameScores.map((score) => {
+                {props.gameScores.map((score, index) => {
                     if (score===undefined)
-                        return <span className="number circle"></span>;
+                        return <span className="number circle" key={index}></span>;
                     if (score > 0)
-                        return <span className="number green"></span>;
-                    return <span className="number red"></span>;
+                        return <span className="number green" key={index}></span>;
+                    return <span className="number red" key={index}></span>;
                 })}
             </div>
             <div className="wrapper">
@@ -59,7 +60,6 @@ export default function GameView(props) {
                     })}
                 </div>
             </div>
-
         </div>;
     }
 
@@ -69,8 +69,8 @@ export default function GameView(props) {
             <h1>Game done!</h1>
             {props.gameScores.map((score, index) => {
                 if (score)
-                    return <span class="number green"></span>;
-                return <span class="number red"></span>;
+                    return <span className="number green"></span>;
+                return <span className="number red"></span>;
             })}
             <div className="result">You got {props.rightAnswers} points.</div>
             <button onClick={props.backClick}>Back</button>
