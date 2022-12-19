@@ -4,7 +4,6 @@ import OwlView from "../views/OwlView.jsx";
 export default function Owl(props) {
     const [page, setPage] = React.useState(0);
     const [text, setText] = React.useState("");
-    const [height, setHeight] = React.useState(1);
 
     function nextPage() {
         setPage(page + 1);
@@ -41,6 +40,6 @@ export default function Owl(props) {
         previousPage={previousPage}
         page={page}
         text={text}
-        close={close}
-        height={height} />;
+        onX={props.onX}
+        hide={props.hide} />;
 }

@@ -2,10 +2,13 @@ import '../styles/homeScreenView.css';
 import Owl from "../presenters/OwlPresenter";
 
 function HomeScreenView(props) {
-    return <div className={"homeScreen appear " + (props.didClick && "implode")}>
-        <div className="owl">
-            <Owl className="owl" />
-        </div>
+    console.log(props.hideOwl);
+    return <div className={"homeScreen appear " + (props.didClick?"implode":"")}>
+        <Owl onX={props.toggl} hide={props.hideOwl}/>
+        <br /> 
+        <a href=""
+            className={"showOwl " + (props.hideOwl?"":"hide")}
+            onClick={(e) => {e.preventDefault(); props.toggl();}}>(Please show me Mr. Owl again)</a>
         <img src="Quizalicious logo.svg" className="smallLogo" alt="" />
         <span className="menuTitle">Game menu</span>
         <img src="Quizalicious logo.svg" className="smallLogo" alt="" />

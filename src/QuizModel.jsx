@@ -23,6 +23,12 @@ class QuizModel {
         this.quickGameMode = false;
         this.quickGameCategory = "";
         this.quickGameDifficulty = "";
+
+        this.hideOwl = false; //Variable for controlling owl visibility on home screen;
+    }
+
+    setHideOwl(hide) {
+        this.hideOwl = hide;
     }
 
     getGameScore() {
@@ -79,7 +85,7 @@ class QuizModel {
     setUserProfilePicture(photo, setLoading) {
         upload(photo, setLoading);
         setTimeout(() => {
-            if (this.currentUser) this.notifyObservers({photoURL:this.currentUser.photoURL});
+            if (this.currentUser) this.notifyObservers({ photoURL: this.currentUser.photoURL });
         }, "3000")
     }
 
@@ -141,7 +147,7 @@ class QuizModel {
         this.notifyObservers({ signIn: "true" });
         this.setCurrentUser(user);
     }
-    
+
     setCurrentUserAchievements(achievements) {
         this.currentUserAchievements = achievements;
     }

@@ -8,6 +8,17 @@
     margin: 30px 0;
 }
 
+.homeScreen .showOwl {
+    font-size: 14px;
+    display: block;
+    height: 40px;
+    transition: height 1s;
+    overflow:hidden;
+}
+
+.homeScreen .showOwl.hide {
+    height: 0;
+}
 
 .homeScreen button {
     height: 100px;

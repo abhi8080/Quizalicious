@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomeScreen(props) {
     let navigate = useNavigate();
-    const [didClick, setDidClick] = React.useState(false);
-
+    const [didClick, setDidClick]   = React.useState(false);
+    const [hideOwl, setHideOwl]     = React.useState(props.model.hideOwl);
+    
     function newQuickGame() {
         setDidClick(true);
         setTimeout(() => {
@@ -30,8 +31,19 @@ export default function HomeScreen(props) {
         }, 800)
     }
 
+    React.useEffect(() => {
+        props.model.hideOwl = hideOwl;
+        console.log(props.model.hideOwl);
+        console.log(hideOwl);
+    },[hideOwl]);
+
     if (!props.model.currentUser)
         return <NotLoggedIn />;
 
-    return <HomeScreenView didClick={didClick} newSeason={newSeason} newQuickGame={newQuickGame} showHighscores={showHighscores} />
+    return <HomeScreenView didClick={didClick}
+        newSeason={newSeason}
+        newQuickGame={newQuickGame}
+        showHighscores={showHighscores}
+        hideOwl={hideOwl}
+        toggl={() => setHideOwl(!hideOwl)} />
 }
