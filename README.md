@@ -7,6 +7,8 @@ Try to get on the leaderboard by completing a season!
 
 A season consists of 2 easy games, 2 medium difficulty games and one hard difficulty game.
 
+Website: https://quizalicious-a9e5a.web.app/
+
 ## How to setup
 
 1. install node
